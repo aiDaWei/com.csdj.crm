@@ -4,5 +4,235 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.csdj.crmproject.crmproject.dao.Instrument.SectionInstrument.SectionInstrumentMapper">
-
+    <!--查询所有用户-->
+    <select id="listDepartment" resultType="Department">
+        select pk_department_id pkDepartmentId, department_name departmentName
+        from department
+    </select>
+    <!--本月回款业绩完成值-->
+    <select id="countReceivableMonth" resultType="StatisticalResult">
+        select
+        (select count(1) from recei_plan
+        where re_plan_currentstate='已完成'
+        and DATE_FORMAT(re_plan_actualreceipttime, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m')
+        and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ))/
+        (select count(1) from recei_plan
+        where DATE_FORMAT(re_plan_actualreceipttime, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m')
+        and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 )) completeValue
+    </select>
+    <!--本季回款业绩完成值-->
+    <select id="countReceivableQuarter" resultType="StatisticalResult">
+        select
+        (select count(1) from recei_plan
+        where re_plan_currentstate='已完成'
+        and  QUARTER(re_plan_actualreceipttime) = QUARTER(NOW())
+        and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3))/
+        (select count(1) from recei_plan
+        where QUARTER(re_plan_actualreceipttime) = QUARTER(NOW())
+        and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3)) completeValue
+    </select>
+    <!--本年回款业绩完成值-->
+    <select id="countReceivableYear" resultType="StatisticalResult">
+        select
+        (select count(1) from recei_plan
+        where re_plan_currentstate='已完成'
+        and  YEAR(re_plan_actualreceipttime) = YEAR(NOW())
+        and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ))/
+        (select count(1) from recei_plan
+        where YEAR(re_plan_actualreceipttime) = YEAR(NOW())
+        and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 )) completeValue
+    </select>
+    <!--月度回款额统计图计划值-->
+    <select id="avgReceivableMonth" resultType="Map">
+        select
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=1 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=1 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a1,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=2 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=2 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a2,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=3 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=3 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a3,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=4 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=4 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a4,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=5 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=5 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a5,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=6 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=6 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a6,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=7 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=7 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a7,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=8 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=8 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a8,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=9 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=9 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a9,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=10 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=10 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a10,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=11 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=11 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a11,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=12 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=12 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a12
+    </select>
+    <!--月度回款额统计图完成值-->
+    <select id="avgReceivableMonthOK" resultType="Map">
+        select
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=1 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=1 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a1,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=2 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=2 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a2,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=3 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=3 and fk_user_id in (select pk_user_id from `user` where  fk_department_id=3 )),0) a3,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=4 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=4 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a4,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=5 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=5 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a5,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=6 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=6 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a6,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=7 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=7 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a7,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=8 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=8 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a8,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=9 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=9 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a9,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=10 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=10 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a10,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=11 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=11 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a11,
+ IFNULL((select count(1) from contract where MONTH(gmt_create)=12 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid in (select pk_user_id from `user` where fk_department_id=3 ) ) )/
+ (select count(1) from contract where MONTH(gmt_create)=12 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a12
+    </select>
+    <!--初步接触-->
+    <select id="countSaleForecasting1" resultType="StatisticalResult">
+        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        from salesopp
+                 left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
+        where fk_user_id in (select pk_user_id from `user` where fk_department_id=1 ) and phase_type_name = '初步接触';
+    </select>
+    <!--需求分析-->
+    <select id="countSaleForecasting2" resultType="StatisticalResult">
+        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        from salesopp
+                 left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
+        where fk_user_id in (select pk_user_id from `user` where fk_department_id=1 ) and phase_type_name = '需求分析';
+    </select>
+    <!--方案制定/报价-->
+    <select id="countSaleForecasting3" resultType="StatisticalResult">
+        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        from salesopp
+                 left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
+        where fk_user_id in (select pk_user_id from `user` where fk_department_id=1 ) and phase_type_name = '方案制定/报价';
+    </select>
+    <!--商务谈判/招投标-->
+    <select id="countSaleForecasting4" resultType="StatisticalResult">
+        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        from salesopp
+                 left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
+        where fk_user_id in (select pk_user_id from `user` where fk_department_id=1 ) and phase_type_name = '商务谈判/招投标';
+    </select>
+    <!--合同签订-->
+    <select id="countSaleForecasting5" resultType="StatisticalResult">
+        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        from salesopp
+                 left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
+        where fk_user_id in (select pk_user_id from `user` where fk_department_id=1 ) and phase_type_name = '合同签订';
+    </select>
+    <!--成功-->
+    <select id="countSaleForecasting6" resultType="StatisticalResult">
+        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        from salesopp
+                 left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
+        where fk_user_id in (select pk_user_id from `user` where fk_department_id=1 ) and phase_type_name = '成功';
+    </select>
+    <!--机会跟进数-->
+    <select id="countSalesWith" resultType="Map">
+select
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and shut_down=1 and MONTH(salesopp_gmt_create)=1) a1,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and shut_down=1 and MONTH(salesopp_gmt_create)=2) a2,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and shut_down=1 and MONTH(salesopp_gmt_create)=3) a3,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and shut_down=1 and MONTH(salesopp_gmt_create)=4) a4,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and shut_down=1 and MONTH(salesopp_gmt_create)=5) a5,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and shut_down=1 and MONTH(salesopp_gmt_create)=6) a6,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and shut_down=1 and MONTH(salesopp_gmt_create)=7) a7,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and shut_down=1 and MONTH(salesopp_gmt_create)=8) a8,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and shut_down=1 and MONTH(salesopp_gmt_create)=9) a9,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and shut_down=1 and MONTH(salesopp_gmt_create)=10) a10,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and shut_down=1 and MONTH(salesopp_gmt_create)=11) a11,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and shut_down=1 and MONTH(salesopp_gmt_create)=12) a12
+    </select>
+    <!--机会增加数-->
+    <select id="countSalesIncrease" resultType="Map">
+        select
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(salesopp_gmt_create)=1) a1,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(salesopp_gmt_create)=2) a2,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(salesopp_gmt_create)=3) a3,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(salesopp_gmt_create)=5) a5,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(salesopp_gmt_create)=6) a6,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(salesopp_gmt_create)=7) a7,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(salesopp_gmt_create)=8) a8,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(salesopp_gmt_create)=9) a9,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(salesopp_gmt_create)=10) a10,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(salesopp_gmt_create)=11) a11,
+(select count(*) from salesopp where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(salesopp_gmt_create)=12) a12
+    </select>
+    <!--线索跟进数-->
+    <select id="countCluesWith" resultType="Map">
+        select
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and clue_state='已分配' and MONTH(clue_gmt_create)=1) a1,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and clue_state='已分配' and MONTH(clue_gmt_create)=2) a2,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and clue_state='已分配' and MONTH(clue_gmt_create)=3) a3,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and clue_state='已分配' and MONTH(clue_gmt_create)=4) a4,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and clue_state='已分配' and MONTH(clue_gmt_create)=5) a5,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and clue_state='已分配' and MONTH(clue_gmt_create)=6) a6,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and clue_state='已分配' and MONTH(clue_gmt_create)=7) a7,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and clue_state='已分配' and MONTH(clue_gmt_create)=8) a8,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and clue_state='已分配' and MONTH(clue_gmt_create)=9) a9,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and clue_state='已分配' and MONTH(clue_gmt_create)=10) a10,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and clue_state='已分配' and MONTH(clue_gmt_create)=11) a11,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and clue_state='已分配' and MONTH(clue_gmt_create)=12) a12
+    </select>
+    <!--线索增加数-->
+    <select id="countCluesIncrease" resultType="Map">
+        select
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(clue_gmt_create)=1) a1,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(clue_gmt_create)=2) a2,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(clue_gmt_create)=3) a3,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(clue_gmt_create)=4) a4,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(clue_gmt_create)=5) a5,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(clue_gmt_create)=6) a6,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(clue_gmt_create)=7) a7,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(clue_gmt_create)=8) a8,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(clue_gmt_create)=9) a9,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(clue_gmt_create)=10) a10,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(clue_gmt_create)=11) a11,
+(select count(*) from clue where fk_user_res_id in(select pk_user_id from `user` where fk_department_id=1 ) and MONTH(clue_gmt_create)=12) a12
+    </select>
+    <!--客户跟进数-->
+    <select id="countCustomerWith" resultType="Map">
+        select
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=1) a1,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=2) a2,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=3) a3,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=4) a4,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=5) a5,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=6) a6,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=7) a7,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=8) a8,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=9) a9,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=10) a10,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=11) a11,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=12) a12
+    </select>
+    <!--客户增加数-->
+    <select id="countCustomerIncrease" resultType="Map">
+        select
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=1) a1,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=2) a2,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=3) a3,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=4) a4,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=5) a5,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=6) a6,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=7) a7,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=8) a8,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=9) a9,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=10) a10,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=11) a11,
+(select count(*) from clienttable where fk_user_id in(select pk_user_id from `user` where fk_department_id=1 )   and MONTH(cus_gmt_create)=12) a12
+    </select>
 </mapper>
