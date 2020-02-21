@@ -25,849 +25,929 @@
     </style>
 </head>
 <body >
-    <div class="layui-fluid layui-form">
-        <br/>
-        <div class="layui-row">
-            <div class="layui-col-sm1  layui-col-sm-offset5" style="margin-top: 3px">
-                <div class="layui-input-inline">
-                    <select name="area" id="area" >
-                        <option value="网络营销部">网络营销部</option>
-                        <option value="财务部" >财务部</option>
-                        <option value="市场部">市场部</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-col-sm6">
-                <h1 style="font-size: 35px;color: #FFFFFF;">销售仪表盘</h1>
+<div class="layui-fluid layui-form">
+    <br/>
+    <div class="layui-row">
+        <div class="layui-col-sm1  layui-col-sm-offset5" style="margin-top: 3px">
+            <div class="layui-input-inline">
+                <select name="pkDepartmentId" id="pkDepartmentId" lay-verify="required" lay-filter="college">
+
+                </select>
             </div>
         </div>
+        <div class="layui-col-sm6">
+            <h1 style="font-size: 35px;color: #FFFFFF;">销售仪表盘</h1>
+        </div>
+    </div>
 
-        <div class="layui-row">
-            <!-- 销售业绩部分 -->
-            <div class="layui-col-sm6" style="border-bottom:8px solid #94A0B2; border-right: 4px solid #94A0B2;">
-                <div class="layui-row">
-                    <div class="layui-col-sm12">
-                        <div class="layui-form-item" style="margin-bottom: -2px">
-                            <label class="layui-form-label" style="font-size: 20px;color: #FFFFFF">销售业绩</label>
-                            <div class="layui-input-block" style="color:#4488BB">
-                                <input type="radio" name="hood"  value="" title="订单+合同" checked>
-                                <input type="radio" name="hood"  value="" title="订单" >
-                                <input type="radio" name="hood"  value="" title="合同" >
-                            </div>
+    <div class="layui-row">
+        <!-- 销售业绩部分 -->
+        <div class="layui-col-sm6" style="border-bottom:8px solid #94A0B2; border-right: 4px solid #94A0B2;">
+            <div class="layui-row">
+                <div class="layui-col-sm12">
+                    <div class="layui-form-item" style="margin-bottom: -2px">
+                        <label class="layui-form-label" style="font-size: 20px;color: #FFFFFF">销售业绩</label>
+                        <div class="layui-input-block" style="color:#4488BB">
+                            <input type="radio" name="hood"  value="" title="订单+合同" checked>
+                            <input type="radio" name="hood"  value="" title="订单" >
+                            <input type="radio" name="hood"  value="" title="合同" >
                         </div>
-                    </div>
-                </div>
-                <!-- 销售业绩仪表盘 -->
-                <div class="layui-row">
-                    <div class="layui-col-sm4">
-                        <div id="main"></div>
-                    </div>
-                    <div class="layui-col-sm4">
-                        <div id="main1"></div>
-                    </div>
-                    <div class="layui-col-sm4">
-                        <div id="main2"></div>
-                    </div>
-                </div>
-                <div class="layui-row">
-                    <div class="layui-col-sm4" style="text-align:center; color: #FFFFFF;">
-                        <div>本月签约完成率</div>
-                    </div>
-                    <div class="layui-col-sm4" style="text-align:center;  color: #FFFFFF;">
-                        <div>本季签约完成率</div>
-                    </div>
-                    <div class="layui-col-sm4" style="text-align:center;  color: #FFFFFF;">
-                        <div>本年签约完成率</div>
-                    </div>
-                </div>
-                <div class="layui-row">
-                    <div class="layui-col-sm12">
-                        <div id="statistical" style="width: 100%;height:220px; margin-bottom: -25px;"></div>
                     </div>
                 </div>
             </div>
-
-            <!-- 回款业绩部分 -->
-            <div class="layui-col-sm6" style="border-bottom:8px solid #94A0B2; border-left: 4px solid #94A0B2;">
-                <div class="layui-row">
-                    <div class="layui-col-sm2 layui-col-sm-offset10">
-                        <div>
-                            <label class="layui-form-label" style="font-size: 20px;color: #FFFFFF">回款业绩</label>
-                        </div>
-                    </div>
+            <!-- 销售业绩仪表盘 -->
+            <div class="layui-row">
+                <div class="layui-col-sm4">
+                    <div id="main"></div>
                 </div>
-                <!-- 回款业绩仪表盘 -->
-                <div class="layui-row">
-                    <div class="layui-col-sm4">
-                        <div id="main3"></div>
-                    </div>
-                    <div class="layui-col-sm4">
-                        <div id="main4"></div>
-                    </div>
-                    <div class="layui-col-sm4">
-                        <div id="main5"></div>
-                    </div>
+                <div class="layui-col-sm4">
+                    <div id="main1"></div>
                 </div>
-                <div class="layui-row">
-                    <div class="layui-col-sm4" style="text-align:center; color: #FFFFFF;">
-                        <div>本月回款完成率</div>
-                    </div>
-                    <div class="layui-col-sm4" style="text-align:center;  color: #FFFFFF;">
-                        <div>本季回款完成率</div>
-                    </div>
-                    <div class="layui-col-sm4" style="text-align:center;  color: #FFFFFF;">
-                        <div>本年回款完成率</div>
-                    </div>
+                <div class="layui-col-sm4">
+                    <div id="main2"></div>
                 </div>
-                <div class="layui-row">
-                    <div class="layui-col-sm12">
-                        <div id="statistical1" style="width: 100%;height:220px; margin-bottom: -27px;"></div>
-                    </div>
+            </div>
+            <div class="layui-row">
+                <div class="layui-col-sm4" style="text-align:center; color: #FFFFFF;">
+                    <div>本月签约完成率</div>
+                </div>
+                <div class="layui-col-sm4" style="text-align:center;  color: #FFFFFF;">
+                    <div>本季签约完成率</div>
+                </div>
+                <div class="layui-col-sm4" style="text-align:center;  color: #FFFFFF;">
+                    <div>本年签约完成率</div>
+                </div>
+            </div>
+            <div class="layui-row">
+                <div class="layui-col-sm12">
+                    <div id="statistical" style="width: 100%;height:220px; margin-bottom: -25px;"></div>
                 </div>
             </div>
         </div>
 
-        <div class="layui-row">
-            <!-- 销售预测漏斗图 -->
-            <div class="layui-col-sm4" style="border-right: 4px solid #94A0B2;">
-                <div id="chart1" style="width: 100%;height:300px;"></div>
+        <!-- 回款业绩部分 -->
+        <div class="layui-col-sm6" style="border-bottom:8px solid #94A0B2; border-left: 4px solid #94A0B2;">
+            <div class="layui-row">
+                <div class="layui-col-sm2 layui-col-sm-offset10">
+                    <div>
+                        <label class="layui-form-label" style="font-size: 20px;color: #FFFFFF">回款业绩</label>
+                    </div>
+                </div>
             </div>
-            <!-- 每月销售勤奋度统计图 -->
-            <div class="layui-col-sm8" style="border-left: 4px solid #94A0B2;">
-                <div id="diligence" style="width: 100%;height:300px; "></div>
+            <!-- 回款业绩仪表盘 -->
+            <div class="layui-row">
+                <div class="layui-col-sm4">
+                    <div id="main3"></div>
+                </div>
+                <div class="layui-col-sm4">
+                    <div id="main4"></div>
+                </div>
+                <div class="layui-col-sm4">
+                    <div id="main5"></div>
+                </div>
+            </div>
+            <div class="layui-row">
+                <div class="layui-col-sm4" style="text-align:center; color: #FFFFFF;">
+                    <div>本月回款完成率</div>
+                </div>
+                <div class="layui-col-sm4" style="text-align:center;  color: #FFFFFF;">
+                    <div>本季回款完成率</div>
+                </div>
+                <div class="layui-col-sm4" style="text-align:center;  color: #FFFFFF;">
+                    <div>本年回款完成率</div>
+                </div>
+            </div>
+            <div class="layui-row">
+                <div class="layui-col-sm12">
+                    <div id="statistical1" style="width: 100%;height:220px; margin-bottom: -27px;"></div>
+                </div>
             </div>
         </div>
     </div>
-    <script>
-        layui.use(['element','form','laydate'], function(){
-            var element = layui.element;
-            var form = layui.form,
-                laydate = layui.laydate;
-        });
-    </script>
-    <!-- 本月签约完成仪表盘-->
-    <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
-        // 指定图表的配置项和数据
-        myChart.setOption({
-            tooltip: {
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            toolbox: {
-                feature: {
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },
-            series: [{
-                name: '完成额',
-                type: 'gauge',
-                detail: {
-                    offsetCenter: [0,"80%"],    //设置仪表盘下方显示内容位置
-                    formatter: '{value}%',
-                    textStyle:{color:'white',fontSize:20,top:10} },
-                title : {               //设置仪表盘中间显示文字样式
-                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                        fontSize: 10,
-                        color:"#4488BB",
-                        fontStyle: 'italic',
-                    }
-                },
-                data: [{ value: 50, name: '订单+合同' }],
-                center: ["47%", "45%"], // 默认全局居中
-                splitLine : {           //分割线样式（及10、20等长线样式）
-                    length : 15,
-                    lineStyle: {            // 分隔线样式。
-                        color: "#eee",              //线的颜色,默认 #eee。
-                        opacity: 1,                 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
-                        width: 2,                   //线度,默认 2。
-                        type: "solid",              //线的类型,默认 solid。 此外还有 dashed,dotted
-                        shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
-                        shadowColor: "#fff",        //阴影颜色。支持的格式同color。
-                    }
-                },
-                pointer : { //指针样式
-                    length: '80%'
-                },
-                axisLine:{
-                    show : true,// 是否显示仪表盘轴线(轮廓线),默认 true。
-                    lineStyle : { // 属性lineStyle控制线条样式
-                        shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
-                        shadowColor: "#fff",        //阴影颜色。支持的格式同color。
-                        width : 12//表盘宽度
-                    }
-                }
-            }]
-        });
 
-        setInterval(function() {
-            option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
-            myChart.setOption(option, true);
-        }, 2000);
-    </script>
-    <!-- 本季签约完成仪表盘-->
-    <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart1 = echarts.init(document.getElementById('main1'));
-        // 指定图表的配置项和数据
-        myChart1.setOption({
-            tooltip: {
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            toolbox: {
-                feature: {
-                    restore: {},
-                    saveAsImage: {}
+    <div class="layui-row">
+        <!-- 销售预测漏斗图 -->
+        <div class="layui-col-sm4" style="border-right: 4px solid #94A0B2;">
+            <div id="chart1" style="width: 100%;height:300px;"></div>
+        </div>
+        <!-- 每月销售勤奋度统计图 -->
+        <div class="layui-col-sm8" style="border-left: 4px solid #94A0B2;">
+            <div id="diligence" style="width: 100%;height:300px; "></div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['element','form','laydate'], function(){
+        var element = layui.element;
+        var form = layui.form,
+            laydate = layui.laydate;
+    });
+</script>
+<!-- 部门下拉框绑定-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        uploadSel();
+        function uploadSel(){
+            $.ajax({
+                url: 'listDepartment',
+                dataType: 'json',
+                data:{'state': 0},	//查询状态为正常的所有机构类型
+                type: 'post',
+                success: function (data) {
+                    $.each(data.data, function (index, depar) {
+                        let txt2=$("<option value='"+depar.pkDepartmentId+"'></option>").text(depar.departmentName);
+                        $('#pkDepartmentId').append(txt2);
+                    });
+                    layui.form.render("select");
+                }
+            });
+        }
+    });
+</script>
+<!-- 本月签约完成仪表盘-->
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    // 指定图表的配置项和数据
+    option1 = ({
+        tooltip: {
+            formatter: "{a} <br/>{b} : {c}%"
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [{
+            name: '完成额',
+            type: 'gauge',
+            detail: {
+                offsetCenter: [0,"80%"],    //设置仪表盘下方显示内容位置
+                formatter: '{value}%',
+                textStyle:{color:'white',fontSize:20,top:10} },
+            title : {               //设置仪表盘中间显示文字样式
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                    fontSize: 10,
+                    color:"#4488BB",
+                    fontStyle: 'italic',
                 }
             },
-            series: [{
-                name: '完成额',
-                type: 'gauge',
-                detail: {
-                    offsetCenter: [0,"80%"],    //设置仪表盘下方显示内容位置
-                    formatter: '{value}%',
-                    textStyle:{color:'white',fontSize:20,top:10} },
-                title : {               //设置仪表盘中间显示文字样式
-                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                        fontSize: 10,
-                        color:"#4488BB",
-                        fontStyle: 'italic',
-                    }
-                },
-                data: [{ value: 60, name: '订单+合同' }],
-                center: ["47%", "45%"], // 默认全局居中
-                splitLine : {           //分割线样式（及10、20等长线样式）
-                    length : 15,
-                    lineStyle: {            // 分隔线样式。
-                        color: "#eee",              //线的颜色,默认 #eee。
-                        opacity: 1,                 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
-                        width: 2,                   //线度,默认 2。
-                        type: "solid",              //线的类型,默认 solid。 此外还有 dashed,dotted
-                        shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
-                        shadowColor: "#fff",        //阴影颜色。支持的格式同color。
-                    }
-                },
-                pointer : { //指针样式
-                    length: '80%'
-                },
-                axisLine:{
-                    show : true,// 是否显示仪表盘轴线(轮廓线),默认 true。
-                    lineStyle : { // 属性lineStyle控制线条样式
-                        shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
-                        shadowColor: "#fff",        //阴影颜色。支持的格式同color。
-                        width : 12//表盘宽度
-                    }
+            data: [{ value: 50, name: '订单+合同' }],
+            center: ["47%", "45%"], // 默认全局居中
+            splitLine : {           //分割线样式（及10、20等长线样式）
+                length : 15,
+                lineStyle: {            // 分隔线样式。
+                    color: "#eee",              //线的颜色,默认 #eee。
+                    opacity: 1,                 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+                    width: 2,                   //线度,默认 2。
+                    type: "solid",              //线的类型,默认 solid。 此外还有 dashed,dotted
+                    shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                    shadowColor: "#fff",        //阴影颜色。支持的格式同color。
                 }
-            }]
-        });
+            },
+            pointer : { //指针样式
+                length: '80%'
+            },
+            axisLine:{
+                show : true,// 是否显示仪表盘轴线(轮廓线),默认 true。
+                lineStyle : { // 属性lineStyle控制线条样式
+                    shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                    shadowColor: "#fff",        //阴影颜色。支持的格式同color。
+                    width : 12//表盘宽度
+                }
+            }
+        }]
+    });
+    option1.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+    myChart.setOption(option1, true);
 
-        setInterval(function() {
-            option.series[0].data[0]. value = (Math.random() * 100).toFixed(2) - 0;
-            myChart1.setOption(option, true);
-        }, 2000);
-    </script>
-    <!-- 本年签约完成仪表盘-->
-    <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart2 = echarts.init(document.getElementById('main2'));
-        // 指定图表的配置项和数据
-        myChart2.setOption({
-            tooltip: {
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            toolbox: {
-                feature: {
-                    restore: {},
-                    saveAsImage: {}
+</script>
+<!-- 本季签约完成仪表盘-->
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart1 = echarts.init(document.getElementById('main1'));
+    // 指定图表的配置项和数据
+    option2=({
+        tooltip: {
+            formatter: "{a} <br/>{b} : {c}%"
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [{
+            name: '完成额',
+            type: 'gauge',
+            detail: {
+                offsetCenter: [0,"80%"],    //设置仪表盘下方显示内容位置
+                formatter: '{value}%',
+                textStyle:{color:'white',fontSize:20,top:10} },
+            title : {               //设置仪表盘中间显示文字样式
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                    fontSize: 10,
+                    color:"#4488BB",
+                    fontStyle: 'italic',
                 }
             },
-            series: [{
-                name: '完成额',
-                type: 'gauge',
-                detail: {
-                    offsetCenter: [0,"80%"],    //设置仪表盘下方显示内容位置
-                    formatter: '{value}%',
-                    textStyle:{color:'white',fontSize:20,top:10} },
-                title : {               //设置仪表盘中间显示文字样式
-                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                        fontSize: 10,
-                        color:"#4488BB",
-                        fontStyle: 'italic',
-                    }
-                },
-                data: [{ value: 70, name: '订单+合同' }],
-                center: ["47%", "45%"], // 默认全局居中
-                splitLine : {           //分割线样式（及10、20等长线样式）
-                    length : 15,
-                    lineStyle: {            // 分隔线样式。
-                        color: "#eee",              //线的颜色,默认 #eee。
-                        opacity: 1,                 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
-                        width: 2,                   //线度,默认 2。
-                        type: "solid",              //线的类型,默认 solid。 此外还有 dashed,dotted
-                        shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
-                        shadowColor: "#fff",        //阴影颜色。支持的格式同color。
-                    }
-                },
-                pointer : { //指针样式
-                    length: '80%'
-                },
-                axisLine:{
-                    show : true,// 是否显示仪表盘轴线(轮廓线),默认 true。
-                    lineStyle : { // 属性lineStyle控制线条样式
-                        shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
-                        shadowColor: "#fff",        //阴影颜色。支持的格式同color。
-                        width : 12//表盘宽度
-                    }
-                }
-            }]
-        });
-
-        setInterval(function() {
-            option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
-            myChart2.setOption(option, true);
-        }, 2000);
-    </script>
-    <!-- 月度订单+合同额统计图 -->
-    <script type="text/javascript">
-        var myChartStat = echarts.init(document.getElementById('statistical'));
-        optionStat = {
-            title: {
-                text: '月度订单+合同额',
-                textStyle: {
-                    color:"#fff",
-
+            data: [{ value: 60, name: '订单+合同' }],
+            center: ["47%", "45%"], // 默认全局居中
+            splitLine : {           //分割线样式（及10、20等长线样式）
+                length : 15,
+                lineStyle: {            // 分隔线样式。
+                    color: "#eee",              //线的颜色,默认 #eee。
+                    opacity: 1,                 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+                    width: 2,                   //线度,默认 2。
+                    type: "solid",              //线的类型,默认 solid。 此外还有 dashed,dotted
+                    shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                    shadowColor: "#fff",        //阴影颜色。支持的格式同color。
                 }
             },
-            tooltip: {
-                trigger: 'axis'
+            pointer : { //指针样式
+                length: '80%'
             },
-            legend: {
-                data: ['计划值', '完成值'],
-                textStyle: {
-                    color: '#fff'          // 图例文字颜色
+            axisLine:{
+                show : true,// 是否显示仪表盘轴线(轮廓线),默认 true。
+                lineStyle : { // 属性lineStyle控制线条样式
+                    shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                    shadowColor: "#fff",        //阴影颜色。支持的格式同color。
+                    width : 12//表盘宽度
+                }
+            }
+        }]
+    });
+    option2.series[0].data[0]. value = (Math.random() * 100).toFixed(2) - 0;
+    myChart1.setOption(option2, true);
+</script>
+<!-- 本年签约完成仪表盘-->
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart2 = echarts.init(document.getElementById('main2'));
+    // 指定图表的配置项和数据
+    option3=({
+        tooltip: {
+            formatter: "{a} <br/>{b} : {c}%"
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [{
+            name: '完成额',
+            type: 'gauge',
+            detail: {
+                offsetCenter: [0,"80%"],    //设置仪表盘下方显示内容位置
+                formatter: '{value}%',
+                textStyle:{color:'white',fontSize:20,top:10} },
+            title : {               //设置仪表盘中间显示文字样式
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                    fontSize: 10,
+                    color:"#4488BB",
+                    fontStyle: 'italic',
                 }
             },
-            toolbox: {
-                show: true,
-                feature: {
-                    dataView: {show: true, readOnly: false},
-                    magicType: {show: true, type: ['line', 'bar']},
-                    restore: {show: true},
-                    saveAsImage: {show: true}
+            data: [{ value: 70, name: '订单+合同' }],
+            center: ["47%", "45%"], // 默认全局居中
+            splitLine : {           //分割线样式（及10、20等长线样式）
+                length : 15,
+                lineStyle: {            // 分隔线样式。
+                    color: "#eee",              //线的颜色,默认 #eee。
+                    opacity: 1,                 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+                    width: 2,                   //线度,默认 2。
+                    type: "solid",              //线的类型,默认 solid。 此外还有 dashed,dotted
+                    shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                    shadowColor: "#fff",        //阴影颜色。支持的格式同color。
                 }
             },
-            calculable: true,
-            xAxis: [
-                {
-                    type: 'category',
-                    data: ['一月', '', '三月', '', '五月', '', '七月', '', '九月', '', '十一月', ''],
-                    axisLabel: {
-                        textStyle: {
-                            color: '#fff',//坐标值得具体的颜色
-                        }
-                    }
+            pointer : { //指针样式
+                length: '80%'
+            },
+            axisLine:{
+                show : true,// 是否显示仪表盘轴线(轮廓线),默认 true。
+                lineStyle : { // 属性lineStyle控制线条样式
+                    shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                    shadowColor: "#fff",        //阴影颜色。支持的格式同color。
+                    width : 12//表盘宽度
                 }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    axisLabel: {
-                        textStyle: {
-                            color: '#fff',//坐标值得具体的颜色
-                        }
-                    }
-                }
-            ],
-            series: [
-                {
-                    name: '计划值',
-                    type: 'bar',
-                    data: [0.2, 0.4, 0.47,  0.5, 0.2, 0.76, 0.13, 0.6, 0.32,0.2, 0.6, 0.3],
-                    itemStyle: {   //配置样式，设置每个柱子的颜色
-                        normal: {
-                            color:'#0070A8'
-                        }
-                    }
-                },
-                {
-                    name: '完成值',
-                    type: 'bar',
-                    data: [0.2, 0.4, 0.47,  0.5, 0.2, 0.76, 0.13, 0.6, 0.32,0.2, 0.6, 0.3],
-                    itemStyle: {   //配置样式，设置每个柱子的颜色
-                        normal: {
-                            color:'#E5323E'
-                        }
-                    }
-                }
-            ]
-        };
-        myChartStat.setOption(optionStat);
-    </script>
+            }
+        }]
+    });
 
 
+    option3.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+    myChart2.setOption(option3, true);
+</script>
+<!-- 月度订单+合同额统计图 -->
+<script type="text/javascript">
+    var myChartStat = echarts.init(document.getElementById('statistical'));
+    optionStat = {
+        title: {
+            text: '月度订单+合同额',
+            textStyle: {
+                color:"#fff",
+
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['计划值', '完成值'],
+            textStyle: {
+                color: '#fff'          // 图例文字颜色
+            }
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                data: ['一月', '', '三月', '', '五月', '', '七月', '', '九月', '', '十一月', ''],
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff',//坐标值得具体的颜色
+                    }
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff',//坐标值得具体的颜色
+                    }
+                }
+            }
+        ],
+        series: [
+            {
+                name: '计划值',
+                type: 'bar',
+                data: [0.2, 0.4, 0.47,  0.5, 0.2, 0.76, 0.13, 0.6, 0.32,0.2, 0.6, 0.3],
+                itemStyle: {   //配置样式，设置每个柱子的颜色
+                    normal: {
+                        color:'#0070A8'
+                    }
+                }
+            },
+            {
+                name: '完成值',
+                type: 'bar',
+                data: [0.2, 0.4, 0.47,  0.5, 0.2, 0.76, 0.13, 0.6, 0.32,0.2, 0.6, 0.3],
+                itemStyle: {   //配置样式，设置每个柱子的颜色
+                    normal: {
+                        color:'#E5323E'
+                    }
+                }
+            }
+        ]
+    };
+    myChartStat.setOption(optionStat);
+</script>
 
 
 
-    <!-- 本月回款完成仪表盘-->
-    <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart3 = echarts.init(document.getElementById('main3'));
-        // 指定图表的配置项和数据
-        myChart3.setOption({
-            tooltip: {
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            toolbox: {
-                feature: {
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },
-            series: [{
-                name: '完成额',
-                type: 'gauge',
-                detail: {
-                    offsetCenter: [0,"80%"],    //设置仪表盘下方显示内容位置
-                    formatter: '{value}%',
-                    textStyle:{color:'white',fontSize:20,top:10} },
-                title : {               //设置仪表盘中间显示文字样式
-                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                        fontSize: 10,
-                        color:"#4488BB",
-                        fontStyle: 'italic',
-                    }
-                },
-                data: [{ value: 80, name: '回款' }],
-                center: ["47%", "45%"], // 默认全局居中
-                splitLine : {           //分割线样式（及10、20等长线样式）
-                    length : 15,
-                    lineStyle: {            // 分隔线样式。
-                        color: "#eee",              //线的颜色,默认 #eee。
-                        opacity: 1,                 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
-                        width: 2,                   //线度,默认 2。
-                        type: "solid",              //线的类型,默认 solid。 此外还有 dashed,dotted
-                        shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
-                        shadowColor: "#fff",        //阴影颜色。支持的格式同color。
-                    }
-                },
-                pointer : { //指针样式
-                    length: '80%'
-                },
-                axisLine:{
-                    show : true,// 是否显示仪表盘轴线(轮廓线),默认 true。
-                    lineStyle : { // 属性lineStyle控制线条样式
-                        shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
-                        shadowColor: "#fff",        //阴影颜色。支持的格式同color。
-                        width : 12//表盘宽度
-                    }
-                }
-            }]
-        });
 
-        setInterval(function() {
-            option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
-            myChart3.setOption(option, true);
-        }, 2000);
-    </script>
-    <!-- 本季回款完成仪表盘-->
-    <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart4 = echarts.init(document.getElementById('main4'));
-        // 指定图表的配置项和数据
-        myChart4.setOption({
-            tooltip: {
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            toolbox: {
-                feature: {
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },
-            series: [{
-                name: '完成额',
-                type: 'gauge',
-                detail: {
-                    offsetCenter: [0,"80%"],    //设置仪表盘下方显示内容位置
-                    formatter: '{value}%',
-                    textStyle:{color:'white',fontSize:20,top:10} },
-                title : {               //设置仪表盘中间显示文字样式
-                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                        fontSize: 10,
-                        color:"#4488BB",
-                        fontStyle: 'italic',
-                    }
-                },
-                data: [{ value: 90, name: '回款' }],
-                center: ["47%", "45%"], // 默认全局居中
-                splitLine : {           //分割线样式（及10、20等长线样式）
-                    length : 15,
-                    lineStyle: {            // 分隔线样式。
-                        color: "#eee",              //线的颜色,默认 #eee。
-                        opacity: 1,                 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
-                        width: 2,                   //线度,默认 2。
-                        type: "solid",              //线的类型,默认 solid。 此外还有 dashed,dotted
-                        shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
-                        shadowColor: "#fff",        //阴影颜色。支持的格式同color。
-                    }
-                },
-                pointer : { //指针样式
-                    length: '80%'
-                },
-                axisLine:{
-                    show : true,// 是否显示仪表盘轴线(轮廓线),默认 true。
-                    lineStyle : { // 属性lineStyle控制线条样式
-                        shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
-                        shadowColor: "#fff",        //阴影颜色。支持的格式同color。
-                        width : 12//表盘宽度
-                    }
-                }
-            }]
-        });
 
-        setInterval(function() {
-            option.series[0].data[0]. value = (Math.random() * 100).toFixed(2) - 0;
-            myChart4.setOption(option, true);
-        }, 2000);
-    </script>
-    <!-- 本年回款完成仪表盘-->
-    <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart5 = echarts.init(document.getElementById('main5'));
-        // 指定图表的配置项和数据
-        myChart5.setOption({
-            tooltip: {
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            toolbox: {
-                feature: {
-                    restore: {},
-                    saveAsImage: {}
+<!-- 本月回款完成仪表盘-->
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart3 = echarts.init(document.getElementById('main3'));
+    // 指定图表的配置项和数据
+    option4=({
+        tooltip: {
+            formatter: "{a} <br/>{b} : {c}%"
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [{
+            name: '完成额',
+            type: 'gauge',
+            detail: {
+                offsetCenter: [0,"80%"],    //设置仪表盘下方显示内容位置
+                formatter: '{value}%',
+                textStyle:{color:'white',fontSize:20,top:10} },
+            title : {               //设置仪表盘中间显示文字样式
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                    fontSize: 10,
+                    color:"#4488BB",
+                    fontStyle: 'italic',
                 }
             },
-            series: [{
-                name: '完成额',
-                type: 'gauge',
-                detail: {
-                    offsetCenter: [0,"80%"],    //设置仪表盘下方显示内容位置
-                    formatter: '{value}%',
-                    textStyle:{color:'white',fontSize:20,top:10} },
-                title : {               //设置仪表盘中间显示文字样式
-                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-                        fontSize: 10,
-                        color:"#4488BB",
-                        fontStyle: 'italic',
+            data: [{ value: 0, name: '回款' }],
+            center: ["47%", "45%"], // 默认全局居中
+            splitLine : {           //分割线样式（及10、20等长线样式）
+                length : 15,
+                lineStyle: {            // 分隔线样式。
+                    color: "#eee",              //线的颜色,默认 #eee。
+                    opacity: 1,                 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+                    width: 2,                   //线度,默认 2。
+                    type: "solid",              //线的类型,默认 solid。 此外还有 dashed,dotted
+                    shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                    shadowColor: "#fff",        //阴影颜色。支持的格式同color。
+                }
+            },
+            pointer : { //指针样式
+                length: '80%'
+            },
+            axisLine:{
+                show : true,// 是否显示仪表盘轴线(轮廓线),默认 true。
+                lineStyle : { // 属性lineStyle控制线条样式
+                    shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                    shadowColor: "#fff",        //阴影颜色。支持的格式同color。
+                    width : 12//表盘宽度
+                }
+            }
+        }]
+    });
+    $.ajax({
+        url: 'countReceivableMonth',
+        dataType: 'json',
+        async: false,//异步加载改为同步加载
+        data:{'state': 0},
+        type: 'post',
+        success: function (data) {
+            option4.series[0].data[0].value =(data.data.completeValue*100).toFixed(2);
+        },
+        error:function(){
+            layer.msg('ajax执行错误！', {icon: 2,time: 1000});
+        }
+    });
+    myChart3.setOption(option4, true);
+</script>
+<!-- 本季回款完成仪表盘-->
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart4 = echarts.init(document.getElementById('main4'));
+    // 指定图表的配置项和数据
+    option5=({
+        tooltip: {
+            formatter: "{a} <br/>{b} : {c}%"
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [{
+            name: '完成额',
+            type: 'gauge',
+            detail: {
+                offsetCenter: [0,"80%"],    //设置仪表盘下方显示内容位置
+                formatter: '{value}%',
+                textStyle:{color:'white',fontSize:20,top:10} },
+            title : {               //设置仪表盘中间显示文字样式
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                    fontSize: 10,
+                    color:"#4488BB",
+                    fontStyle: 'italic',
+                }
+            },
+            data: [{ value:0, name: '回款' }],
+            center: ["47%", "45%"], // 默认全局居中
+            splitLine : {           //分割线样式（及10、20等长线样式）
+                length : 15,
+                lineStyle: {            // 分隔线样式。
+                    color: "#eee",              //线的颜色,默认 #eee。
+                    opacity: 1,                 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+                    width: 2,                   //线度,默认 2。
+                    type: "solid",              //线的类型,默认 solid。 此外还有 dashed,dotted
+                    shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                    shadowColor: "#fff",        //阴影颜色。支持的格式同color。
+                }
+            },
+            pointer : { //指针样式
+                length: '80%'
+            },
+            axisLine:{
+                show : true,// 是否显示仪表盘轴线(轮廓线),默认 true。
+                lineStyle : { // 属性lineStyle控制线条样式
+                    shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                    shadowColor: "#fff",        //阴影颜色。支持的格式同color。
+                    width : 12//表盘宽度
+                }
+            }
+        }]
+    });
+
+    $.ajax({
+        url: 'countReceivableQuarter',
+        dataType: 'json',
+        data:{'state': 0},
+        async: false,//异步加载改为同步加载
+        type: 'post',
+        success: function (data) {
+            option5.series[0].data[0].value =(data.data.completeValue*100).toFixed(2);
+        },
+        error:function(){
+            layer.msg('ajax执行错误！', {icon: 2,time: 1000});
+        }
+    });
+    myChart4.setOption(option5, true);
+</script>
+<!-- 本年回款完成仪表盘-->
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart5 = echarts.init(document.getElementById('main5'));
+    // 指定图表的配置项和数据
+    option6=({
+        tooltip: {
+            formatter: "{a} <br/>{b} : {c}%"
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [{
+            name: '完成额',
+            type: 'gauge',
+            detail: {
+                offsetCenter: [0,"80%"],    //设置仪表盘下方显示内容位置
+                formatter: '{value}%',
+                textStyle:{color:'white',fontSize:20,top:10} },
+            title : {               //设置仪表盘中间显示文字样式
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                    fontSize: 10,
+                    color:"#4488BB",
+                    fontStyle: 'italic',
+                }
+            },
+            data: [{ value:0, name: '回款' }],
+            center: ["47%", "45%"], // 默认全局居中
+            splitLine : {           //分割线样式（及10、20等长线样式）
+                length : 15,
+                lineStyle: {            // 分隔线样式。
+                    color: "#eee",              //线的颜色,默认 #eee。
+                    opacity: 1,                 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+                    width: 2,                   //线度,默认 2。
+                    type: "solid",              //线的类型,默认 solid。 此外还有 dashed,dotted
+                    shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                    shadowColor: "#fff",        //阴影颜色。支持的格式同color。
+                }
+            },
+            pointer : { //指针样式
+                length: '80%'
+            },
+            axisLine:{
+                show : true,// 是否显示仪表盘轴线(轮廓线),默认 true。
+                lineStyle : { // 属性lineStyle控制线条样式
+                    shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
+                    shadowColor: "#fff",        //阴影颜色。支持的格式同color。
+                    width : 12//表盘宽度
+                }
+            }
+        }]
+    });
+
+    $.ajax({
+        url: 'countReceivableYear',
+        dataType: 'json',
+        async: false,//异步加载改为同步加载
+        data:{'state': 0},
+        type: 'post',
+        success: function (data) {
+            option6.series[0].data[0].value =(data.data.completeValue*100).toFixed(2);
+        },
+        error:function(){
+            layer.msg('ajax执行错误！', {icon: 2,time: 1000});
+        }
+    });
+    myChart5.setOption(option6, true);
+</script>
+<!-- 月度回款额统计图 -->
+<script type="text/javascript">
+    var listPlan =[];//计划值
+    var listComplete=[];//完成值
+    $.ajax({
+        url: 'avgReceivableMonth',
+        dataType: 'json',
+        async: false,//异步加载改为同步加载
+        data:{'state': 0},
+        type: 'post',
+        success: function (data) {
+            listPlan.push((data.data.a1).toFixed(2));
+            listPlan.push((data.data.a2).toFixed(2));
+            listPlan.push((data.data.a3).toFixed(2));
+            listPlan.push((data.data.a4).toFixed(2));
+            listPlan.push((data.data.a5).toFixed(2));
+            listPlan.push((data.data.a6).toFixed(2));
+            listPlan.push((data.data.a7).toFixed(2));
+            listPlan.push((data.data.a8).toFixed(2));
+            listPlan.push((data.data.a9).toFixed(2));
+            listPlan.push((data.data.a10).toFixed(2));
+            listPlan.push((data.data.a11).toFixed(2));
+            listPlan.push((data.data.a12).toFixed(2));
+            listComplete.push((data.data1.a1).toFixed(2));
+            listComplete.push((data.data1.a2).toFixed(2));
+            listComplete.push((data.data1.a3).toFixed(2));
+            listComplete.push((data.data1.a4).toFixed(2));
+            listComplete.push((data.data1.a5).toFixed(2));
+            listComplete.push((data.data1.a6).toFixed(2));
+            listComplete.push((data.data1.a7).toFixed(2));
+            listComplete.push((data.data1.a8).toFixed(2));
+            listComplete.push((data.data1.a9).toFixed(2));
+            listComplete.push((data.data1.a10).toFixed(2));
+            listComplete.push((data.data1.a11).toFixed(2));
+            listComplete.push((data.data1.a12).toFixed(2));
+        },
+        error:function(){
+            layer.msg('ajax执行错误！', {icon: 2,time: 1000});
+        }
+    });
+    var myChartStat1 = echarts.init(document.getElementById('statistical1'));
+    optionStat1 = {
+        title: {
+            text: '月度回款额',
+            textStyle: {
+                color:"#fff",
+
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['计划值', '完成值'],
+            textStyle: {
+                color: '#fff'          // 图例文字颜色
+            }
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                data: ['一月', '', '三月', '', '五月', '', '七月', '', '九月', '', '十一月', ''],
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff',//坐标值得具体的颜色
+                    }
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                data: [0, 0.2,0.4, 0.6, 0.8, 1],
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff',//坐标值得具体的颜色
+                    }
+                }
+            }
+        ],
+        series: [
+            {
+                name: '计划值',
+                type: 'bar',
+                data: listPlan,
+                itemStyle: {   //配置样式，设置每个柱子的颜色
+                    normal: {
+                        color:'#0070A8'
+                    }
+                }
+            },
+            {
+                name: '完成值',
+                type: 'bar',
+                data: listComplete,
+                itemStyle: {   //配置样式，设置每个柱子的颜色
+                    normal: {
+                        color:'#E5323E'
+                    }
+                }
+            }
+        ]
+    };
+    myChartStat1.setOption(optionStat1);
+</script>
+<!-- 销售预测漏斗图 -->
+<script type="text/javascript">
+    // 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例
+    var chart1 = echarts.init(document.getElementById("chart1"));
+
+    // 指定图表的配置项和数据
+    optionChar = {
+        title: {
+            text: '销售预测',
+            textStyle: {
+                color:"#fff",
+            }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c}%"
+        },
+        toolbox: {
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        // legend: {
+        //     data: ['展现','点击','访问','咨询','订单'],
+        //     textStyle: {
+        //         color: '#fff'          // 图例文字颜色
+        //     }
+        // },
+
+        series: [
+            {
+                name:'销售机会',
+                type:'funnel',
+                left: '10%',
+                top: 60,
+                //x2: 80,
+                bottom: 60,
+                width: '80%',
+                // height: {totalHeight} - y - y2,
+                min: 0,
+                max: 100,
+                minSize: '0%',
+                maxSize: '100%',
+                sort: 'descending',
+                gap: 2,
+                label: {
+                    show: true,
+                    position: 'inside'
+                },
+                labelLine: {
+                    length: 10,
+                    lineStyle: {
+                        width: 1,
+                        type: 'solid'
                     }
                 },
-                data: [{ value: 100, name: '回款' }],
-                center: ["47%", "45%"], // 默认全局居中
-                splitLine : {           //分割线样式（及10、20等长线样式）
-                    length : 15,
-                    lineStyle: {            // 分隔线样式。
-                        color: "#eee",              //线的颜色,默认 #eee。
-                        opacity: 1,                 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
-                        width: 2,                   //线度,默认 2。
-                        type: "solid",              //线的类型,默认 solid。 此外还有 dashed,dotted
-                        shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
-                        shadowColor: "#fff",        //阴影颜色。支持的格式同color。
-                    }
+                itemStyle: {
+                    borderColor: '#fff',
+                    borderWidth: 1
                 },
-                pointer : { //指针样式
-                    length: '80%'
-                },
-                axisLine:{
-                    show : true,// 是否显示仪表盘轴线(轮廓线),默认 true。
-                    lineStyle : { // 属性lineStyle控制线条样式
-                        shadowBlur: 10,             //(发光效果)图形阴影的模糊大小。该属性配合 shadowColor,shadowOffsetX, shadowOffsetY 一起设置图形的阴影效果。
-                        shadowColor: "#fff",        //阴影颜色。支持的格式同color。
-                        width : 12//表盘宽度
-                    }
-                }
-            }]
-        });
-
-        setInterval(function() {
-            option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
-            myChart5.setOption(option, true);
-        }, 2000);
-    </script>
-    <!-- 月度回款额统计图 -->
-    <script type="text/javascript">
-        var myChartStat1 = echarts.init(document.getElementById('statistical1'));
-        optionStat1 = {
-            title: {
-                text: '月度回款额',
-                textStyle: {
-                    color:"#fff",
-
-                }
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data: ['计划值', '完成值'],
-                textStyle: {
-                    color: '#fff'          // 图例文字颜色
-                }
-            },
-            toolbox: {
-                show: true,
-                feature: {
-                    dataView: {show: true, readOnly: false},
-                    magicType: {show: true, type: ['line', 'bar']},
-                    restore: {show: true},
-                    saveAsImage: {show: true}
-                }
-            },
-            calculable: true,
-            xAxis: [
-                {
-                    type: 'category',
-                    data: ['一月', '', '三月', '', '五月', '', '七月', '', '九月', '', '十一月', ''],
-                    axisLabel: {
-                        textStyle: {
-                            color: '#fff',//坐标值得具体的颜色
-                        }
-                    }
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    data: [0, 0.2,0.4, 0.6, 0.8, 1],
-                    axisLabel: {
-                        textStyle: {
-                            color: '#fff',//坐标值得具体的颜色
-                        }
-                    }
-                }
-            ],
-            series: [
-                {
-                    name: '计划值',
-                    type: 'bar',
-                    data: [0.2, 0.4, 0.47,  0.5, 0.2, 0.76, 0.13, 0.6, 0.32,0.2, 0.6, 0.3],
-                    itemStyle: {   //配置样式，设置每个柱子的颜色
-                        normal: {
-                            color:'#0070A8'
-                        }
-                    }
-                },
-                {
-                    name: '完成值',
-                    type: 'bar',
-                    data: [0.2, 0.4, 0.47,  0.5, 0.2, 0.76, 0.13, 0.6, 0.32,0.2, 0.6, 0.3],
-                    itemStyle: {   //配置样式，设置每个柱子的颜色
-                        normal: {
-                            color:'#E5323E'
-                        }
-                    }
-                }
-            ]
-        };
-        myChartStat1.setOption(optionStat1);
-    </script>
-    <!-- 销售预测漏斗图 -->
-    <script type="text/javascript">
-        // 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例
-        var chart1 = echarts.init(document.getElementById("chart1"));
-
-        // 指定图表的配置项和数据
-        optionChar = {
-            title: {
-                text: '销售预测',
-                textStyle: {
-                    color:"#fff",
-                }
-            },
-            tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            toolbox: {
-                feature: {
-                    dataView: {readOnly: false},
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },
-            // legend: {
-            //     data: ['展现','点击','访问','咨询','订单'],
-            //     textStyle: {
-            //         color: '#fff'          // 图例文字颜色
-            //     }
-            // },
-
-            series: [
-                {
-                    name:'销售机会',
-                    type:'funnel',
-                    left: '10%',
-                    top: 60,
-                    //x2: 80,
-                    bottom: 60,
-                    width: '80%',
-                    // height: {totalHeight} - y - y2,
-                    min: 0,
-                    max: 100,
-                    minSize: '0%',
-                    maxSize: '100%',
-                    sort: 'descending',
-                    gap: 2,
+                emphasis: {
                     label: {
-                        show: true,
-                        position: 'inside'
-                    },
-                    labelLine: {
-                        length: 10,
-                        lineStyle: {
-                            width: 1,
-                            type: 'solid'
-                        }
-                    },
-                    itemStyle: {
-                        borderColor: '#fff',
-                        borderWidth: 1
-                    },
-                    emphasis: {
-                        label: {
-                            fontSize: 20
-                        }
-                    },
-                    data: [
-                        {value: 0, name: '成功'},
-                        {value: 20, name: '合同签订'},
-                        {value: 40, name: '商务谈判'},
-                        {value: 60, name: '方案制定'},
-                        {value: 80, name: '需求分析'},
-                        {value: 100, name: '初步接触'}
-                    ]
-                }
-            ]
-        };
+                        fontSize: 20
+                    }
+                },
+                data: [
+                    {value: 0, name: '成功'},
+                    {value: 20, name: '合同签订'},
+                    {value: 40, name: '商务谈判'},
+                    {value: 60, name: '方案制定'},
+                    {value: 80, name: '需求分析'},
+                    {value: 100, name: '初步接触'}
+                ]
+            }
+        ]
+    };
 
-        // 使用刚指定的配置项和数据显示图表
-        chart1.setOption(optionChar)
-    </script>
-    <!-- 每月销售勤奋度统计图 -->
-    <script type="text/javascript">
-        var myChartDiligence = echarts.init(document.getElementById('diligence'));
-        optionDil = {
-            title: {
-                text: '每月销售勤奋度',
-                textStyle: {
-                    color:"#fff",
+    // 使用刚指定的配置项和数据显示图表
+    chart1.setOption(optionChar)
+</script>
+<!-- 每月销售勤奋度统计图 -->
+<script type="text/javascript">
+    var myChartDiligence = echarts.init(document.getElementById('diligence'));
+    optionDil = {
+        title: {
+            text: '每月销售勤奋度',
+            textStyle: {
+                color:"#fff",
 
+            }
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['机会跟进数', '线索跟进数', '客户跟进数', '机会增加数', '线索增加数', '客户增加数'],
+            textStyle: {
+                color: '#fff'          // 图例文字颜色
+            }
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff',//坐标值得具体的颜色
+                    }
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                data: [0, 0.2,0.4, 0.6, 0.8, 1],
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff',//坐标值得具体的颜色
+                    }
+                }
+            }
+        ],
+        series: [
+            {
+                name: '机会跟进数',
+                type: 'bar',
+                data: [0.02, 0.04, 0.07,0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
+                itemStyle: {   //配置样式，设置每个柱子的颜色
+                    normal: {
+                        color:'#2D2DDF'
+                    }
                 }
             },
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data: ['机会跟进数', '线索跟进数', '客户跟进数', '机会增加数', '线索增加数', '客户增加数'],
-                textStyle: {
-                    color: '#fff'          // 图例文字颜色
-                }
-            },
-            toolbox: {
-                show: true,
-                feature: {
-                    dataView: {show: true, readOnly: false},
-                    magicType: {show: true, type: ['line', 'bar']},
-                    restore: {show: true},
-                    saveAsImage: {show: true}
+            {
+                name: '线索跟进数',
+                type: 'bar',
+                data: [0.02, 0.04, 0.07,0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
+                itemStyle: {   //配置样式，设置每个柱子的颜色
+                    normal: {
+                        color:'#0066FF'
+                    }
                 }
             },
-            calculable: true,
-            xAxis: [
-                {
-                    type: 'category',
-                    data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-                    axisLabel: {
-                        textStyle: {
-                            color: '#fff',//坐标值得具体的颜色
-                        }
+            {
+                name: '客户跟进数',
+                type: 'bar',
+                data: [0.02, 0.04, 0.07,0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
+                itemStyle: {   //配置样式，设置每个柱子的颜色
+                    normal: {
+                        color:'#00CCFF'
                     }
                 }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    data: [0, 0.2,0.4, 0.6, 0.8, 1],
-                    axisLabel: {
-                        textStyle: {
-                            color: '#fff',//坐标值得具体的颜色
-                        }
+            },
+            {
+                name: '机会增加数',
+                type: 'bar',
+                data: [0.02, 0.04, 0.07,0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
+                itemStyle: {   //配置样式，设置每个柱子的颜色
+                    normal: {
+                        color:'#006600'
                     }
                 }
-            ],
-            series: [
-                {
-                    name: '机会跟进数',
-                    type: 'bar',
-                    data: [0.02, 0.04, 0.07,0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
-                    itemStyle: {   //配置样式，设置每个柱子的颜色
-                        normal: {
-                            color:'#2D2DDF'
-                        }
+            },
+            {
+                name: '线索增加数',
+                type: 'bar',
+                data: [0.02, 0.04, 0.07,0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
+                itemStyle: {   //配置样式，设置每个柱子的颜色
+                    normal: {
+                        color:'#2DCA2D'
                     }
-                },
-                {
-                    name: '线索跟进数',
-                    type: 'bar',
-                    data: [0.02, 0.04, 0.07,0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
-                    itemStyle: {   //配置样式，设置每个柱子的颜色
-                        normal: {
-                            color:'#0066FF'
-                        }
+                }
+            },
+            {
+                name: '客户增加数',
+                type: 'bar',
+                data: [0.02, 0.04, 0.07,0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
+                itemStyle: {   //配置样式，设置每个柱子的颜色
+                    normal: {
+                        color:'#2DDF2D'
                     }
-                },
-                {
-                    name: '客户跟进数',
-                    type: 'bar',
-                    data: [0.02, 0.04, 0.07,0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
-                    itemStyle: {   //配置样式，设置每个柱子的颜色
-                        normal: {
-                            color:'#00CCFF'
-                        }
-                    }
-                },
-                {
-                    name: '机会增加数',
-                    type: 'bar',
-                    data: [0.02, 0.04, 0.07,0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
-                    itemStyle: {   //配置样式，设置每个柱子的颜色
-                        normal: {
-                            color:'#006600'
-                        }
-                    }
-                },
-                {
-                    name: '线索增加数',
-                    type: 'bar',
-                    data: [0.02, 0.04, 0.07,0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
-                    itemStyle: {   //配置样式，设置每个柱子的颜色
-                        normal: {
-                            color:'#2DCA2D'
-                        }
-                    }
-                },
-                {
-                    name: '客户增加数',
-                    type: 'bar',
-                    data: [0.02, 0.04, 0.07,0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
-                    itemStyle: {   //配置样式，设置每个柱子的颜色
-                        normal: {
-                            color:'#2DDF2D'
-                        }
-                    }
-                },
+                }
+            },
 
-            ]
-        };
-        myChartDiligence.setOption(optionDil);
-    </script>
+        ]
+    };
+    myChartDiligence.setOption(optionDil);
+</script>
 </body>
 </html>

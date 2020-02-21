@@ -111,4 +111,10 @@
             gmt_modified=DATE_FORMAT(NOW(),'%Y-%m-%d %H:%m:%s'),
         </trim>
     </update>
+    <delete id="deleteOrder">
+        delete from `order` where order_id in
+        <foreach collection="array" item="array" open="(" separator="," close=")">
+            #{array}
+        </foreach>
+    </delete>
 </mapper>

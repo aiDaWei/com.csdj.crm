@@ -9,16 +9,61 @@
         select pk_user_id pkUserId, user_name userName
         from user
     </select>
-    <!--销售预测-->
-    <select id="countSaleForecasting" resultType="StatisticalResult">
+<!--    &lt;!&ndash;销售预测&ndash;&gt;-->
+<!--    <select id="countSaleForecasting" resultType="StatisticalResult">-->
+<!--        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation-->
+<!--        from salesopp-->
+<!--                 right join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id-->
+<!--        where fk_user_id = #{userId}-->
+<!--        group by phase_type_name, phase_type_sequence-->
+<!--        order by phase_type_sequence;-->
+<!--    </select>-->
+
+    <!--***************************************************************销售预测****************************************************-->
+    <!--初步接触-->
+    <select id="countSaleForecasting1" resultType="StatisticalResult">
         select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
         from salesopp
                  left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
-        where fk_user_id = #{userId}
-        group by phase_type_name, phase_type_sequence
-        order by phase_type_sequence;
+        where fk_user_id = #{userId} and phase_type_name = '初步接触';
     </select>
-    <!--回顾业绩完成值-->
+    <!--需求分析-->
+    <select id="countSaleForecasting2" resultType="StatisticalResult">
+        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        from salesopp
+                 left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
+        where fk_user_id = #{userId} and phase_type_name = '需求分析';
+    </select>
+    <!--方案制定/报价-->
+    <select id="countSaleForecasting3" resultType="StatisticalResult">
+        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        from salesopp
+                 left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
+        where fk_user_id = #{userId} and phase_type_name = '方案制定/报价';
+    </select>
+    <!--商务谈判/招投标-->
+    <select id="countSaleForecasting4" resultType="StatisticalResult">
+        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        from salesopp
+                 left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
+        where fk_user_id = #{userId} and phase_type_name = '商务谈判/招投标';
+    </select>
+    <!--合同签订-->
+    <select id="countSaleForecasting5" resultType="StatisticalResult">
+        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        from salesopp
+                 left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
+        where fk_user_id = #{userId} and phase_type_name = '合同签订';
+    </select>
+    <!--成功-->
+    <select id="countSaleForecasting6" resultType="StatisticalResult">
+        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        from salesopp
+                 left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
+        where fk_user_id = #{userId} and phase_type_name = '成功';
+    </select>
+
+    <!--回款业绩完成值-->
     <!--本月-->
     <select id="countRetrospectiveMonth" resultType="StatisticalResult">
         select sum(contract_amount_remitted) completeValue, DATE_FORMAT(CURDATE(), '%m') strMonth
@@ -27,7 +72,7 @@
                  left join contract on salesopp.pk_salesopp_id = contract.fk_object_id
         where DATE_FORMAT(contract.end_time, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m')
           and cus_sales_target.fk_user_business_id = #{userId}
-          and sales_target_type = '回顾';
+          and sales_target_type = '回款';
     </select>
     <!--本季-->
     <select id="countRetrospectiveQuarter" resultType="StatisticalResult">
@@ -37,7 +82,7 @@
                  left join contract on salesopp.pk_salesopp_id = contract.fk_object_id
         where QUARTER(contract.end_time) = QUARTER(NOW())
           and cus_sales_target.fk_user_business_id = #{userId}
-          and sales_target_type = '回顾';
+          and sales_target_type = '回款';
     </select>
     <!--本年-->
     <select id="countRetrospectiveYear" resultType="StatisticalResult">
@@ -47,9 +92,9 @@
                  left join contract on salesopp.pk_salesopp_id = contract.fk_object_id
         where YEAR(contract.end_time) = YEAR(NOW())
           and cus_sales_target.fk_user_business_id = #{userId}
-          and sales_target_type = '回顾';
+          and sales_target_type = '回款';
     </select>
-    <!--本年回顾业绩计划值-->
+    <!--本年回款业绩计划值-->
     <select id="reviewPerformancePlan" resultType="CusSalesTarget">
         select cus_sales_tar_january   cusSalesTarJanuary,
                cus_sales_tar_february  cusSalesTarFebruary,
@@ -66,7 +111,7 @@
         from cus_sales_target
         where cus_sales_target_year = YEAR(NOW())
           and cus_sales_target.fk_user_business_id = #{userId}
-          and sales_target_type = '回顾';
+          and sales_target_type = '回款';
     </select>
     <!--    销售业绩完成值-->
     <!--    本月-->

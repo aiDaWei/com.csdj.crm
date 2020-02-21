@@ -26,10 +26,10 @@
 
     <div class="layui-input-inline">
         <select name="orderApprovalStatus" lay-filter="orderApprovalStatus">
-            <option value="0" th:selected="${d.where.orderApprovalStatus}==0">所有人的订单(全部)</option>
-            <option value="1" th:selected="${d.where.orderApprovalStatus}==1">所有人的订单(审批中)</option>
-            <option value="2" th:selected="${d.where.orderApprovalStatus}==2">所有人的订单(以成功)</option>
-            <option value="3" th:selected="${d.where.orderApprovalStatus}==3">所有人的订单(以失败)</option>
+            <option value="0">所有人的订单(全部)</option>
+            <option value="1">所有人的订单(审批中)</option>
+            <option value="2">所有人的订单(以成功)</option>
+            <option value="3">所有人的订单(以失败)</option>
         </select>
     </div>
 </script>
@@ -192,7 +192,6 @@
                 }
                 //,height: 300
             });
-            alert({{d.where.orderApprovalStatus}})
         });
 
     });

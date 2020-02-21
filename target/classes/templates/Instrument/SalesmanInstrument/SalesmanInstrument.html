@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head xmlns:th="http://www.w3.org/1999/xhtml">
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{./../static/lib/layui/css/layui.css}">
     <script type="text/javascript" th:src="@{./../static/js/echarts.min.js}"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{./../static/js/jquery-3.4.1.min.js}"></script>
     <script th:src="@{./../static/lib/layui/layui.js}" charset="utf-8"></script>
     <style>
         body {
@@ -18,6 +17,7 @@
         #main3,
         #main4,
         #main5 {
+
             width: 100%;
             height: 180px;
             margin-bottom: -22px;
@@ -30,6 +30,7 @@
     <div class="layui-row">
         <div class="layui-col-sm1  layui-col-sm-offset5" style="margin-top: 3px">
             <div class="layui-input-inline">
+                <label for="userId"></label>
                 <select name="userId" id="userId" lay-verify="required" lay-filter="college">
 
                 </select>
@@ -48,9 +49,9 @@
                     <div class="layui-form-item" style="margin-bottom: -2px">
                         <label class="layui-form-label" style="font-size: 20px;color: #FFFFFF">销售业绩</label>
                         <div class="layui-input-block" style="color:#4488BB">
-                            <input type="radio" name="hood" value="" title="订单+合同" checked>
-                            <input type="radio" name="hood" value="" title="订单">
-                            <input type="radio" name="hood" value="" title="合同">
+                            <input type="radio" name="hood" value="订单+合同" title="订单+合同" checked>
+                            <input type="radio" name="hood" value="订单" title="订单">
+                            <input type="radio" name="hood" value="合同" title="合同">
                         </div>
                     </div>
                 </div>
@@ -137,26 +138,85 @@
     </div>
 </div>
 <script type="text/javascript">
+
+
+
+    $(document).ready(function () {
+        uploadSel();
+
+        showInstrumentPanelSale1();
+        showInstrumentPanelSale2();
+        showInstrumentPanelSale3();
+        showInstrumentPanelRec1();
+        showInstrumentPanelRec2();
+        showInstrumentPanelRec3();
+        showHistogramSale();
+        showHistogramRec();
+        //showSaleForecasting();
+        showSaleDiligent();
+
+
+    });
     layui.use(['element','form'], function(){
         let form = layui.form;
-        form.on('select(college)', function (data) {
+        form.on('select(college)', function () {
             let selUser = $("#userId option:selected").val();
-            alert(selUser);
+            let selHood =  $("input[name='hood']:checked").val();
+            selStatic(selUser,selHood);
         });
     });
+    function selStatic(selUser,selHood){
+        $.ajax({
+            url:'../salesmanInstrument/staticResult',
+            type:'post',
+            data: {
+                userId:selUser,
+                hood:selHood
+            },
+            dataType :'json',
+            success : function(data) {
+                let listSaleForecasting = [];
+                listSaleForecasting.push(data["saleForecasting1"]);
+                listSaleForecasting.push(data["saleForecasting2"]);
+                listSaleForecasting.push(data["saleForecasting3"]);
+                listSaleForecasting.push(data["saleForecasting4"]);
+                listSaleForecasting.push(data["saleForecasting5"]);
+                listSaleForecasting.push(data["saleForecasting6"]);
+                showSaleForecasting(listSaleForecasting);
+            },
+            error : function() {
+                layer.msg('ajax执行错误！', {
+                    icon : 2,
+                    time : 1000
+                });
+            }
+        });
+    }
+
+    /**
+     * 下拉列表绑定
+     */
     function uploadSel(){
         $.ajax({
             url: '../salesmanInstrument/listUsers',
             dataType: 'json',
             data:{'state': 0},	//查询状态为正常的所有机构类型
-            type: 'post',
+            type: 'get',
             success: function (data) {
                 $.each(data.data, function (index, user) {
                     //$('#temp').append(new Option(item.name, item.id));// 下拉菜单里添加元素
-                    let txt2=$("<option value='"+user.pkUserId+"'></option>").text(user.userName);
+                    let txt2= null;
+                    if(index==0){
+                        txt2=$("<option selected value='"+user["pkUserId"]+"'></option>").text(user["userName"]);
+                    }
+                    txt2=$("<option value='"+user["pkUserId"]+"'></option>").text(user["userName"]);
                     $('#userId').append(txt2);
                 });
+                let selUser = $("#userId option:selected").val();
+                let selHood =  $("input[name='hood']:checked").val();
+                selStatic(selUser,selHood);
                 layui.form.render("select");
+
             }
         });
     }
@@ -165,7 +225,7 @@
      */
     function showInstrumentPanelSale1(){
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
+        let myChart = echarts.init(document.getElementById('main'));
         // 指定图表的配置项和数据
         myChart.setOption({
             tooltip: {
@@ -230,7 +290,7 @@
 
     function showInstrumentPanelSale2(){
         // 基于准备好的dom，初始化echarts实例
-        var myChart1 = echarts.init(document.getElementById('main1'));
+        let myChart1 = echarts.init(document.getElementById('main1'));
         // 指定图表的配置项和数据
         myChart1.setOption({
             tooltip: {
@@ -294,7 +354,7 @@
      */
     function showInstrumentPanelSale3(){
         // 基于准备好的dom，初始化echarts实例
-        var myChart2 = echarts.init(document.getElementById('main2'));
+        const myChart2 = echarts.init(document.getElementById('main2'));
         // 指定图表的配置项和数据
         myChart2.setOption({
             tooltip: {
@@ -357,8 +417,8 @@
      *月度订单+合同额统计图
      */
     function showHistogramSale() {
-        var myChartStat = echarts.init(document.getElementById('statistical'));
-        optionStat = {
+        let myChartStat = echarts.init(document.getElementById('statistical'));
+        let optionStat = {
             title: {
                 text: '月度订单+合同额',
                 textStyle: {
@@ -436,7 +496,7 @@
      */
     function showInstrumentPanelRec1(){
         // 基于准备好的dom，初始化echarts实例
-        var myChart3 = echarts.init(document.getElementById('main3'));
+        let myChart3 = echarts.init(document.getElementById('main3'));
         // 指定图表的配置项和数据
         myChart3.setOption({
             tooltip: {
@@ -500,7 +560,7 @@
      */
     function showInstrumentPanelRec2(){
         // 基于准备好的dom，初始化echarts实例
-        var myChart4 = echarts.init(document.getElementById('main4'));
+        let myChart4 = echarts.init(document.getElementById('main4'));
         // 指定图表的配置项和数据
         myChart4.setOption({
             tooltip: {
@@ -564,7 +624,7 @@
      */
     function showInstrumentPanelRec3(){
         // 基于准备好的dom，初始化echarts实例
-        var myChart5 = echarts.init(document.getElementById('main5'));
+        let myChart5 = echarts.init(document.getElementById('main5'));
         // 指定图表的配置项和数据
         myChart5.setOption({
             tooltip: {
@@ -627,8 +687,8 @@
      * 月度回款额统计图
      */
     function showHistogramRec() {
-        var myChartStat1 = echarts.init(document.getElementById('statistical1'));
-        optionStat1 = {
+        let myChartStat1 = echarts.init(document.getElementById('statistical1'));
+        let optionStat1 = {
             title: {
                 text: '月度回款额',
                 textStyle: {
@@ -706,12 +766,12 @@
     /**
      *销售预测漏斗图
      */
-    function showSaleForecasting(){
+    function showSaleForecasting(listSaleForecasting){
         // 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例
-        var chart1 = echarts.init(document.getElementById("chart1"));
+        let chart1 = echarts.init(document.getElementById("chart1"));
 
         // 指定图表的配置项和数据
-        optionChar = {
+        let optionChar = {
             title: {
                 text: '销售预测',
                 textStyle: {
@@ -773,12 +833,12 @@
                         }
                     },
                     data: [
-                        {value: 0, name: '成功'},
-                        {value: 20, name: '合同签订'},
-                        {value: 40, name: '商务谈判'},
-                        {value: 60, name: '方案制定'},
-                        {value: 80, name: '需求分析'},
-                        {value: 100, name: '初步接触'}
+                        {value: 0, name: '成功('+listSaleForecasting[5]["opportunitiesNumber"]+'个;合计:'+listSaleForecasting[5]["summation"]+')'},
+                        {value: 20, name: '合同签订('+listSaleForecasting[4]["opportunitiesNumber"]+'个;合计:'+listSaleForecasting[4]["summation"]+')'},
+                        {value: 40, name: '商务谈判('+listSaleForecasting[3]["opportunitiesNumber"]+'个;合计:'+listSaleForecasting[3]["summation"]+')'},
+                        {value: 60, name: '方案制定('+listSaleForecasting[2]["opportunitiesNumber"]+'个;合计:'+listSaleForecasting[2]["summation"]+')'},
+                        {value: 80, name: '需求分析('+listSaleForecasting[1]["opportunitiesNumber"]+'个;合计:'+listSaleForecasting[1]["summation"]+')'},
+                        {value: 100, name: '初步接触('+listSaleForecasting[0]["opportunitiesNumber"]+'个;合计:'+listSaleForecasting[0]["summation"]+')'}
                     ]
                 }
             ]
@@ -792,8 +852,8 @@
      * 每月销售勤奋度
      */
     function showSaleDiligent(){
-        var myChartDiligence = echarts.init(document.getElementById('diligence'));
-        optionDil = {
+        let myChartDiligence = echarts.init(document.getElementById('diligence'));
+        let optionDil = {
             title: {
                 text: '每月销售勤奋度',
                 textStyle: {
@@ -908,21 +968,6 @@
         };
         myChartDiligence.setOption(optionDil);
     }
-    $(document).ready(function () {
-        uploadSel();
-        //let selUser = $("#userId option:selected").val();
-        showInstrumentPanelSale1();
-        showInstrumentPanelSale2();
-        showInstrumentPanelSale3();
-        showInstrumentPanelRec1();
-        showInstrumentPanelRec2();
-        showInstrumentPanelRec3();
-        showHistogramSale();
-        showHistogramRec();
-        showSaleForecasting();
-        showSaleDiligent();
 
-    });
 </script>
 </body>
-</html>
