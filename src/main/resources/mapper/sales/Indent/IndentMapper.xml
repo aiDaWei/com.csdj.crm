@@ -73,11 +73,11 @@
     <insert id="addOrder" parameterType="Order">
         INSERT INTO `order` (order_name,fk_cus_type_id,fk_cus_name,fk_object_type_id,fk_object_name,order_type,
         fk_contacts_id,order_payment,order_start_time,order_end_time,order_consignee_name,order_consignee_phone,
-        order_consignee_email,order_consignee_address,order_transportation,order_settlement,order_context)
+        order_consignee_email,order_consignee_address,order_transportation,order_settlement,order_context,creator)
         values (#{orderName},#{fkCusTypeId},#{fkCusName},#{fkObjectTypeId},
         #{fkObjectName},#{orderType},#{fkContactsId},#{orderPayment},#{orderStartTime},#{orderEndTime},
         #{orderConsigneeName},#{orderConsigneePhone},#{orderConsigneeEmail},#{orderConsigneeAddress},
-        #{orderTransportation},#{orderSettlement},#{orderContext})
+        #{orderTransportation},#{orderSettlement},#{orderContext},#{creator})
     </insert>
     <update id="updateOrder" parameterType="Order">
         update `order`
@@ -108,6 +108,7 @@
             <if test="orderTransportation != null">order_transportation=#{orderTransportation},</if>
             <if test="orderSettlement != null">order_settlement=#{orderSettlement},</if>
             <if test="orderContext != null">order_context=#{orderContext},</if>
+            modifier=#{modifier},
             gmt_modified=DATE_FORMAT(NOW(),'%Y-%m-%d %H:%m:%s'),
         </trim>
     </update>

@@ -1,15 +1,18 @@
 package com.csdj.crmproject.crmproject.controller.Sales.Indent;
 
 import com.alibaba.fastjson.JSON;
+import com.csdj.crmproject.crmproject.entity.User;
 import com.csdj.crmproject.crmproject.entity.salesmanagement.Order;
 import com.csdj.crmproject.crmproject.service.Sales.Indent.IndentService;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,13 +65,17 @@ public class IndentController {
      */
     @RequestMapping("add_order_htmls")
     @ResponseBody
-    public int addOrder(Order order){
+    public int addOrder(Order order,HttpSession session){
+        User user=(User)session.getAttribute("user");
+        order.setCreator(user.getUserName());
         int i=indentService.addOrder(order);
         return i;
     }
     @RequestMapping("update_order_htmls")
     @ResponseBody
-    public int updateOrder(Order order){
+    public int updateOrder(Order order,HttpSession session){
+        User user=(User)session.getAttribute("user");
+        order.setModifier(user.getUserName());
         int i=indentService.updateOrder(order);
         return i;
     }

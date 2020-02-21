@@ -51,4 +51,76 @@ public interface SectionInstrumentMapper {
      * @return map数据
      */
     Map<String, Object> avgReceivableMonthOK(@Param("dip")Integer dip);
+    /**
+     * 销售预测-初步接触
+     * @param dip 部门id
+     * @return 统计结果类
+     */
+    StatisticalResult countSaleForecasting1(@Param("dip") Integer dip);
+    /**
+     * 销售预测-需求分析
+     * @param dip 部门id
+     * @return 统计结果类
+     */
+    StatisticalResult countSaleForecasting2(@Param("dip") Integer dip);
+    /**
+     * 销售预测-方案制定/报价
+     * @param dip 部门id
+     * @return 统计结果类
+     */
+    StatisticalResult countSaleForecasting3(@Param("dip") Integer dip);
+    /**
+     * 销售预测-商务谈判/招投标
+     * @param dip 部门id
+     * @return 统计结果类
+     */
+    StatisticalResult countSaleForecasting4(@Param("dip") Integer dip);
+    /**
+     * 销售预测-合同签订
+     * @param dip 部门id
+     * @return 统计结果类
+     */
+    StatisticalResult countSaleForecasting5(@Param("dip") Integer dip);
+    /**
+     * 销售预测-成功
+     * @param dip 部门id
+     * @return 统计结果类
+     */
+    StatisticalResult countSaleForecasting6(@Param("dip") Integer dip);
+    /**
+     * 机会跟进数
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> countSalesWith(@Param("dip")Integer dip);
+    /**
+     * 机会增加数
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> countSalesIncrease(@Param("dip")Integer dip);
+    /**
+     * 线索跟进数
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> countCluesWith(@Param("dip")Integer dip);
+    /**
+     * 线索增加数
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> countCluesIncrease(@Param("dip")Integer dip);
+    /**
+     * 客户跟进数
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> countCustomerWith(@Param("dip")Integer dip);
+    /**
+     * 客户增加数
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> countCustomerIncrease(@Param("dip")Integer dip);
 }
