@@ -49,5 +49,65 @@ public class SectionInstrumentServiceImpl implements SectionInstrumentService {
     public Map<String, Object> avgReceivableMonthOKService(Integer dip) {
         return objMapp.avgReceivableMonthOK(dip);
     }
+
+    @Override
+    public StatisticalResult countSaleForecasting1Service(Integer dip) {
+        return objMapp.countSaleForecasting1(dip);
+    }
+
+    @Override
+    public StatisticalResult countSaleForecasting2Service(Integer dip) {
+        return objMapp.countSaleForecasting2(dip);
+    }
+
+    @Override
+    public StatisticalResult countSaleForecasting3Service(Integer dip) {
+        return objMapp.countSaleForecasting3(dip);
+    }
+
+    @Override
+    public StatisticalResult countSaleForecasting4Service(Integer dip) {
+        return objMapp.countSaleForecasting4(dip);
+    }
+
+    @Override
+    public StatisticalResult countSaleForecasting5Service(Integer dip) {
+        return objMapp.countSaleForecasting5(dip);
+    }
+
+    @Override
+    public StatisticalResult countSaleForecasting6Service(Integer dip) {
+        return objMapp.countSaleForecasting6(dip);
+    }
+
+    @Override
+    public Map<String, Object> countSalesWithService(Integer dip) {
+        return objMapp.countSalesWith(dip);
+    }
+
+    @Override
+    public Map<String, Object> countSalesIncreaseService(Integer dip) {
+        return objMapp.countSalesIncrease(dip);
+    }
+
+    @Override
+    public Map<String, Object> countCluesWithService(Integer dip) {
+        return objMapp.countCluesWith(dip);
+    }
+
+    @Override
+    public Map<String, Object> countCluesIncreaseService(Integer dip) {
+        return objMapp.countCluesIncrease(dip);
+    }
+
+    @Override
+    public Map<String, Object> countCustomerWithService(Integer dip) {
+        return objMapp.countCustomerWith(dip);
+    }
+
+    @Override
+    public Map<String, Object> countCustomerIncreaseService(Integer dip) {
+        return objMapp.countCluesIncrease(dip);
+    }
 }
 
