@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="static/lib/layui/css/layui.css">
+    <script src="static/js/jquery-2.1.1.js"></script>
+    <script src="static/lib/layui/layui.js"></script>
+</head>
+<body>
+<table class="layui-table" style="width: 400px;margin-left: 80px;">
+    <colgroup>
+        <col width="100">
+        <col width="100">
+    </colgroup>
+    <tbody>
+    <tr>
+        <td><strong>订单编号</strong></td>
+        <td th:text="${order.orderId}"></td>
+    </tr>
+    <tr>
+        <td><strong>名称</strong></td>
+        <td th:text="${order.orderName}"></td>
+    </tr>
+    <tr>
+        <td><strong>所属客户</strong></td>
+        <td th:if="${order.fkCusTypeId}==0">企业客户</td>
+        <td th:if="${order.fkCusTypeId}==1">个人客户</td>
+    </tr>
+    <tr>
+        <td><strong>所属对象</strong></td>
+        <td th:if="${order.fkObjectTypeId}==0">销售机会</td>
+        <td th:if="${order.fkObjectTypeId}==1">故障报修</td>
+    </tr>
+    <tr>
+        <td><strong>分类</strong></td>
+        <td th:if="${order.orderType}==0">产品销售</td>
+        <td th:if="${order.orderType}==1">服务</td>
+        <td th:if="${order.orderType}==2">代销</td>
+        <td th:if="${order.orderType}==3">分销</td>
+        <td th:if="${order.orderType}==4">业务合作</td>
+        <td th:if="${order.orderType}==5">其它</td>
+    </tr>
+    <tr>
+        <td><strong>不含税总额</strong></td>
+        <td th:text="${order.orderTotalSum}"></td>
+    </tr>
+    <tr>
+        <td><strong>毛利润</strong></td>
+        <td th:text="${order.orderGrossProfit}"></td>
+    </tr>
+    <tr>
+        <td><strong>税额</strong></td>
+        <td th:text="${order.orderRevenue}"></td>
+    </tr>
+    <tr>
+        <td><strong>销售额</strong></td>
+        <td th:text="${order.orderSaleroom}"></td>
+    </tr>
+    <tr>
+        <td><strong>客户签约人</strong></td>
+        <td th:text="${order.fkContactsId}"></td>
+    </tr>
+    <tr>
+        <td><strong>所有者</strong></td>
+        <td th:text="${order.creator}"></td>
+    </tr>
+    <tr>
+        <td><strong>付款方式</strong></td>
+        <td th:if="${order.orderPayment}==0">支票</td>
+        <td th:if="${order.orderPayment}==1">现金</td>
+    </tr>
+    <tr>
+        <td><strong>开始时间</strong></td>
+        <td th:text="${order.orderStartTime}"></td>
+    </tr>
+    <tr>
+        <td><strong>结束时间</strong></td>
+        <td th:text="${order.orderEndTime}"></td>
+    </tr>
+    <tr>
+        <td><strong>收货人姓名</strong></td>
+        <td th:text="${order.orderConsigneeName}"></td>
+    </tr>
+    <tr>
+        <td><strong>收货人电话</strong></td>
+        <td th:text="${order.orderConsigneePhone}"></td>
+    </tr>
+    <tr>
+        <td><strong>收货人邮箱</strong></td>
+        <td th:text="${order.orderConsigneeEmail}"></td>
+    </tr>
+    <tr>
+        <td><strong>收货人地址</strong></td>
+        <td th:text="${order.orderConsigneeAddress}"></td>
+    </tr>
+    <tr>
+        <td><strong>已收款金额</strong></td>
+        <td th:text="${order.orderAmountRemitted}"></td>
+    </tr>
+    <tr>
+        <td><strong>已开票金额</strong></td>
+        <td th:text="${order.orderInvoiceAmount}"></td>
+    </tr>
+    <tr>
+        <td><strong>审批状态</strong></td>
+        <td th:if="${order.orderApprovalStatus}==0">审批中</td>
+        <td th:if="${order.orderApprovalStatus}==1">未启动</td>
+        <td th:if="${order.orderApprovalStatus}==2">已完成</td>
+    </tr>
+    <tr>
+        <td><strong>审批时间</strong></td>
+        <td th:text="${order.orderApprovalTime}"></td>
+    </tr>
+    <tr>
+        <td><strong>审批结果</strong></td>
+        <td th:if="${order.orderApprovalResult}==0">成功结束</td>
+        <td th:if="${order.orderApprovalResult}==1">失败结束</td>
+        <td th:if="${order.orderApprovalResult}==2">无</td>
+    </tr>
+    <tr>
+        <td><strong>创建时间</strong></td>
+        <td th:text="${order.gmtCreate}"></td>
+    </tr>
+    <tr>
+        <td><strong>创建人</strong></td>
+        <td th:text="${order.creator}"></td>
+    </tr>
+    <tr>
+        <td><strong>最后修改时间</strong></td>
+        <td th:text="${order.gmtModified}"></td>
+    </tr>
+    <tr>
+        <td><strong>最后修改人</strong></td>
+        <td th:text="${order.modifier}"></td>
+    </tr>
+    <tr>
+        <td><strong>运输方式</strong></td>
+        <td th:if="${order.orderTransportation}==0">顺丰快递</td>
+        <td th:if="${order.orderTransportation}==1">中国邮政</td>
+        <td th:if="${order.orderTransportation}==2">圆通快递</td>
+    </tr><tr>
+        <td><strong>结算方式</strong></td>
+        <td th:if="${order.orderSettlement}==0">支票</td>
+        <td th:if="${order.orderSettlement}==1">现金</td>
+    </tr><tr>
+        <td><strong>备注</strong></td>
+        <td th:text="${order.orderContext}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

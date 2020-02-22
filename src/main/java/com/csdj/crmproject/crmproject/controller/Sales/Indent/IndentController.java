@@ -33,6 +33,12 @@ public class IndentController {
     public String addOrderHtml(){
         return "sales/Indent/add_order";
     }
+    @RequestMapping("look_order.html")
+    public String lookOrder(long orderId,Model model){
+        Order order=indentService.findGetOrderId(orderId);
+        model.addAttribute("order",order);
+        return "sales/Indent/look_order";
+    }
     @RequestMapping("update_order.html")
     public String updateOrderHtml(long orderId, Model model){
         Order order=indentService.findGetOrderId(orderId);
