@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="static/lib/layui/css/layui.css">
-    <script src="static/js/jquery-2.1.1.js"></script>
-    <script src="static/lib/layui/layui.js"></script>
+    <link rel="stylesheet" th:href="@{../static/lib/layui/css/layui.css}">
+    <script th:src="@{../static/lib/layui/layui.js}"></script>
+    <script th:src="@{../static/js/jquery-2.1.1.js}"></script>
     <style>
         .layui-form-label{
             width: 85px;
@@ -13,136 +14,98 @@
     </style>
 </head>
 <body>
-<form class="layui-form" action="javascript:;" id="addOrderForm">
+<form class="layui-form" action="javascript:;" id="updateOrderForm">
     <div class="layui-form-item">
-        <label class="layui-form-label">名称</label>
+        <label class="layui-form-label">活动编号</label>
         <div class="layui-input-inline" style="width: 540px">
-            <input type="text" name="orderName"  autocomplete="off" class="layui-input">
+            <input type="text" th:value="${order.pkMarkActivityId}" name="pkMarkActivityId" autocomplete="off" class="layui-input" readonly>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">所属客户类型</label>
-        <div class="layui-input-inline">
-            <select name="fkCusTypeId" lay-filter="fkCusTypeId" id="fkCusTypeId" lay-verify="required">
-                <option value="0">企业客户</option>
-                <option value="1">个人客户</option>
-            </select>
-        </div>
-        <div class="layui-input-inline">
-            <input type="text" name="fkCusName" id="fkCusName" autocomplete="off" class="layui-input">
-        </div>
-        <button class="layui-btn" onclick="xzkhType()">选择</button>
-        <button class="layui-btn" onclick="clears(1)">清空</button>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">所属对象类型</label>
-        <div class="layui-input-inline">
-            <select name="fkObjectTypeId" lay-filter="fkObjectTypeId" lay-verify="required">
-                <option value="0">销售机会</option>
-                <option value="1">故障报修</option>
-            </select>
-        </div>
-        <div class="layui-input-inline">
-            <input type="text" name="fkObjectName" id="fkObjectName"  autocomplete="off" class="layui-input">
-        </div>
-        <button class="layui-btn" onclick="dxType()">选择</button>
-        <button class="layui-btn" onclick="clears(2)">清空</button>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">分类</label>
+        <label class="layui-form-label">活动名称</label>
         <div class="layui-input-inline" style="width: 540px">
-            <select name="orderType" lay-filter="aihao">
-                <option value="0">产品销售</option>
-                <option value="1">服务</option>
-                <option value="2">代销</option>
-                <option value="3">分销</option>
-                <option value="4">业务合作</option>
-                <option value="5">其它</option>
+            <input type="text" name="activityName" th:value="${order.activityName}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">负责人</label>
+        <div class="layui-input-inline">
+            <select name="activityHead" lay-filter="fkCusTypeId" id="activityHead" lay-verify="required">
+                <option value="1" th:selected="${order.activityHead}=='小红'">小红</option>
+                <option value="2" th:selected="${order.activityHead}=='小黄'">小黄</option>
+                <option value="3" th:selected="${order.activityHead}=='小绿'">小绿</option>
+                <option value="4" th:selected="${order.activityHead}=='admin'">admin</option>
             </select>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">客户签约人</label>
+        <label class="layui-form-label">类型</label>
+        <div class="layui-input-inline">
+            <input type="text" name="activityType" th:value="${order.activityType}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">预算</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="activityBudget" th:value="${order.activityBudget}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">实际参加人数</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="activityActualNumber" th:value="${order.activityActualNumber}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">计划开始时间</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" th:value="${order.activityPlannedStartdate}" name="activityPlannedStartdate"  class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">计划结束时间</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" th:value="${order.activityPlannedEnddate}" name="activityPlannedEnddate"  class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">审批状态</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="activityApprovalProcess" th:value="${order.activityApprovalProcess}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">流转时间</label>
         <div class="layui-input-inline" style="width: 390px">
-            <input type="text" name="fkContactsId" id="fkContactsId" autocomplete="off" class="layui-input">
+            <input type="text" th:value="${order.activityCirculationdate}" name="activityCirculationdate"  class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
         </div>
-        <button class="layui-btn" onclick="khqyrWindow()">选择</button>
-        <button class="layui-btn" onclick="clears(3)">清空</button>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">付款方式</label>
+        <label class="layui-form-label">审批结果</label>
         <div class="layui-input-inline" style="width: 540px">
-            <select name="orderPayment" lay-filter="aihao">
-                <option value="0">支票</option>
-                <option value="1">现金</option>
+            <input type="text" name="activityApprovalResult" th:value="${order.activityApprovalResult}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">创建人</label>
+        <div class="layui-input-inline">
+            <select name="activityFounder" lay-filter="fkCusTypeId" id="fkCusTypeId" lay-verify="required">
+                <option value="1" th:selected="${order.activityFounder}=='小红'">小红</option>
+                <option value="2" th:selected="${order.activityFounder}=='小黄'">小黄</option>
+                <option value="3" th:selected="${order.activityFounder}=='小绿'">小绿</option>
+                <option value="4" th:selected="${order.activityFounder}=='admin'">admin</option>
             </select>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">开始时间</label>
+        <label class="layui-form-label">创建时间</label>
         <div class="layui-input-inline" style="width: 540px">
-            <input type="text" name="orderStartTime" lay-verify="required" class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
+            <input type="text" name="activityGmtCreate" th:value="${order.activityGmtCreate}" class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">结束时间</label>
-        <div class="layui-input-inline" style="width: 540px">
-            <input type="text" name="orderEndTime" lay-verify="required" required class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">收货人姓名</label>
-        <div class="layui-input-inline" style="width: 540px">
-            <input type="text" name="orderConsigneeName"  autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">收货人电话</label>
-        <div class="layui-input-inline" style="width: 540px">
-            <input type="text" lay-verify="phone" name="orderConsigneePhone"  autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">收货人邮箱</label>
-        <div class="layui-input-inline" style="width: 540px">
-            <input type="text" lay-verify="email" name="orderConsigneeEmail"  autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">收货人地址</label>
-        <div class="layui-input-inline" style="width: 540px">
-            <textarea name="orderConsigneeAddress" placeholder="请输入内容" class="layui-textarea"></textarea>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">运输方式</label>
-        <div class="layui-input-inline" style="width: 540px">
-            <select name="orderTransportation" lay-filter="aihao">
-                <option value="0">顺丰快递</option>
-                <option value="1">中国邮政</option>
-                <option value="2">圆通快递</option>
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">结算方式</label>
-        <div class="layui-input-inline" style="width: 540px">
-            <select name="orderSettlement" lay-filter="aihao">
-                <option value="0">支票</option>
-                <option value="1">现金</option>
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">备注</label>
-        <div class="layui-input-inline" style="width: 540px">
-            <textarea name="orderContext" placeholder="请输入内容" class="layui-textarea"></textarea>
-        </div>
-    </div>
-
     <div class="layui-form-item" hidden>
         <div class="layui-input-block">
-            <button class="layui-btn" id="btnAddOrdre" lay-submit lay-filter="formDemo">提交</button>
+            <button class="layui-btn" id="btnUpdateOrdre" lay-submit lay-filter="formDemo">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -166,18 +129,18 @@
         //监听提交
         form.on('submit(formDemo)', function(data){
             $.ajax({
-                url:"add_order_htmls",
+                url:"/crmproject/ActivityMarketing/updateKet",
                 type:"post",
-                data:$("#addOrderForm").serialize(),
+                data:$("#updateOrderForm").serialize(),
                 dataType:"json",
                 success:function (data) {
                     if (data>0){
-                        layer.msg('添加成功', {icon: 1, time: 2000}, function () {
+                        layer.msg('修改成功', {icon: 1, time: 2000}, function () {
                             parent.location.reload();
                         });
 
                     }else{
-                        layer.msg('添加失败',{icon:2})
+                        layer.msg('修改失败',{icon:2})
                     }
                 },
                 error:function () {
@@ -187,7 +150,7 @@
             return false;
         });
         //监听客户类型
-        form.on('select(fkCusTypeId)', function(data){
+        form.on('select(activityHead)', function(data){
             $("#fkCusName").val("");
         });
         //监听对象类型
@@ -199,9 +162,9 @@
 <script>
     //打开客户类型页面
     function xzkhType(){
-        var fkCusTypeId=$("#fkCusTypeId").val();
+        var activityHead=$("#activityHead").val();
         var index=$('#khType');
-        if(fkCusTypeId==1){
+        if(activityHead==1){
             index=$('#khType2')
         }
         layer.open({
@@ -223,13 +186,17 @@
                 xzval.attr("checked",false);
                 xzval.parent("td").parent("tr").css("background-color", "transparent")
                 layer.close(index);
-                }
+                },
+            zIndex: layer.zIndex, //重点1
+            success: function(layero){
+                layer.setTop(layero); //重点2
+            }
         });
     }
 
     //打开对象类型页面
     function dxType(){
-        var a=$('[name=fkObjectTypeId]').val();
+        var a=$('[name=activityHead]').val();
         var index=$('#fkObjectTypeId1');
         if(a==1){
             index=$('#khType2')

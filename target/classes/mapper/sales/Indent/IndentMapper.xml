@@ -13,14 +13,14 @@
         <result column="fk_object_id" property="fkObjectId"></result>
         <result column="fk_object_name" property="fkObjectName"></result>
         <result column="order_type" property="orderType"></result>
-        <result column="order_totalsum" property="orderTotalSum"></result>
+        <result column="order_total_sum" property="orderTotalSum"></result>
         <result column="order_gross_profit" property="orderGrossProfit"></result>
         <result column="order_revenue" property="orderRevenue"></result>
         <result column="order_saleroom" property="orderSaleroom"></result>
         <result column="fk_contacts_id" property="fkContactsId"></result>
         <result column="order_payment" property="orderPayment"></result>
-        <result column="order_start_time" property="orderStartTime"></result>
-        <result column="order_end_time" property="orderEndTime"></result>
+        <result column="order_start_times" property="orderStartTime"></result>
+        <result column="order_end_times" property="orderEndTime"></result>
         <result column="order_consignee_name" property="orderConsigneeName"></result>
         <result column="order_consignee_phone" property="orderConsigneePhone"></result>
         <result column="order_consignee_email" property="orderConsigneeEmail"></result>
@@ -29,7 +29,7 @@
         <result column="order_invoice_amount" property="orderInvoiceAmount"></result>
         <result column="order_approval_status" property="orderApprovalStatus"></result>
         <result column="order_approval_result" property="orderApprovalResult"></result>
-        <result column="order_approval_time" property="orderApprovalTime"></result>
+        <result column="order_approval_times" property="orderApprovalTime"></result>
         <result column="gmt_create" property="gmtCreate"></result>
         <result column="creator" property="creator"></result>
         <result column="gmt_modified" property="gmtModified"></result>
@@ -54,7 +54,8 @@
         </where>
     </select>
     <select id="findOrder" resultMap="orderMap">
-        select * from `order`
+        select *,DATE_FORMAT(order_approval_time, '%Y-%m-%d %H:%i:%s')
+        order_approval_times from `order`
        <where>
            <if test="orderApprovalStatus==1">
                and order_approval_status=0
@@ -68,16 +69,18 @@
        </where>
     </select>
     <select id="findGetOrderId" resultMap="orderMap">
-        select * from `order` where order_id=#{orderId}
+        select *,DATE_FORMAT(order_start_time, '%Y-%m-%d %H:%i:%s') order_start_times,
+        DATE_FORMAT(order_end_time, '%Y-%m-%d %H:%i:%s') order_end_times,DATE_FORMAT(order_approval_time, '%Y-%m-%d %H:%i:%s')
+        order_approval_times from `order` where order_id=#{orderId}
     </select>
     <insert id="addOrder" parameterType="Order">
         INSERT INTO `order` (order_name,fk_cus_type_id,fk_cus_name,fk_object_type_id,fk_object_name,order_type,
         fk_contacts_id,order_payment,order_start_time,order_end_time,order_consignee_name,order_consignee_phone,
-        order_consignee_email,order_consignee_address,order_transportation,order_settlement,order_context)
+        order_consignee_email,order_consignee_address,order_transportation,order_settlement,order_context,creator)
         values (#{orderName},#{fkCusTypeId},#{fkCusName},#{fkObjectTypeId},
         #{fkObjectName},#{orderType},#{fkContactsId},#{orderPayment},#{orderStartTime},#{orderEndTime},
         #{orderConsigneeName},#{orderConsigneePhone},#{orderConsigneeEmail},#{orderConsigneeAddress},
-        #{orderTransportation},#{orderSettlement},#{orderContext})
+        #{orderTransportation},#{orderSettlement},#{orderContext},#{creator})
     </insert>
     <update id="updateOrder" parameterType="Order">
         update `order`
@@ -108,7 +111,14 @@
             <if test="orderTransportation != null">order_transportation=#{orderTransportation},</if>
             <if test="orderSettlement != null">order_settlement=#{orderSettlement},</if>
             <if test="orderContext != null">order_context=#{orderContext},</if>
+            modifier=#{modifier},
             gmt_modified=DATE_FORMAT(NOW(),'%Y-%m-%d %H:%m:%s'),
         </trim>
     </update>
+    <delete id="deleteOrder">
+        delete from `order` where order_id in
+        <foreach collection="array" item="array" open="(" separator="," close=")">
+            #{array}
+        </foreach>
+    </delete>
 </mapper>

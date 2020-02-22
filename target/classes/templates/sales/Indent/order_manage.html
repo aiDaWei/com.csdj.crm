@@ -16,7 +16,7 @@
         <button class="layui-btn layui-btn-sm" lay-event="addOrder">添加</button>
         <button class="layui-btn layui-btn-sm" lay-event="updateOrder">编辑</button>
         <button class="layui-btn layui-btn-sm" lay-event="deleteOrder">删除</button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">查看</button>
+        <button class="layui-btn layui-btn-sm" lay-event="lookOrder">查看</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">发起流程</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">流程审批</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">流程痕迹</button>
@@ -26,10 +26,10 @@
 
     <div class="layui-input-inline">
         <select name="orderApprovalStatus" lay-filter="orderApprovalStatus">
-            <option value="0" th:selected="${d.where.orderApprovalStatus}==0">所有人的订单(全部)</option>
-            <option value="1" th:selected="${d.where.orderApprovalStatus}==1">所有人的订单(审批中)</option>
-            <option value="2" th:selected="${d.where.orderApprovalStatus}==2">所有人的订单(以成功)</option>
-            <option value="3" th:selected="${d.where.orderApprovalStatus}==3">所有人的订单(以失败)</option>
+            <option value="0">所有人的订单(全部)</option>
+            <option value="1">所有人的订单(审批中)</option>
+            <option value="2">所有人的订单(以成功)</option>
+            <option value="3">所有人的订单(以失败)</option>
         </select>
     </div>
 </script>
@@ -61,6 +61,18 @@
                         }
                         if (data.orderType == 1) {
                             return "服务";
+                        }
+                        if (data.orderType == 2) {
+                            return "代销";
+                        }
+                        if (data.orderType == 3) {
+                            return "分销";
+                        }
+                        if (data.orderType == 4) {
+                            return "业务合作";
+                        }
+                        if (data.orderType == 5) {
+                            return "其它";
                         }
                     }
                 }
@@ -171,6 +183,29 @@
                         });
                     }
                     break;
+                case 'lookOrder':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else if (data.length > 1) {
+                        layer.msg('只能同时查看一条');
+                    } else {
+                        var orderId=data[0].orderId;
+                        layer.open({
+                            title: '查看订单',
+                            type: 2,
+                            area: ['600px', '400px'],
+                            content: 'look_order.html?orderId=' + orderId + ''
+                            , btn: ['确定','取消']
+                            , btnAlign: 'c'
+                            , yes: function (index, layero) {
+                                layer.close(index);
+                            }
+                            ,btn2: function(index, layero){
+                                layer.close(index);
+                            }
+                        });
+                    }
+                    break;
 
                 //自定义头工具栏右侧图标 - 提示
                 case 'LAYTABLE_TIPS':
@@ -192,7 +227,6 @@
                 }
                 //,height: 300
             });
-            alert({{d.where.orderApprovalStatus}})
         });
 
     });

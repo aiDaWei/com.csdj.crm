@@ -1,99 +1,1018 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>市场活动模块</title>
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <title>市场活动管理</title>
+    <link rel="stylesheet" th:href="@{../static/lib/layui/css/layui.css}">
+    <script th:src="@{../static/lib/layui/layui.js}"></script>
+    <style>
 
+        .layui-table-init{
+            display:none;
+        }
 
+        .layui-form-item-first{
+            margin-top: 25px;
+        }
+
+        .layui-form-item{
+            margin-right: 50px;
+            margin-left: 50px;
+        }
+    </style>
 </head>
 <body>
-<div>
-    <table class="table table-hover table-bordered table-condensed"  border="1" cellspacing="0" style="">
-        <thead>
-        <tr aria-colspan="12"> <td colspan="4"><a href="/crmproject/ActivityMarketing/add" >添加</a>
-            <a href="/ActivityMarketing/add" >修改</a>
-             <a href="/showaddFlow" >删除</a>
-            <a href="/showaddFlow" >查询</a></td></tr>
-        <tr>
-            <td>活动名称 </td>
-            <td>负责人</td>
-            <td>类型</td>
-            <td>预算</td>
-            <td>实际参加人数</td>
-            <td>计划开始时间</td>
-            <td>计划结束时间</td>
-            <td>审批状态</td>
-            <td>流转时间</td>
-            <td>审批结果</td>
-            <td>创建人</td>
-            <td>创建时间</td>
-            <td>操作</td>
-        </tr>
-        </thead>
-        <tbody id="a">
+<table class="layui-hide" id="contract" lay-filter="contract"></table>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button data-method="offset" data-type="auto"  class="layui-btn layui-btn-sm" lay-event="add-contract">添加</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">编辑</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">删除</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">查看</button>
 
-        </tbody>
-    </table>
 
+    </div>
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="contract-edit"><i class="layui-icon"></i>编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="contract-del"><i class="layui-icon"></i>删除</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="contract-look"><i class="layui-icon layui-icon-search"></i>查看</a>
+</script>
+<div id="add-contract-script" style="display: none;">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend align="center" id="fieldTitle"></legend>
+    </fieldset>
+    <form class="layui-form" id="contract-form" lay-filter="contract-form" >
+        <input type="hidden" name="pkContractId">
+        <!--<div class="layui-form-item layui-form-item-first">
+            <label class="layui-form-label">合同编号</label>
+            <div class="layui-input-block">
+                <input type="text" name="pkContractId"  required lay-verify="required|number" autocomplete="off" placeholder="请输入合同编号" class="layui-input">
+            </div>
+        </div>-->
+        <div class="layui-form-item">
+            <label class="layui-form-label">活动名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="activityName"  required lay-verify="required"  autocomplete="off" placeholder="请输入活动名称" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">负责人</label>
+            <div class="layui-input-block">
+                <select name="activityHead">
+                    <option value="1">小红</option>
+                    <option value="2"  selected>小黄</option>
+                    <option value="3">小绿</option>
+                    <option value="4">admin</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">类型</label>
+            <div class="layui-input-inline" >
+                <input type="text" name="activityType"  required lay-verify="required"  autocomplete="off" placeholder="请输入类型" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">预算</label>
+            <div class="layui-input-inline" >
+                <input type="text" name="activityBudget"  required lay-verify="required"  autocomplete="off" placeholder="请输入预算" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">实际参加人数</label>
+            <div class="layui-input-inline" >
+                <input type="text" name="activityActualNumber"  required lay-verify="required"  autocomplete="off" placeholder="请输入实际参加人数" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">计划开始时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="con-start-date" name="activityPlannedStartdate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" style="width: 275px">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">计划结束时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="con-end-date" name="activityPlannedEnddate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" style="width: 275px">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">审批状态</label>
+            <div class="layui-input-block">
+                <div class="layui-input-inline">
+                    <input type="text" name="activityApprovalProcess"  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">流转时间</label>
+            <div class="layui-input-block">
+                <div class="layui-input-inline">
+                    <input type="text" name="activityCirculationdate"  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">审批结果</label>
+            <div class="layui-input-block">
+                <input type="text" name="activityApprovalResult"  autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">创建人</label>
+            <div class="layui-input-block">
+                <select name="activityFounder">
+                    <option value="1">小红</option>
+                    <option value="2"  selected>小黄</option>
+                    <option value="3">小绿</option>
+                    <option value="4">admin</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">创建时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="con-date" name="activityGmtCreate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" style="width: 275px">
+                </div>
+            </div>
+        </div>
+        <div style="display: none">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="con-form-submit" id="con-form-submit">立即提交</button>
+        </div>
+    </form>
 </div>
 
-<script  >
-    $("document").ready(function(){
-        $.ajax({
-            url: "/crmproject/ActivityMarketing/skipPage",
-            type: "post",
-            data: {
-            },
-            dataType: "json",
-            success: function (msg) {
-                var str="";
-                for(var i=0;i<msg.length;i++){
-                    str=str+"<tr><td>"+msg[i].activityName+"</td><td>"+msg[i].activityHead+"</td>" +
-                        "<td>"+msg[i].activityType+"" +
-                        "</td><td>"+msg[i].activityBudget+"</td><td>"+msg[i].activityActualNumber+"</td>" +
-                        "<td>"+msg[i].activityPlannedStartdate+"</td><td>"+msg[i].activityPlannedEnddate+"</td>" +
-                        "<td>"+msg[i].activityApprovalProcess+"</td><td>"+msg[i].activityCirculationdate+"</td>" +
-                        "<td>"+msg[i].activityApprovalResult+"</td><td>"+msg[i].activityFounder+"</td>" +
-                        "<td>"+msg[i].activityGmtCreate+"</td><td><a href=''>删除</a></td></tr>";
-                }
-                $("#a").html(str);
-            },
-            error: function (data) {
-                alert("网络异常！");
+
+<script>
+    var layuiOpenContract;
+    layui.use(['table','jquery','layedit','form','laydate'], function(){
+        var layer = layui.layer;
+        var table = layui.table;
+        var $ = layui.jquery;
+        var form = layui.form;
+        var laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#con-start-date'
+        });
+        laydate.render({
+            elem: '#con-end-date'
+        });
+
+        table.render({
+            elem: '#contract'
+            ,height: 315 //容器高度
+            ,url:'/crmproject/ActivityMarketing/skipPage'
+            ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            /*,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                title: '提示'
+                ,layEvent: 'LAYTABLE_TIPS'
+                ,icon: 'layui-icon-tips'
+            }]*/
+            ,title: '市场活动表'
+            ,cols: [
+                [
+                    {type: 'checkbox', fixed: 'left'}
+                    ,{field:'activityName', title:'活动名称', width:105, fixed: 'left', unresize: true, sort: true}
+                    ,{field:'activityHead', title:'负责人', width:120}
+                    ,{field:'activityType', title:'类型', width:150}
+                    ,{field:'activityBudget', title:'预算', width:200}
+                    ,{field:'activityActualNumber', title:'实际参加人数', width:120}
+                    ,{field:'activityPlannedStartdate', title:'计划开始时间',width:120,templet:"<div>{{layui.util.toDateString(d.activityPlannedStartdate,'yyyy-MM-dd HH:mm:ss')}}</div>"}
+                    ,{field:'activityPlannedEnddate', title:'计划结束时间', width:120,templet:"<div>{{layui.util.toDateString(d.activityPlannedEnddate,'yyyy-MM-dd HH:mm:ss')}}</div>"}
+                    ,{field:'activityApprovalProcess', title:'审批状态', width:120}
+                    ,{field:'activityCirculationdate', title:'流转时间', width:120}
+                    ,{field:'activityApprovalResult', title:'审批结果', width:120}
+                    ,{field:'activityFounder', title:'创建人', width:120}
+                    ,{field:'activityGmtCreate', title:'创建时间', width:120,templet:"<div>{{layui.util.toDateString(d.activityGmtCreate,'yyyy-MM-dd HH:mm:ss')}}</div>"}
+                ]
+            ]
+
+            ,page: true
+            ,limits: [3,5,10]
+            ,limit: 3 //每页默认显示的数量
+            ,id:'contractTable'
+        });
+
+        var contractUrl;
+
+        //头工具栏事件
+        table.on('toolbar(contract)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'add-contract':
+                    $("#contract-form")[0].reset();
+                    form.render();
+                    layuiOpenContract = layer.open({
+                        title:"增加",
+                        btn: ['保存', '取消'],
+                        yes: function(index, layero){
+
+                            contractUrl = "/crmproject/ActivityMarketing/addMarket";
+                            $("#con-form-submit").click();
+                            layer.msg("保存")
+                        },
+                        btn2: function(index, layero){
+                            layer.msg("取消")
+
+                            //return false 开启该代码可禁止点击该按钮关闭
+                        },
+                        type: 1,
+                        area:['800px','500px'],
+                        content: $("#add-contract-script"), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                        success:function(){
+                            $("#fieldTitle").text("新增[市场活动]");
+                        }
+                    });
+                    break;
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    //layer.alert(JSON.stringify(data));
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else if (data.length > 1) {
+                        layer.msg('只能同时编辑一个');
+                    } else {
+                        var pkMarkActivityId=data[0].pkMarkActivityId;
+                        layer.open({
+                            title: '修改活动',
+                            type: 2,
+                            area: ['1000px', '450px'],
+                            content: '/crmproject/ActivityMarketing/updateID?pkMarkActivityId=' + pkMarkActivityId + ''
+                            , btn: ['保存','取消']
+                            , btnAlign: 'c'
+                            , yes: function (index, layero) {
+                                var body = layer.getChildFrame('body', index);
+                                body.find('#btnUpdateOrdre').click();
+                            }
+                            ,btn2: function(index, layero){
+                                layer.close(index);
+                            }
+                        });
+                    }
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else {
+                        layer.confirm('确定要删除选中的行?', {icon: 3, title: '提示'}, function (index) {
+                            var data = checkStatus.data;
+                            var array = new Array();
+                            for (var i = 0; i < data.length; i++) {
+                                array[i] = data[i].pkMarkActivityId;
+                            }
+
+                            $.ajax({
+                                url: "/crmproject/ActivityMarketing/delMarket",
+                                type: "get",
+                                dataType:"json",
+                                data: {pkMarkActivityId: array},
+                                traditional: true,
+                                success: function (data) {
+                                    if (data == 1) {
+                                        layer.msg('删除成功', {icon: 1, time: 2000}, function () {
+                                            window.location.reload();
+                                        });
+                                    }else{
+                                        layer.msg('删除失败', {icon: 1, time: 2000}, function () {
+                                            window.location.reload();
+                                        });
+                                    }
+                                },
+                                error:function () {
+                                    layer.msg('ajax执行错误',{icon:2,time:2000});
+                                }
+                            })
+                        });
+                    }
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选': '未全选');
+                    break;
+
+                //自定义头工具栏右侧图标 - 提示
+                case 'LAYTABLE_TIPS':
+                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                    break;
+            };
+        });
+
+        //监听行工具事件
+        table.on('tool(contract)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'contract-del'){
+                layer.confirm('真的删除行么', function(index){
+                    $.ajax({
+                        url:"/crmproject/ActivityMarketing/delMarket",
+                        data:{
+                            id:data.pkMarkActivityId
+                        },
+                        type:"post",
+                        dataType:"TEXT",
+                        success:function(data){
+                            if (data=="1"){
+                                layer.msg("操作成功",{icon:1, time: 500},function () {
+                                    table.reload('contractTable','data')
+                                });
+                            }else{
+                                layer.msg("操作失败",{icon:2, time: 1000});
+
+                            }
+                        }
+                    })
+
+
+                });
+            } else if(obj.event === 'contract-edit'){
+                layuiOpenContract = layer.open({
+                    title:"编辑",
+                    btn: ['保存', '取消'],
+                    yes: function(index, layero){
+
+                        contractUrl = "contract.edit";
+                        $("#con-form-submit").click();
+
+                    },
+                    type: 1,
+                    area:['800px','500px'],
+                    content: $("#add-contract-script"), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    success:function(){
+                        $("#fieldTitle").text("编辑[合同销售]");
+                        form.val("contract-form",data)
+                    }
+                });
+            }else if(obj.event === 'contract-look'){
+                layuiOpenContract = layer.open({
+                    title:"查看",
+                    btn: ['确定'],
+                    yes: function(index){
+                        this.cancel();
+                        layer.close(layuiOpenContract);
+
+                    },
+                    type: 1,
+                    area:['800px','500px'],
+                    content: $("#add-contract-script"), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    success:function(){
+                        $("#fieldTitle").text("查看[合同销售]");
+                        form.val("contract-form",data);
+                        layui.$('#contract-form input').attr('disabled',true);
+                        layui.$('#contract-form select').attr('disabled',true);
+                        layui.$('#contract-form textarea').attr('disabled',true);
+                        layui.form.render();
+                    },
+                    cancel:function () {
+                        $('#contract-form input').removeAttr('disabled');
+                        $('#contract-form select').removeAttr('disabled');
+                        $('#contract-form textarea').removeAttr('disabled');
+                    }
+                });
             }
         });
 
-       /* $.ajax({
-            type:"post",
-            url:"/crmproject/ActivityMarketing/skipPage",
-            dataType:"json",
-            data:{
-            },
-            success:function(data){
-                var h="";
-                $.each(data,function(a,b){
-                    h=h+"<tr>";
-                    h=h+"<td>"+b.activityName+"</td>";
-                    h=h+"<td>"+b.activityHead+"</td>";
-                    h=h+"<td>"+b.activityType+"</td>";
-                    h=h+"<td>"+b.activityBudget+"</td>";
-                    h=h+"<td>"+b.activityActualNumber+"</td>";
-                    h=h+"<td>"+b.activityPlannedStartdate+"</td>";
-                    h=h+"<td>"+b.activityPlannedEnddate+"</td>";
-                    h=h+"<td>"+b.activityApprovalProcess+"</td>";
-                    h=h+"<td>"+b.activityCirculationdate+"</td>";
-                    h=h+"<td>"+b.activityApprovalResult+"</td>";
-                    h=h+"<td>"+b.activityFounder+"</td>";
-                    h=h+"<td>"+b.activityGmtCreate+"</td>";
-                    h=h+"<tr>";
+
+        table.on('row(contract)', function(obj){
+            // console.log(obj.tr) //得到当前行元素对象
+            // console.log(obj.data) //得到当前行数据
+            $(".layui-table-view:not(':first')").show()
+
+
+            var cid = obj.data.pkContractId;
+            table.reload('detailTable', {
+                where: {
+                    key: {
+                        cid: cid
+                    }
+                }
+            }, 'data');
+
+        });
+
+        //监听合同新增的提交
+        form.on('submit(con-form-submit)', function(data){
+            var formData = data.field;
+            $.ajax({
+                url:contractUrl,
+                type:"post",
+                data:formData,
+                dataType:"text",
+                success:function (data) {
+
+                    if (data=="1"){
+                        layer.msg("操作成功",{icon:1, time: 1000},function () {
+                            layer.close(layuiOpenContract);
+                            table.reload('contractTable', 'data');
+                            $("#contract-form")[0].reset();
+                            form.render();
+                        });
+                    }else{
+                        layer.msg("操作失败",{icon:2, time: 1000});
+                        $("#contract-form")[0].reset();
+                        form.render();
+                    }
+                }
+            });
+            return false;
+        });
+
+
+        form.on('select(contractType)', function(data){
+
+            var value = data.value;
+            //执行重载
+            table.reload('contractTable', {
+                where: {
+                    key: {
+                        contractType: value
+                    }
+                }
+            }, 'data');
+            $('#contractType').val(value);
+
+        });
+
+        $(".layui-table-view:not(':first')").hide()
+    });
+</script>
+
+<div class="layui-tab layui-tab-card">
+    <ul class="layui-tab-title">
+        <li class="layui-this">发货单明细</li>
+    </ul>
+    <div class="layui-tab-content" >
+        <div class="layui-tab-item layui-show">
+
+            <table class="layui-hide" id="contract-detail" lay-filter="detail"></table>
+
+            <script type="text/html" id="detail-Demo">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm" lay-event="add">增加产品明细</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">增加附件明细</button>
+                </div>
+            </script>
+            <script type="text/html" id="detail-barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="contract-detail-edit"><i class="layui-icon"></i>编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="contract-detail-del"><i class="layui-icon"></i>删除</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="contract-detail-look"><i class="layui-icon layui-icon-search"></i>查看</a>
+            </script>
+
+            <script>
+                layui.use('table', function(){
+                    var table = layui.table;
+
+                    table.render({
+                        elem: '#contract-detail'
+                        ,height: 250 //容器高度
+                        ,url:'ContractDetail.list'
+                        ,toolbar: '#detail-Demo' //开启头部工具栏，并为其绑定左侧模板
+                        ,title: '合同明细表'
+                        ,cols: [
+                            [
+                                {type: 'checkbox', fixed: 'left'}
+                                ,{field:'contractDetailName', title:'产品名称', width:200, unresize: true}
+                                ,{field:'contractDetailModelType', title:'型号规格', width:120}
+                                ,{field:'contractDetailMeasurement', title:'计量单位', width:150}
+                                ,{field:'contractDetailNumber', title:'数量', width:120}
+                                ,{field:'contractDetailUnivalence', title:'基本单价', width:120}
+                                ,{field:'contractDetailPrice', title:'销售价格',width:120}
+                                ,{field:'contractDetailTotalSum', title:'折前总额', width:120}
+                                ,{field:'contractDetailDiscount', title:'实际折扣（%）', width:120}
+                                ,{field:'contractDetailGrossProfit', title:'毛利润', width:120}
+                                ,{field:'contractDetailRate', title:'税率', width:120}
+                                ,{field:'contractDetailRevenue', title:'税额', width:120}
+                                ,{field:'contractDetailSaleroom', title:'销售额', width:120}
+                                ,{field:'joinTime', title:'明细附件', width:120}
+
+                                ,{fixed: 'right', title:'操作', toolbar: '#detail-barDemo', width:250}
+                            ]
+                        ]
+                        ,page: true
+                        ,id:"detailTable"
+                    });
+
+                    //头工具栏事件
+                    table.on('toolbar(contract)', function(obj){
+                        var checkStatus = table.checkStatus(obj.config.id);
+                        switch(obj.event){
+                            case 'getCheckData':
+                                var data = checkStatus.data;
+                                layer.alert(JSON.stringify(data));
+                                break;
+                            case 'getCheckLength':
+                                var data = checkStatus.data;
+                                layer.msg('选中了：'+ data.length + ' 个');
+                                break;
+                            case 'isAll':
+                                layer.msg(checkStatus.isAll ? '全选': '未全选');
+                                break;
+                        };
+                    });
+
+                    //监听行工具事件
+                    table.on('tool(contract)', function(obj){
+                        var data = obj.data;
+                        //console.log(obj)
+                        if(obj.event === 'del'){
+                            layer.confirm('真的删除行么', function(index){
+                                obj.del();
+                                layer.close(index);
+                            });
+                        } else if(obj.event === 'edit'){
+                            layer.prompt({
+                                formType: 2
+                                ,value: data.email
+                            }, function(value, index){
+                                obj.update({
+                                    email: value
+                                });
+                                layer.close(index);
+                            });
+                        }
+                    });
                 });
-                $("#a").html(h);
-            },
-            error:function(){
-                alert('错误！');
-            }
-        });*/
+            </script>
+        </div>
+        <div class="layui-tab-item">
+            <table class="layui-hide" id="plan-detail" lay-filter="detail"></table>
+
+            <script type="text/html" id="plan-Demo">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm" lay-event="add">增加</button>
+                    <div class="layui-input-inline layui-btn-sm" style="margin-top: -15px;">
+                        <select name="quiz1">
+                            <option value="浙江" selected="">所有人的收款计划（全部）</option>
+                            <option value="你的工号">我的收款计划（全部）</option>
+                            <option value="你最喜欢的老师">我的收款计划（已完成）</option>
+                            <option value="浙江" selected="">我的收款计划（未完成）</option>
+                            <option value="你的工号">所有人的收款计划（已完成）</option>
+                            <option value="你最喜欢的老师">所有人的收款计划（未完成）</option>
+                        </select>
+                    </div>
+                </div>
+            </script>
+            <script type="text/html" id="plan-barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="look">查看</a>
+            </script>
+
+            <script>
+                layui.use('table', function(){
+                    var table = layui.table;
+
+                    table.render({
+                        elem: '#plan-detail'
+                        ,url:'sellContractManage.list'
+                        ,toolbar: '#plan-Demo' //开启头部工具栏，并为其绑定左侧模板
+                        ,title: '收款计划表'
+                        ,cols: [
+                            [
+                                {type: 'checkbox', fixed: 'left'}
+                                ,{field:'id', title:'标题', width:120, fixed: 'left', unresize: true, sort: true}
+                                ,{field:'username', title:'预计收款金额', width:120, edit: 'text'}
+                                ,{field:'email', title:'当前状态', width:150, edit: 'text', templet: function(res){
+                                    return '<em>'+ res.email +'</em>'
+                                }}
+                                ,{field:'sex', title:'合同/订单', width:120, edit: 'text', sort: true}
+                                ,{field:'city', title:'客户', width:120}
+                                ,{field:'sign', title:'计划收款日期',width:120}
+                                ,{field:'experience', title:'实际收款日期', width:120, sort: true}
+                                ,{field:'ip', title:'负责人', width:120}
+                                ,{field:'logins', title:'创建时间', width:120, sort: true}
+                                ,{fixed: 'right', title:'操作', toolbar: '#plan-barDemo', width:150}
+                            ]
+                        ]
+                        ,page: true
+                    });
+
+                    //头工具栏事件
+                    table.on('toolbar(contract)', function(obj){
+                        var checkStatus = table.checkStatus(obj.config.id);
+                        switch(obj.event){
+                            case 'getCheckData':
+                                var data = checkStatus.data;
+                                layer.alert(JSON.stringify(data));
+                                break;
+                            case 'getCheckLength':
+                                var data = checkStatus.data;
+                                layer.msg('选中了：'+ data.length + ' 个');
+                                break;
+                            case 'isAll':
+                                layer.msg(checkStatus.isAll ? '全选': '未全选');
+                                break;
+                        };
+                    });
+
+                    //监听行工具事件
+                    table.on('tool(contract)', function(obj){
+                        var data = obj.data;
+                        //console.log(obj)
+                        if(obj.event === 'del'){
+                            layer.confirm('真的删除行么', function(index){
+                                obj.del();
+                                layer.close(index);
+                            });
+                        } else if(obj.event === 'edit'){
+                            layer.prompt({
+                                formType: 2
+                                ,value: data.email
+                            }, function(value, index){
+                                obj.update({
+                                    email: value
+                                });
+                                layer.close(index);
+                            });
+                        }
+                    });
+                });
+            </script>
+        </div>
+        <div class="layui-tab-item">
+            <table class="layui-hide" id="record-detail" lay-filter="detail"></table>
+
+            <script type="text/html" id="record-Demo">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm" lay-event="add">增加</button>
+                    <div class="layui-input-inline layui-btn-sm" style="margin-top: -15px;">
+                        <select name="quiz1">
+                            <option value="浙江" selected="">所有人的回款记录</option>
+                            <option value="你的工号">我的回款记录</option>
+                        </select>
+                    </div>
+                </div>
+            </script>
+            <script type="text/html" id="record-barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="look">查看</a>
+            </script>
+
+            <script>
+                layui.use('table', function(){
+                    var table = layui.table;
+
+                    table.render({
+                        elem: '#record-detail'
+                        ,url:'sellContractManage.list'
+                        ,toolbar: '#record-Demo' //开启头部工具栏，并为其绑定左侧模板
+                        ,title: '收款计划表'
+                        ,cols: [
+                            [
+                                {type: 'checkbox', fixed: 'left'}
+                                ,{field:'id', title:'收款金额', width:120, fixed: 'left', unresize: true, sort: true}
+                                ,{field:'username', title:'客户', width:120, edit: 'text'}
+                                ,{field:'email', title:'合同/订单', width:150, edit: 'text', templet: function(res){
+                                    return '<em>'+ res.email +'</em>'
+                                }}
+                                ,{field:'sex', title:'收款日期', width:120, edit: 'text', sort: true}
+                                ,{field:'city', title:'是否需要发票', width:120}
+                                ,{field:'sign', title:'是否一开发票',width:120}
+                                ,{field:'experience', title:'经手人', width:120, sort: true}
+                                ,{field:'ip', title:'负责人', width:120}
+
+                                ,{fixed: 'right', title:'操作', toolbar: '#record-barDemo', width:150}
+                            ]
+                        ]
+                        ,page: true
+                    });
+
+                    //头工具栏事件
+                    table.on('toolbar(contract)', function(obj){
+                        var checkStatus = table.checkStatus(obj.config.id);
+                        switch(obj.event){
+                            case 'getCheckData':
+                                var data = checkStatus.data;
+                                layer.alert(JSON.stringify(data));
+                                break;
+                            case 'getCheckLength':
+                                var data = checkStatus.data;
+                                layer.msg('选中了：'+ data.length + ' 个');
+                                break;
+                            case 'isAll':
+                                layer.msg(checkStatus.isAll ? '全选': '未全选');
+                                break;
+                        };
+                    });
+
+                    //监听行工具事件
+                    table.on('tool(contract)', function(obj){
+                        var data = obj.data;
+                        //console.log(obj)
+                        if(obj.event === 'del'){
+                            layer.confirm('真的删除行么', function(index){
+                                obj.del();
+                                layer.close(index);
+                            });
+                        } else if(obj.event === 'edit'){
+                            layer.prompt({
+                                formType: 2
+                                ,value: data.email
+                            }, function(value, index){
+                                obj.update({
+                                    email: value
+                                });
+                                layer.close(index);
+                            });
+                        }
+                    });
+                });
+            </script>
+
+        </div>
+        <div class="layui-tab-item">
+            <table class="layui-hide" id="shipments-detail" lay-filter="detail"></table>
+
+            <script type="text/html" id="shipments-Demo">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm" lay-event="add">增加</button>
+
+                </div>
+            </script>
+            <script type="text/html" id="shipments-barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="look">查看</a>
+            </script>
+
+            <script>
+                layui.use('table', function(){
+                    var table = layui.table;
+
+                    table.render({
+                        elem: '#shipments-detail'
+                        ,url:'sellContractManage.list'
+                        ,toolbar: '#shipments-Demo' //开启头部工具栏，并为其绑定左侧模板
+                        ,title: '收款计划表'
+                        ,cols: [
+                            [
+                                {type: 'checkbox', fixed: 'left'}
+                                ,{field:'id', title:'发货单编号', width:120, fixed: 'left', unresize: true, sort: true}
+                                ,{field:'username', title:'主题', width:120, edit: 'text'}
+                                ,{field:'email', title:'发货人', width:150, edit: 'text', templet: function(res){
+                                    return '<em>'+ res.email +'</em>'
+                                }}
+                                ,{field:'sex', title:'发货时间', width:120, edit: 'text', sort: true}
+                                ,{field:'city', title:'收获客户', width:120}
+                                ,{field:'sign', title:'订单/合同',width:120}
+                                ,{field:'experience', title:'发货方式', width:120, sort: true}
+                                ,{field:'ip', title:'发货状态', width:120}
+                                ,{field:'ip', title:'快递单编号', width:120}
+                                ,{field:'ip', title:'收获联系人', width:120}
+
+                                ,{fixed: 'right', title:'操作', toolbar: '#shipments-barDemo', width:150}
+                            ]
+                        ]
+                        ,page: true
+                    });
+
+                    //头工具栏事件
+                    table.on('toolbar(contract)', function(obj){
+                        var checkStatus = table.checkStatus(obj.config.id);
+                        switch(obj.event){
+                            case 'getCheckData':
+                                var data = checkStatus.data;
+                                layer.alert(JSON.stringify(data));
+                                break;
+                            case 'getCheckLength':
+                                var data = checkStatus.data;
+                                layer.msg('选中了：'+ data.length + ' 个');
+                                break;
+                            case 'isAll':
+                                layer.msg(checkStatus.isAll ? '全选': '未全选');
+                                break;
+                        };
+                    });
+
+                    //监听行工具事件
+                    table.on('tool(contract)', function(obj){
+                        var data = obj.data;
+                        //console.log(obj)
+                        if(obj.event === 'del'){
+                            layer.confirm('真的删除行么', function(index){
+                                obj.del();
+                                layer.close(index);
+                            });
+                        } else if(obj.event === 'edit'){
+                            layer.prompt({
+                                formType: 2
+                                ,value: data.email
+                            }, function(value, index){
+                                obj.update({
+                                    email: value
+                                });
+                                layer.close(index);
+                            });
+                        }
+                    });
+                });
+            </script>
+        </div>
+
+        <div class="layui-tab-item">
+            <table class="layui-hide" id="cancel-detail" lay-filter="detail"></table>
+
+            <script type="text/html" id="cancel-Demo">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm" lay-event="add">增加</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="add">提交审批</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="add">审批流程</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="add">审批痕迹</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="add">流程图</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="add">反审批</button>
+                    <div class="layui-input-inline layui-btn-sm" style="margin-top: -15px;">
+                        <select name="quiz1">
+                            <option value="你的工号">所有人的退货单（全部）</option>
+                            <option value="浙江" selected="">所有人的退货单（已成功）</option>
+                            <option value="你的工号">所有人的退货单（审批中）</option>
+                            <option value="浙江" selected="">所有人的退货单（已失败）</option>
+                            <option value="你的工号">我的退货单（全部）</option>
+                            <option value="浙江" selected="">我的退货单（审批中）</option>
+                            <option value="你的工号">我的退货单（已成功）</option>
+                            <option value="浙江" selected="">我的退货单（以失败）</option>
+                        </select>
+                    </div>
+                </div>
+            </script>
+            <script type="text/html" id="cancel-barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="look">查看</a>
+            </script>
+
+            <script>
+                layui.use('table', function(){
+                    var table = layui.table;
+
+                    table.render({
+                        elem: '#cancel-detail'
+                        ,url:'sellContractManage.list'
+                        ,toolbar: '#cancel-Demo' //开启头部工具栏，并为其绑定左侧模板
+                        ,title: '收款计划表'
+                        ,cols: [
+                            [
+                                {type: 'checkbox', fixed: 'left'}
+                                ,{field:'id', title:'退货名称', width:120, fixed: 'left', unresize: true, sort: true}
+                                ,{field:'username', title:'编号', width:120, edit: 'text'}
+                                ,{field:'email', title:'退货客户', width:150, edit: 'text', templet: function(res){
+                                    return '<em>'+ res.email +'</em>'
+                                }}
+                                ,{field:'sex', title:'退货订单或合同', width:120, edit: 'text', sort: true}
+                                ,{field:'city', title:'销售员', width:120}
+                                ,{field:'sign', title:'分类',width:120}
+                                ,{field:'experience', title:'退款额', width:120, sort: true}
+                                ,{field:'ip', title:'收货人', width:120}
+                                ,{field:'sign', title:'当前状态',width:120}
+                                ,{field:'experience', title:'审批时间', width:120, sort: true}
+                                ,{field:'ip', title:'审批结果', width:120}
+                                ,{fixed: 'right', title:'操作', toolbar: '#cancel-barDemo', width:150}
+                            ]
+                        ]
+                        ,page: true
+                    });
+
+                    //头工具栏事件
+                    table.on('toolbar(contract)', function(obj){
+                        var checkStatus = table.checkStatus(obj.config.id);
+                        switch(obj.event){
+                            case 'getCheckData':
+                                var data = checkStatus.data;
+                                layer.alert(JSON.stringify(data));
+                                break;
+                            case 'getCheckLength':
+                                var data = checkStatus.data;
+                                layer.msg('选中了：'+ data.length + ' 个');
+                                break;
+                            case 'isAll':
+                                layer.msg(checkStatus.isAll ? '全选': '未全选');
+                                break;
+                        };
+                    });
+
+                    //监听行工具事件
+                    table.on('tool(contract)', function(obj){
+                        var data = obj.data;
+                        //console.log(obj)
+                        if(obj.event === 'del'){
+                            layer.confirm('真的删除行么', function(index){
+                                obj.del();
+                                layer.close(index);
+                            });
+                        } else if(obj.event === 'edit'){
+                            layer.prompt({
+                                formType: 2
+                                ,value: data.email
+                            }, function(value, index){
+                                obj.update({
+                                    email: value
+                                });
+                                layer.close(index);
+                            });
+                        }
+                    });
+                });
+            </script>
+        </div>
+        <div class="layui-tab-item">
+            <table class="layui-hide" id="attachment-detail" lay-filter="detail"></table>
+
+            <script type="text/html" id="attachment-Demo">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm" lay-event="add">增加</button>
+                </div>
+            </script>
+            <script type="text/html" id="attachment-barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="look">查看</a>
+            </script>
+
+            <script>
+                layui.use('table', function(){
+                    var table = layui.table;
+
+                    table.render({
+                        elem: '#attachment-detail'
+                        ,url:'sellContractManage.list'
+                        ,toolbar: '#attachment-Demo' //开启头部工具栏，并为其绑定左侧模板
+                        ,title: '表'
+                        ,cols: [
+                            [
+                                {type: 'checkbox', fixed: 'left'}
+                                ,{field:'id', title:'名称', width:120, fixed: 'left', unresize: true, sort: true}
+                                ,{field:'username', title:'文件', width:120, edit: 'text'}
+                                ,{field:'email', title:'所属对象', width:150, edit: 'text', templet: function(res){
+                                    return '<em>'+ res.email +'</em>'
+                                }}
+                                ,{field:'sex', title:'创建人', width:120, edit: 'text', sort: true}
+                                ,{field:'city', title:'创建时间', width:120}
+                                ,{fixed: 'right', title:'操作', toolbar: '#attachment-barDemo', width:150}
+                            ]
+                        ]
+                        ,page: true
+                    });
+
+                    //头工具栏事件
+                    table.on('toolbar(contract)', function(obj){
+                        var checkStatus = table.checkStatus(obj.config.id);
+                        switch(obj.event){
+                            case 'getCheckData':
+                                var data = checkStatus.data;
+                                layer.alert(JSON.stringify(data));
+                                break;
+                            case 'getCheckLength':
+                                var data = checkStatus.data;
+                                layer.msg('选中了：'+ data.length + ' 个');
+                                break;
+                            case 'isAll':
+                                layer.msg(checkStatus.isAll ? '全选': '未全选');
+                                break;
+                        };
+                    });
+
+                    //监听行工具事件
+                    table.on('tool(contract)', function(obj){
+                        var data = obj.data;
+                        //console.log(obj)
+                        if(obj.event === 'del'){
+                            layer.confirm('真的删除行么', function(index){
+                                obj.del();
+                                layer.close(index);
+                            });
+                        } else if(obj.event === 'edit'){
+                            layer.prompt({
+                                formType: 2
+                                ,value: data.email
+                            }, function(value, index){
+                                obj.update({
+                                    email: value
+                                });
+                                layer.close(index);
+                            });
+                        }
+                    });
+                });
+            </script>
+
+        </div>
+    </div>
+</div>
+<script>
+    layui.use('element', function(){
+        var $ = layui.jquery
+            ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
     });
 </script>
 </body>

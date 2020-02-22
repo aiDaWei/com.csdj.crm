@@ -7,7 +7,7 @@
     <resultMap type="MarketActivity" id="findwordpaper">
         <id property="pkMarkActivityId" column="pk_mark_activity_id"/>
         <result property="activityName" column="activity_name"/>
-        <result property="activityHead" column="fk_user_id"/>
+        <result property="activityHead" column="name"/>
         <result property="activityType" column="activity_type"/>
         <result property="activityBudget" column="activity_budget"/>
         <result property="activityActualNumber" column="activity_actual_number"/>
@@ -16,18 +16,58 @@
         <result property="activityApprovalProcess" column="activity_approval_process"/>
         <result property="activityCirculationdate" column="activity_circulation_date"/>
         <result property="activityApprovalResult" column="activity_approval_result"/>
-        <result property="activityFounder" column="activity_founder"/>
+        <result property="activityFounder" column="cname"/>
         <result property="activityGmtCreate" column="activity_gmt_create"/>
     </resultMap>
     <select id="activi" resultType="MarketActivity" resultMap="findwordpaper">
-    SELECT pk_mark_activity_id, `activity_name`  ,`fk_user_id` ,`activity_type` ,
+ SELECT pk_mark_activity_id, `activity_name`  ,(SELECT `user_name` FROM `user` WHERE `pk_user_id`=`fk_user_id`) as name ,`activity_type` ,
 `activity_budget` ,
 `activity_actual_number`,`activity_planned_start_date` ,`activity_planned_end_date`,
 `activity_approval_process` ,
-`activity_circulation_date`  ,`activity_approval_result`  ,`activity_founder` ,
-`activity_gmt_create`   FROM `market_activity`
+`activity_circulation_date`  ,`activity_approval_result`  ,(SELECT `user_name` FROM `user` WHERE `pk_user_id`=`activity_founder`) as cname,
+`activity_gmt_create`   FROM `market_activity` WHERE isdel=0
 
     </select>
 
+    <select id="marketCount" resultType="int">
+    SELECT COUNT(1) AS marketCount FROM `market_activity` where isdel=0
+    </select>
+
+    <insert id="addMarket" >
+        INSERT INTO market_activity(activity_name,fk_user_id,activity_type,activity_budget,activity_actual_number,
+activity_planned_start_date,activity_planned_end_date,activity_approval_process,activity_circulation_date,
+activity_approval_result,activity_founder,activity_gmt_create,isdel)
+VALUES(#{activityName},#{activityHead},#{activityType},
+#{activityBudget},#{activityActualNumber},#{activityPlannedStartdate},
+#{activityPlannedEnddate},#{activityApprovalProcess},#{activityCirculationdate},
+#{activityApprovalResult},#{activityFounder},#{activityGmtCreate},0)
+
+    </insert>
+
+    <update id="delMarket" parameterType="int">
+        UPDATE market_activity SET isdel=1 WHERE pk_mark_activity_id =#{pk_mark_activity_id}
+    </update>
+
+    <select id="uppkMarkActivityId" resultMap="findwordpaper">
+
+SELECT pk_mark_activity_id, `activity_name`  ,(SELECT `user_name` FROM `user` WHERE `pk_user_id`=`fk_user_id`) AS NAME ,`activity_type` ,
+`activity_budget` ,
+`activity_actual_number`,`activity_planned_start_date` ,`activity_planned_end_date`,
+`activity_approval_process` ,
+`activity_circulation_date`  ,`activity_approval_result`  ,(SELECT `user_name` FROM `user` WHERE `pk_user_id`=`activity_founder`) AS cname,
+`activity_gmt_create`   FROM `market_activity` where pk_mark_activity_id=#{pkMarkActivityId}
+    </select>
+
+    <update id="updaMarket" parameterType="MarketActivity" >
+
+UPDATE market_activity SET
+ activity_name=#{activityName},fk_user_id=#{activityHead},activity_type=#{activityType},
+ activity_budget=#{activityBudget},activity_actual_number=#{activityActualNumber},
+ activity_planned_start_date=#{activityPlannedStartdate},activity_planned_end_date=#{activityPlannedEnddate},
+ activity_approval_process=#{activityApprovalProcess}, activity_circulation_date=#{activityCirculationdate},
+ activity_approval_result=#{activityApprovalResult},activity_founder=#{activityFounder},
+ activity_gmt_create=#{activityGmtCreate}
+ WHERE pk_mark_activity_id =#{pkMarkActivityId}
+    </update>
 
 </mapper>
