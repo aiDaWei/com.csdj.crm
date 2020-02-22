@@ -3,7 +3,7 @@
  * 版权(c) 2019-雷升公司 crm项目组：
  * 版 本 号：1.0
  */
-package com.csdj.crmproject.crmproject.entity;
+package com.csdj.crmproject.crmproject.entity.customermanagement;
 
 /**
  * 客户实体
