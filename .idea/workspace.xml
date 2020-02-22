@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0da754bf-c7e6-4673-bfa0-5c9fee579996" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/look_order.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/crmproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/crmproject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
@@ -91,17 +90,19 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_25.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_25.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__redis_clients_jedis_2_9_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__redis_clients_jedis_2_9_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/controller/Sales/Indent/IndentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/controller/Sales/Indent/IndentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/add_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/add_order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/order_manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/order_manage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/update_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/update_order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/crmproject.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/crmproject.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/Indent/IndentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/Indent/IndentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Marketing/ActivityMarketing/impl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/sales/Indent/IndentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/sales/Indent/IndentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Marketing/ActivityMarketing/ActivityMarketingHTML.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Marketing/ActivityMarketing/ActivityMarketingHTML.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/sales/Indent/order_manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/sales/Indent/order_manage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/CrmprojectApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/CrmprojectApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/entity/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/entity/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/crmproject.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/CrmprojectApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/CrmprojectApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SalesmanInstrument/SalesmanInstrumentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SalesmanInstrument/SalesmanInstrumentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Instrument/SalesmanInstrument/SalesmanInstrumentDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/entity/Department.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/entity/Department.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Instrument/SalesmanInstrument/SalesmanInstrumentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Instrument/SalesmanInstrument/SalesmanInstrumentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SalesmanInstrument/SalesmanInstrumentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SalesmanInstrument/SalesmanInstrumentServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/Instrument/SalesmanInstrument/SalesmanInstrument.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/Instrument/SalesmanInstrument/SalesmanInstrument.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/Instrument/SalesmanInstrument/SalesmanInstrument.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Instrument/SalesmanInstrument/SalesmanInstrument.html" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,7 +163,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates/sales/Indent" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/mapper/sales/Dept" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -177,11 +178,24 @@
       <recent name="com.csdj.crmproject.crmproject.service.impl.Sales.Indent" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\AllProject\crmproject\src\main\resources\mapper\sales\Dept" />
       <recent name="D:\Users\tzh\IdeaProjects\crmproject\src\main\resources\templates\sales\Indent" />
       <recent name="D:\Users\tzh\IdeaProjects\crmproject\src\main\resources\static\js" />
       <recent name="D:\Users\tzh\IdeaProjects\crmproject\src\main\resources\mapper\sales\Indent" />
       <recent name="D:\Users\tzh\IdeaProjects\crmproject\src\main\resources\mapper\orderManage" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="CrmprojectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -191,18 +205,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -248,6 +250,8 @@
       <workItem from="1582298788357" duration="177000" />
       <workItem from="1582336154199" duration="2640000" />
       <workItem from="1582339914596" duration="1262000" />
+      <workItem from="1582346553597" duration="22000" />
+      <workItem from="1582346613343" duration="6577000" />
     </task>
     <task id="LOCAL-00001" summary="订单管理">
       <created>1581768442120</created>
@@ -331,6 +335,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="订单管理" />

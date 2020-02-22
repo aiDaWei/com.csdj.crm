@@ -6,6 +6,7 @@
 package com.csdj.crmproject.crmproject.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @author 李文霞
@@ -38,7 +39,14 @@ public class Department {
    * 部门名称
    */
   private String departmentName;
-
+  /**
+   * 上级编号
+   */
+  private int pid;
+  /**
+   * 下级菜单
+   */
+  private List<Department> Children;
 
   public long getPkDepartmentId() {
     return pkDepartmentId;
@@ -57,6 +65,22 @@ public class Department {
     this.departmentName = departmentName;
   }
 
+  public int getPid() {
+    return pid;
+  }
+
+  public void setPid(int pid) {
+    this.pid = pid;
+  }
+
+  public List<Department> getChildren() {
+    return Children;
+  }
+
+  public void setChildren(List<Department> children) {
+    Children = children;
+  }
+
   /**
    * 显示数据
    * @return
@@ -66,6 +90,8 @@ public class Department {
     return "Department{" +
             "pkDepartmentId=" + pkDepartmentId +
             ", departmentName='" + departmentName + '\'' +
+            ", pid=" + pid +
+            ", Children=" + Children +
             '}';
   }
 }
