@@ -3,64 +3,82 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.csdj.crmproject.crmproject.dao.Instrument.SalesmanInstrument.SalesmanInstrumentDao">
+<mapper namespace="com.csdj.crmproject.crmproject.dao.Instrument.SalesmanInstrument.SalesmanInstrumentMapper">
     <!--查询所有用户-->
     <select id="listUsers" resultType="User">
         select pk_user_id pkUserId, user_name userName
         from user
     </select>
-<!--    &lt;!&ndash;销售预测&ndash;&gt;-->
-<!--    <select id="countSaleForecasting" resultType="StatisticalResult">-->
-<!--        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation-->
-<!--        from salesopp-->
-<!--                 right join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id-->
-<!--        where fk_user_id = #{userId}-->
-<!--        group by phase_type_name, phase_type_sequence-->
-<!--        order by phase_type_sequence;-->
-<!--    </select>-->
+    <!--    &lt;!&ndash;销售预测&ndash;&gt;-->
+    <!--    <select id="countSaleForecasting" resultType="StatisticalResult">-->
+    <!--        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation-->
+    <!--        from salesopp-->
+    <!--                 right join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id-->
+    <!--        where fk_user_id = #{userId}-->
+    <!--        group by phase_type_name, phase_type_sequence-->
+    <!--        order by phase_type_sequence;-->
+    <!--    </select>-->
 
     <!--***************************************************************销售预测****************************************************-->
     <!--初步接触-->
     <select id="countSaleForecasting1" resultType="StatisticalResult">
-        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        select count(*)                                                                opportunitiesNumber,
+               phase_type_name                                                         phaseTypeName,
+               sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
         from salesopp
                  left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
-        where fk_user_id = #{userId} and phase_type_name = '初步接触';
+        where fk_user_id = #{userId}
+          and phase_type_name = '初步接触';
     </select>
     <!--需求分析-->
     <select id="countSaleForecasting2" resultType="StatisticalResult">
-        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        select count(*)                                                                opportunitiesNumber,
+               phase_type_name                                                         phaseTypeName,
+               sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
         from salesopp
                  left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
-        where fk_user_id = #{userId} and phase_type_name = '需求分析';
+        where fk_user_id = #{userId}
+          and phase_type_name = '需求分析';
     </select>
     <!--方案制定/报价-->
     <select id="countSaleForecasting3" resultType="StatisticalResult">
-        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        select count(*)                                                                opportunitiesNumber,
+               phase_type_name                                                         phaseTypeName,
+               sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
         from salesopp
                  left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
-        where fk_user_id = #{userId} and phase_type_name = '方案制定/报价';
+        where fk_user_id = #{userId}
+          and phase_type_name = '方案制定/报价';
     </select>
     <!--商务谈判/招投标-->
     <select id="countSaleForecasting4" resultType="StatisticalResult">
-        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        select count(*)                                                                opportunitiesNumber,
+               phase_type_name                                                         phaseTypeName,
+               sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
         from salesopp
                  left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
-        where fk_user_id = #{userId} and phase_type_name = '商务谈判/招投标';
+        where fk_user_id = #{userId}
+          and phase_type_name = '商务谈判/招投标';
     </select>
     <!--合同签订-->
     <select id="countSaleForecasting5" resultType="StatisticalResult">
-        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        select count(*)                                                                opportunitiesNumber,
+               phase_type_name                                                         phaseTypeName,
+               sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
         from salesopp
                  left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
-        where fk_user_id = #{userId} and phase_type_name = '合同签订';
+        where fk_user_id = #{userId}
+          and phase_type_name = '合同签订';
     </select>
     <!--成功-->
     <select id="countSaleForecasting6" resultType="StatisticalResult">
-        select count(*) opportunitiesNumber, phase_type_name phaseTypeName, sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
+        select count(*)                                                                opportunitiesNumber,
+               phase_type_name                                                         phaseTypeName,
+               sum(salesopp_expected_signing_money) + sum(salesopp_anticipated_profit) summation
         from salesopp
                  left join phase_type on salesopp.pk_salesopp_id = phase_type.pk_phase_type_id
-        where fk_user_id = #{userId} and phase_type_name = '成功';
+        where fk_user_id = #{userId}
+          and phase_type_name = '成功';
     </select>
 
     <!--回款业绩完成值-->
@@ -118,5 +136,1253 @@
     <select id="" resultType="StatisticalResult">
 
     </select>
+    <select id="getOrder" resultType="CusSalesTarget">
+        SELECT `pk_cus_sales_target_id`     pkCusSalesTargetId,
+               `fk_user_business_id`        fkUserBusinessId,
+               `cus_sales_target_year`      cusSalesTargetYear,
+               `sales_target_type`          salesTargetType,
+               `cus_sales_tar_january`      cusSalesTarJanuary,
+               `cus_sales_tar_february`     cusSalesTarFebruary,
+               `cus_sales_tar_march`        cusSalesTarMarch,
+               `cus_sales_tar_april`        cusSalesTarApril,
+               `cus_sales_tar_may`          cusSalesTarMay,
+               `cus_sales_tar_jun`          cusSalesTarJun,
+               `cus_sales_tar_july`         cusSalesTarJuly,
+               `cus_sales_tar_august`       cusSalesTarAugust,
+               `cus_sales_tar_september`    cusSalesTarSeptember,
+               `cus_sales_tar_october`      cusSalesTarOctober,
+               `cus_sales_tar_november`     cusSalesTarNovember,
+               `cus_sales_tar_december`     cusSalesTarDecember,
+               `cus_sales_tar_gmt_create`   cusSalesTarGmtCreate,
+               `cus_sales_tar_gmt_modified` cusSalesTarGmtModified,
+               `fk_user_Upd_id`             fkUserId
+        FROM cus_sales_target
+        WHERE fk_user_business_id = #{0}
+          and cus_sales_target_year = #{1}
+    </select>
 
+    <select id="dianasOrder" resultType="Map">
+        SELECT order_id, SUM(order_Amount_remitted) order_Amount_remitted
+        FROM `order`
+        WHERE YEAR(gmt_create) = YEAR(NOW())
+          and DATE_FORMAT(gmt_create, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m')
+          AND fk_user_id = #{userId}
+
+    </select>
+
+    <select id="seasonOrder" resultType="Map">
+        SELECT order_id, SUM(order_Amount_remitted) order_Amount_remitted
+        FROM `order`
+        WHERE YEAR(gmt_create) = YEAR(NOW())
+          AND QUARTER(gmt_create) = QUARTER(NOW())
+          AND fk_user_id = #{userId}
+
+    </select>
+
+    <select id="yearOrder" resultType="Map">
+        SELECT order_id, SUM(order_Amount_remitted) order_Amount_remitted
+        FROM `order`
+        WHERE YEAR(gmt_create) = YEAR(NOW())
+          AND fk_user_id = #{userId}
+
+    </select>
+
+    <select id="order" resultType="Map">
+        SELECT t1.a  t1,
+               t2.a  t2,
+               t3.a  t3,
+               t4.a  t4,
+               t5.a  t5,
+               t6.a  t6,
+               t7.a  t7,
+               t8.a  t8,
+               t9.a  t9,
+               t10.a t10,
+               t11.a t11,
+               t12.a t12
+        FROM (SELECT SUM(order_Amount_remitted) a
+              FROM `order`
+              WHERE MONTH(gmt_create) = 1
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t1,
+             (SELECT SUM(order_Amount_remitted) a
+              FROM `order`
+              WHERE MONTH(gmt_create) = 2
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t2,
+             (SELECT SUM(order_Amount_remitted) a
+              FROM `order`
+              WHERE MONTH(gmt_create) = 3
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t3,
+             (SELECT SUM(order_Amount_remitted) a
+              FROM `order`
+              WHERE MONTH(gmt_create) = 4
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t4,
+             (SELECT SUM(order_Amount_remitted) a
+              FROM `order`
+              WHERE MONTH(gmt_create) = 5
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t5,
+             (SELECT SUM(order_Amount_remitted) a
+              FROM `order`
+              WHERE MONTH(gmt_create) = 6
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t6,
+             (SELECT SUM(order_Amount_remitted) a
+              FROM `order`
+              WHERE MONTH(gmt_create) = 7
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t7,
+             (SELECT SUM(order_Amount_remitted) a
+              FROM `order`
+              WHERE MONTH(gmt_create) = 8
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t8,
+             (SELECT SUM(order_Amount_remitted) a
+              FROM `order`
+              WHERE MONTH(gmt_create) = 9
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t9,
+             (SELECT SUM(order_Amount_remitted) a
+              FROM `order`
+              WHERE MONTH(gmt_create) = 10
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t10,
+             (SELECT SUM(order_Amount_remitted) a
+              FROM `order`
+              WHERE MONTH(gmt_create) = 11
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t11,
+             (SELECT SUM(order_Amount_remitted) a
+              FROM `order`
+              WHERE MONTH(gmt_create) = 12
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t12
+
+    </select>
+    <select id="contract" resultType="Map">
+        SELECT t1.a  t1,
+               t2.a  t2,
+               t3.a  t3,
+               t4.a  t4,
+               t5.a  t5,
+               t6.a  t6,
+               t7.a  t7,
+               t8.a  t8,
+               t9.a  t9,
+               t10.a t10,
+               t11.a t11,
+               t12.a t12
+        FROM (SELECT SUM(contract_saleroom) a
+              FROM `contract`
+              WHERE MONTH(gmt_create) = 1
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t1,
+             (SELECT SUM(contract_saleroom) a
+              FROM `contract`
+              WHERE MONTH(gmt_create) = 2
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t2,
+             (SELECT SUM(contract_saleroom) a
+              FROM `contract`
+              WHERE MONTH(gmt_create) = 3
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t3,
+             (SELECT SUM(contract_saleroom) a
+              FROM `contract`
+              WHERE MONTH(gmt_create) = 4
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t4,
+             (SELECT SUM(contract_saleroom) a
+              FROM `contract`
+              WHERE MONTH(gmt_create) = 5
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t5,
+             (SELECT SUM(contract_saleroom) a
+              FROM `contract`
+              WHERE MONTH(gmt_create) = 6
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t6,
+             (SELECT SUM(contract_saleroom) a
+              FROM `contract`
+              WHERE MONTH(gmt_create) = 7
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t7,
+             (SELECT SUM(contract_saleroom) a
+              FROM `contract`
+              WHERE MONTH(gmt_create) = 8
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t8,
+             (SELECT SUM(contract_saleroom) a
+              FROM `contract`
+              WHERE MONTH(gmt_create) = 9
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t9,
+             (SELECT SUM(contract_saleroom) a
+              FROM `contract`
+              WHERE MONTH(gmt_create) = 10
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t10,
+             (SELECT SUM(contract_saleroom) a
+              FROM `contract`
+              WHERE MONTH(gmt_create) = 11
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t11,
+             (SELECT SUM(contract_saleroom) a
+              FROM `contract`
+              WHERE MONTH(gmt_create) = 12
+                AND YEAR(gmt_create) = YEAR(NOW())
+                AND fk_user_id = #{userId}) t12
+
+    </select>
+
+    <select id="dianasContract" resultType="Map">
+        SELECT pk_contract_id, SUM(contract_saleroom) contract_saleroom
+        FROM `contract`
+        WHERE YEAR(gmt_create) = YEAR(NOW())
+          and DATE_FORMAT(gmt_create, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m')
+          AND fk_user_id = #{userId}
+
+    </select>
+
+    <select id="seasonContract" resultType="Map">
+        SELECT pk_contract_id, SUM(contract_saleroom) contract_saleroom
+        FROM `contract`
+        WHERE YEAR(gmt_create) = YEAR(NOW())
+          AND QUARTER(gmt_create) = QUARTER(NOW())
+          AND fk_user_id = #{userId}
+
+
+    </select>
+
+    <select id="yearContract" resultType="Map">
+        SELECT pk_contract_id, SUM(contract_saleroom) contract_saleroom
+        FROM `contract`
+        WHERE YEAR(gmt_create) = YEAR(NOW())
+          AND fk_user_id = #{userId}
+
+    </select>
+
+    <select id="dianasOrReceiPlan" resultType="Double">
+        SELECT t1.a + t2.a SUM
+        FROM (
+                 SELECT COUNT(1) a
+                 FROM order_recei_plan
+                 WHERE fk_recei_plan_id IN
+                       (SELECT pk_re_plan_id
+                        FROM recei_plan
+                        WHERE fk_order_con_typeid = '1'
+                          AND fk_order_con_id IN
+                              (SELECT order_id
+                               FROM `order`
+                               WHERE fk_user_id = #{userId}
+                                 AND YEAR(gmt_create) = YEAR(NOW())
+                                 AND DATE_FORMAT(gmt_create, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m')))
+             ) t1,
+             (SELECT COUNT(1) a
+              FROM contract_recei_plan
+              WHERE fk_recei_plan_id IN
+                    (SELECT pk_re_plan_id
+                     FROM recei_plan
+                     WHERE fk_order_con_typeid = '2'
+                       AND fk_order_con_id IN
+                           (SELECT pk_contract_id
+                            FROM `contract`
+                            WHERE fk_user_id = #{userId}
+                              AND YEAR(gmt_create) = YEAR(NOW())
+                              AND DATE_FORMAT(gmt_create, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m')))
+             ) t2
+    </select>
+
+    <select id="dianasRecei_plan" resultType="Double">
+        SELECT t1.a + t2.a SUM
+        FROM (
+                 SELECT COUNT(1) a
+                 FROM recei_plan
+                 WHERE fk_order_con_typeid = '1'
+                   AND fk_order_con_id IN
+                       (SELECT order_id
+                        FROM `order`
+                        WHERE fk_user_id = #{userId}
+                          AND YEAR(gmt_create) = YEAR(NOW())
+                          AND DATE_FORMAT(gmt_create, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m'))) t1,
+             (
+                 SELECT COUNT(1) a
+                 FROM recei_plan
+                 WHERE fk_order_con_typeid = '2'
+                   AND fk_order_con_id IN
+                       (SELECT pk_contract_id
+                        FROM `contract`
+                        WHERE fk_user_id = #{userId}
+                          AND YEAR(gmt_create) = YEAR(NOW())
+                          AND DATE_FORMAT(gmt_create, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m'))) t2
+    </select>
+
+    <select id="seasonOrReceiPlan" resultType="Double">
+        SELECT t1.a + t2.a SUM
+        FROM (
+                 SELECT COUNT(1) a
+                 FROM order_recei_plan
+                 WHERE fk_recei_plan_id IN
+                       (SELECT pk_re_plan_id
+                        FROM recei_plan
+                        WHERE fk_order_con_typeid = '1'
+                          AND fk_order_con_id IN
+                              (SELECT order_id
+                               FROM `order`
+                               WHERE fk_user_id = #{userId}
+                                 AND YEAR(gmt_create) = YEAR(NOW())
+                                 AND QUARTER(gmt_create) = QUARTER(NOW())))
+             ) t1,
+             (SELECT COUNT(1) a
+              FROM contract_recei_plan
+              WHERE fk_recei_plan_id IN
+                    (SELECT pk_re_plan_id
+                     FROM recei_plan
+                     WHERE fk_order_con_typeid = '2'
+                       AND fk_order_con_id IN
+                           (SELECT pk_contract_id
+                            FROM `contract`
+                            WHERE fk_user_id = #{userId}
+                              AND YEAR(gmt_create) = YEAR(NOW())
+                              AND QUARTER(gmt_create) = QUARTER(NOW())))
+             ) t2
+    </select>
+
+    <select id="seasonRecei_plan" resultType="Double">
+        SELECT t1.a + t2.a SUM
+        FROM (
+                 SELECT COUNT(1) a
+                 FROM recei_plan
+                 WHERE fk_order_con_typeid = '1'
+                   AND fk_order_con_id IN
+                       (SELECT order_id
+                        FROM `order`
+                        WHERE fk_user_id = #{userId}
+                          AND YEAR(gmt_create) = YEAR(NOW())
+                          AND QUARTER(gmt_create) = QUARTER(NOW()))) t1,
+             (
+                 SELECT COUNT(1) a
+                 FROM recei_plan
+                 WHERE fk_order_con_typeid = '2'
+                   AND fk_order_con_id IN
+                       (SELECT pk_contract_id
+                        FROM `contract`
+                        WHERE fk_user_id = #{userId}
+                          AND YEAR(gmt_create) = YEAR(NOW())
+                          AND QUARTER(gmt_create) = QUARTER(NOW()))) t2
+    </select>
+
+    <select id="yearOrReceiPlan" resultType="Double">
+        SELECT t1.a + t2.a SUM
+        FROM (
+                 SELECT COUNT(1) a
+                 FROM order_recei_plan
+                 WHERE fk_recei_plan_id IN
+                       (SELECT pk_re_plan_id
+                        FROM recei_plan
+                        WHERE fk_order_con_typeid = '1'
+                          AND fk_order_con_id IN
+                              (SELECT order_id
+                               FROM `order`
+                               WHERE fk_user_id = #{userId}
+                                 AND YEAR(gmt_create) = YEAR(NOW())
+                              ))
+             ) t1,
+             (SELECT COUNT(1) a
+              FROM contract_recei_plan
+              WHERE fk_recei_plan_id IN
+                    (SELECT pk_re_plan_id
+                     FROM recei_plan
+                     WHERE fk_order_con_typeid = '2'
+                       AND fk_order_con_id IN
+                           (SELECT pk_contract_id
+                            FROM `contract`
+                            WHERE fk_user_id = #{userId}
+                              AND YEAR(gmt_create) = YEAR(NOW())
+                           ))
+             ) t2
+    </select>
+
+    <select id="yearRecei_plan" resultType="Double">
+        SELECT t1.a + t2.a SUM
+        FROM (
+                 SELECT COUNT(1) a
+                 FROM recei_plan
+                 WHERE fk_order_con_typeid = '1'
+                   AND fk_order_con_id IN
+                       (SELECT order_id
+                        FROM `order`
+                        WHERE fk_user_id = #{userId}
+                          AND YEAR(gmt_create) = YEAR(NOW())
+                       )) t1,
+             (
+                 SELECT COUNT(1) a
+                 FROM recei_plan
+                 WHERE fk_order_con_typeid = '2'
+                   AND fk_order_con_id IN
+                       (SELECT pk_contract_id
+                        FROM `contract`
+                        WHERE fk_user_id = #{userId}
+                          AND YEAR(gmt_create) = YEAR(NOW())
+                       )) t2
+    </select>
+
+    <select id="yearAccomplish" resultType="Map">
+        SELECT a1.sum1  t1,
+               a2.sum1  t2,
+               a3.sum1  t3,
+               a4.sum1  t4,
+               a5.sum1  t5,
+               a6.sum1  t6,
+               a7.sum1  t7,
+               a8.sum1  t8,
+               a9.sum1  t9,
+               a10.sum1 t10,
+               a11.sum1 t11,
+               a12.sum1 t12
+        FROM (SELECT t1.a + t2.a SUM1
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM order_recei_plan
+                       WHERE fk_recei_plan_id IN
+                             (SELECT pk_re_plan_id
+                              FROM recei_plan
+                              WHERE fk_order_con_typeid = '1'
+                                AND fk_order_con_id IN
+                                    (SELECT order_id
+                                     FROM `order`
+                                     WHERE fk_user_id = #{userId}
+                                       AND YEAR(gmt_create) = YEAR(NOW())
+                                       AND MONTH(gmt_create) = 1
+                                    ))
+                   ) t1,
+                   (SELECT COUNT(1) a
+                    FROM contract_recei_plan
+                    WHERE fk_recei_plan_id IN
+                          (SELECT pk_re_plan_id
+                           FROM recei_plan
+                           WHERE fk_order_con_typeid = '2'
+                             AND fk_order_con_id IN
+                                 (SELECT pk_contract_id
+                                  FROM `contract`
+                                  WHERE fk_user_id = #{userId}
+                                    AND YEAR(gmt_create) = YEAR(NOW())
+                                    AND MONTH(gmt_create) = 1
+                                 ))
+                   ) t2) a1,
+
+             (SELECT t1.a + t2.a SUM1
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM order_recei_plan
+                       WHERE fk_recei_plan_id IN
+                             (SELECT pk_re_plan_id
+                              FROM recei_plan
+                              WHERE fk_order_con_typeid = '1'
+                                AND fk_order_con_id IN
+                                    (SELECT order_id
+                                     FROM `order`
+                                     WHERE fk_user_id = #{userId}
+                                       AND YEAR(gmt_create) = YEAR(NOW())
+                                       AND MONTH(gmt_create) = 2
+                                    ))
+                   ) t1,
+                   (SELECT COUNT(1) a
+                    FROM contract_recei_plan
+                    WHERE fk_recei_plan_id IN
+                          (SELECT pk_re_plan_id
+                           FROM recei_plan
+                           WHERE fk_order_con_typeid = '2'
+                             AND fk_order_con_id IN
+                                 (SELECT pk_contract_id
+                                  FROM `contract`
+                                  WHERE fk_user_id = #{userId}
+                                    AND YEAR(gmt_create) = YEAR(NOW())
+                                    AND MONTH(gmt_create) = 2
+                                 ))
+                   ) t2) a2,
+
+             (SELECT t1.a + t2.a SUM1
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM order_recei_plan
+                       WHERE fk_recei_plan_id IN
+                             (SELECT pk_re_plan_id
+                              FROM recei_plan
+                              WHERE fk_order_con_typeid = '1'
+                                AND fk_order_con_id IN
+                                    (SELECT order_id
+                                     FROM `order`
+                                     WHERE fk_user_id = #{userId}
+                                       AND YEAR(gmt_create) = YEAR(NOW())
+                                       AND MONTH(gmt_create) = 3
+                                    ))
+                   ) t1,
+                   (SELECT COUNT(1) a
+                    FROM contract_recei_plan
+                    WHERE fk_recei_plan_id IN
+                          (SELECT pk_re_plan_id
+                           FROM recei_plan
+                           WHERE fk_order_con_typeid = '2'
+                             AND fk_order_con_id IN
+                                 (SELECT pk_contract_id
+                                  FROM `contract`
+                                  WHERE fk_user_id = #{userId}
+                                    AND YEAR(gmt_create) = YEAR(NOW())
+                                    AND MONTH(gmt_create) = 3
+                                 ))
+                   ) t2) a3,
+
+             (SELECT t1.a + t2.a SUM1
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM order_recei_plan
+                       WHERE fk_recei_plan_id IN
+                             (SELECT pk_re_plan_id
+                              FROM recei_plan
+                              WHERE fk_order_con_typeid = '1'
+                                AND fk_order_con_id IN
+                                    (SELECT order_id
+                                     FROM `order`
+                                     WHERE fk_user_id = #{userId}
+                                       AND YEAR(gmt_create) = YEAR(NOW())
+                                       AND MONTH(gmt_create) = 4
+                                    ))
+                   ) t1,
+                   (SELECT COUNT(1) a
+                    FROM contract_recei_plan
+                    WHERE fk_recei_plan_id IN
+                          (SELECT pk_re_plan_id
+                           FROM recei_plan
+                           WHERE fk_order_con_typeid = '2'
+                             AND fk_order_con_id IN
+                                 (SELECT pk_contract_id
+                                  FROM `contract`
+                                  WHERE fk_user_id = #{userId}
+                                    AND YEAR(gmt_create) = YEAR(NOW())
+                                    AND MONTH(gmt_create) = 4
+                                 ))
+                   ) t2) a4,
+             (SELECT t1.a + t2.a SUM1
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM order_recei_plan
+                       WHERE fk_recei_plan_id IN
+                             (SELECT pk_re_plan_id
+                              FROM recei_plan
+                              WHERE fk_order_con_typeid = '1'
+                                AND fk_order_con_id IN
+                                    (SELECT order_id
+                                     FROM `order`
+                                     WHERE fk_user_id = #{userId}
+                                       AND YEAR(gmt_create) = YEAR(NOW())
+                                       AND MONTH(gmt_create) = 5
+                                    ))
+                   ) t1,
+                   (SELECT COUNT(1) a
+                    FROM contract_recei_plan
+                    WHERE fk_recei_plan_id IN
+                          (SELECT pk_re_plan_id
+                           FROM recei_plan
+                           WHERE fk_order_con_typeid = '2'
+                             AND fk_order_con_id IN
+                                 (SELECT pk_contract_id
+                                  FROM `contract`
+                                  WHERE fk_user_id = #{userId}
+                                    AND YEAR(gmt_create) = YEAR(NOW())
+                                    AND MONTH(gmt_create) = 5
+                                 ))
+                   ) t2) a5,
+             (SELECT t1.a + t2.a SUM1
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM order_recei_plan
+                       WHERE fk_recei_plan_id IN
+                             (SELECT pk_re_plan_id
+                              FROM recei_plan
+                              WHERE fk_order_con_typeid = '1'
+                                AND fk_order_con_id IN
+                                    (SELECT order_id
+                                     FROM `order`
+                                     WHERE fk_user_id = #{userId}
+                                       AND YEAR(gmt_create) = YEAR(NOW())
+                                       AND MONTH(gmt_create) = 6
+                                    ))
+                   ) t1,
+                   (SELECT COUNT(1) a
+                    FROM contract_recei_plan
+                    WHERE fk_recei_plan_id IN
+                          (SELECT pk_re_plan_id
+                           FROM recei_plan
+                           WHERE fk_order_con_typeid = '2'
+                             AND fk_order_con_id IN
+                                 (SELECT pk_contract_id
+                                  FROM `contract`
+                                  WHERE fk_user_id = #{userId}
+                                    AND YEAR(gmt_create) = YEAR(NOW())
+                                    AND MONTH(gmt_create) = 6
+                                 ))
+                   ) t2) a6,
+             (SELECT t1.a + t2.a SUM1
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM order_recei_plan
+                       WHERE fk_recei_plan_id IN
+                             (SELECT pk_re_plan_id
+                              FROM recei_plan
+                              WHERE fk_order_con_typeid = '1'
+                                AND fk_order_con_id IN
+                                    (SELECT order_id
+                                     FROM `order`
+                                     WHERE fk_user_id = #{userId}
+                                       AND YEAR(gmt_create) = YEAR(NOW())
+                                       AND MONTH(gmt_create) = 7
+                                    ))
+                   ) t1,
+                   (SELECT COUNT(1) a
+                    FROM contract_recei_plan
+                    WHERE fk_recei_plan_id IN
+                          (SELECT pk_re_plan_id
+                           FROM recei_plan
+                           WHERE fk_order_con_typeid = '2'
+                             AND fk_order_con_id IN
+                                 (SELECT pk_contract_id
+                                  FROM `contract`
+                                  WHERE fk_user_id = #{userId}
+                                    AND YEAR(gmt_create) = YEAR(NOW())
+                                    AND MONTH(gmt_create) = 7
+                                 ))
+                   ) t2) a7,
+             (SELECT t1.a + t2.a SUM1
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM order_recei_plan
+                       WHERE fk_recei_plan_id IN
+                             (SELECT pk_re_plan_id
+                              FROM recei_plan
+                              WHERE fk_order_con_typeid = '1'
+                                AND fk_order_con_id IN
+                                    (SELECT order_id
+                                     FROM `order`
+                                     WHERE fk_user_id = #{userId}
+                                       AND YEAR(gmt_create) = YEAR(NOW())
+                                       AND MONTH(gmt_create) = 8
+                                    ))
+                   ) t1,
+                   (SELECT COUNT(1) a
+                    FROM contract_recei_plan
+                    WHERE fk_recei_plan_id IN
+                          (SELECT pk_re_plan_id
+                           FROM recei_plan
+                           WHERE fk_order_con_typeid = '2'
+                             AND fk_order_con_id IN
+                                 (SELECT pk_contract_id
+                                  FROM `contract`
+                                  WHERE fk_user_id = #{userId}
+                                    AND YEAR(gmt_create) = YEAR(NOW())
+                                    AND MONTH(gmt_create) = 8
+                                 ))
+                   ) t2) a8,
+             (SELECT t1.a + t2.a SUM1
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM order_recei_plan
+                       WHERE fk_recei_plan_id IN
+                             (SELECT pk_re_plan_id
+                              FROM recei_plan
+                              WHERE fk_order_con_typeid = '1'
+                                AND fk_order_con_id IN
+                                    (SELECT order_id
+                                     FROM `order`
+                                     WHERE fk_user_id = #{userId}
+                                       AND YEAR(gmt_create) = YEAR(NOW())
+                                       AND MONTH(gmt_create) = 9
+                                    ))
+                   ) t1,
+                   (SELECT COUNT(1) a
+                    FROM contract_recei_plan
+                    WHERE fk_recei_plan_id IN
+                          (SELECT pk_re_plan_id
+                           FROM recei_plan
+                           WHERE fk_order_con_typeid = '2'
+                             AND fk_order_con_id IN
+                                 (SELECT pk_contract_id
+                                  FROM `contract`
+                                  WHERE fk_user_id = #{userId}
+                                    AND YEAR(gmt_create) = YEAR(NOW())
+                                    AND MONTH(gmt_create) = 9
+                                 ))
+                   ) t2) a9,
+             (SELECT t1.a + t2.a SUM1
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM order_recei_plan
+                       WHERE fk_recei_plan_id IN
+                             (SELECT pk_re_plan_id
+                              FROM recei_plan
+                              WHERE fk_order_con_typeid = '1'
+                                AND fk_order_con_id IN
+                                    (SELECT order_id
+                                     FROM `order`
+                                     WHERE fk_user_id = #{userId}
+                                       AND YEAR(gmt_create) = YEAR(NOW())
+                                       AND MONTH(gmt_create) = 10
+                                    ))
+                   ) t1,
+                   (SELECT COUNT(1) a
+                    FROM contract_recei_plan
+                    WHERE fk_recei_plan_id IN
+                          (SELECT pk_re_plan_id
+                           FROM recei_plan
+                           WHERE fk_order_con_typeid = '2'
+                             AND fk_order_con_id IN
+                                 (SELECT pk_contract_id
+                                  FROM `contract`
+                                  WHERE fk_user_id = #{userId}
+                                    AND YEAR(gmt_create) = YEAR(NOW())
+                                    AND MONTH(gmt_create) = 10
+                                 ))
+                   ) t2) a10,
+             (SELECT t1.a + t2.a SUM1
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM order_recei_plan
+                       WHERE fk_recei_plan_id IN
+                             (SELECT pk_re_plan_id
+                              FROM recei_plan
+                              WHERE fk_order_con_typeid = '1'
+                                AND fk_order_con_id IN
+                                    (SELECT order_id
+                                     FROM `order`
+                                     WHERE fk_user_id = #{userId}
+                                       AND YEAR(gmt_create) = YEAR(NOW())
+                                       AND MONTH(gmt_create) = 11
+                                    ))
+                   ) t1,
+                   (SELECT COUNT(1) a
+                    FROM contract_recei_plan
+                    WHERE fk_recei_plan_id IN
+                          (SELECT pk_re_plan_id
+                           FROM recei_plan
+                           WHERE fk_order_con_typeid = '2'
+                             AND fk_order_con_id IN
+                                 (SELECT pk_contract_id
+                                  FROM `contract`
+                                  WHERE fk_user_id = #{userId}
+                                    AND YEAR(gmt_create) = YEAR(NOW())
+                                    AND MONTH(gmt_create) = 11
+                                 ))
+                   ) t2) a11,
+             (SELECT t1.a + t2.a SUM1
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM order_recei_plan
+                       WHERE fk_recei_plan_id IN
+                             (SELECT pk_re_plan_id
+                              FROM recei_plan
+                              WHERE fk_order_con_typeid = '1'
+                                AND fk_order_con_id IN
+                                    (SELECT order_id
+                                     FROM `order`
+                                     WHERE fk_user_id = #{userId}
+                                       AND YEAR(gmt_create) = YEAR(NOW())
+                                       AND MONTH(gmt_create) = 12
+                                    ))
+                   ) t1,
+                   (SELECT COUNT(1) a
+                    FROM contract_recei_plan
+                    WHERE fk_recei_plan_id IN
+                          (SELECT pk_re_plan_id
+                           FROM recei_plan
+                           WHERE fk_order_con_typeid = '2'
+                             AND fk_order_con_id IN
+                                 (SELECT pk_contract_id
+                                  FROM `contract`
+                                  WHERE fk_user_id = #{userId}
+                                    AND YEAR(gmt_create) = YEAR(NOW())
+                                    AND MONTH(gmt_create) = 12
+                                 ))
+                   ) t2) a12
+
+    </select>
+
+    <select id="yearAnswerAccomplish" resultType="Map">
+        SELECT a1.sum  t1,
+               a2.sum  t2,
+               a3.sum  t3,
+               a4.sum  t4,
+               a5.sum  t5,
+               a6.sum  t6,
+               a7.sum  t7,
+               a8.sum  t8,
+               a9.sum  t9,
+               a10.sum t10,
+               a11.sum t11,
+               a12.sum t12
+        FROM (SELECT t1.a + t2.a SUM
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '1'
+                         AND fk_order_con_id IN
+                             (SELECT order_id
+                              FROM `order`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 1
+                             )) t1,
+                   (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '2'
+                         AND fk_order_con_id IN
+                             (SELECT pk_contract_id
+                              FROM `contract`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 1
+                             )) t2) a1,
+             (SELECT t1.a + t2.a SUM
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '1'
+                         AND fk_order_con_id IN
+                             (SELECT order_id
+                              FROM `order`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 2
+                             )) t1,
+                   (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '2'
+                         AND fk_order_con_id IN
+                             (SELECT pk_contract_id
+                              FROM `contract`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 2
+                             )) t2) a2,
+             (SELECT t1.a + t2.a SUM
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '1'
+                         AND fk_order_con_id IN
+                             (SELECT order_id
+                              FROM `order`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 3
+                             )) t1,
+                   (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '2'
+                         AND fk_order_con_id IN
+                             (SELECT pk_contract_id
+                              FROM `contract`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 3
+                             )) t2) a3,
+             (SELECT t1.a + t2.a SUM
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '1'
+                         AND fk_order_con_id IN
+                             (SELECT order_id
+                              FROM `order`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 4
+                             )) t1,
+                   (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '2'
+                         AND fk_order_con_id IN
+                             (SELECT pk_contract_id
+                              FROM `contract`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 4
+                             )) t2) a4,
+             (SELECT t1.a + t2.a SUM
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '1'
+                         AND fk_order_con_id IN
+                             (SELECT order_id
+                              FROM `order`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 5
+                             )) t1,
+                   (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '2'
+                         AND fk_order_con_id IN
+                             (SELECT pk_contract_id
+                              FROM `contract`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 5
+                             )) t2) a5,
+             (SELECT t1.a + t2.a SUM
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '1'
+                         AND fk_order_con_id IN
+                             (SELECT order_id
+                              FROM `order`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 6
+                             )) t1,
+                   (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '2'
+                         AND fk_order_con_id IN
+                             (SELECT pk_contract_id
+                              FROM `contract`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 6
+                             )) t2) a6,
+             (SELECT t1.a + t2.a SUM
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '1'
+                         AND fk_order_con_id IN
+                             (SELECT order_id
+                              FROM `order`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 7
+                             )) t1,
+                   (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '2'
+                         AND fk_order_con_id IN
+                             (SELECT pk_contract_id
+                              FROM `contract`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 7
+                             )) t2) a7,
+             (SELECT t1.a + t2.a SUM
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '1'
+                         AND fk_order_con_id IN
+                             (SELECT order_id
+                              FROM `order`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 8
+                             )) t1,
+                   (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '2'
+                         AND fk_order_con_id IN
+                             (SELECT pk_contract_id
+                              FROM `contract`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 8
+                             )) t2) a8,
+             (SELECT t1.a + t2.a SUM
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '1'
+                         AND fk_order_con_id IN
+                             (SELECT order_id
+                              FROM `order`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 9
+                             )) t1,
+                   (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '2'
+                         AND fk_order_con_id IN
+                             (SELECT pk_contract_id
+                              FROM `contract`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 9
+                             )) t2) a9,
+             (SELECT t1.a + t2.a SUM
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '1'
+                         AND fk_order_con_id IN
+                             (SELECT order_id
+                              FROM `order`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 10
+                             )) t1,
+                   (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '2'
+                         AND fk_order_con_id IN
+                             (SELECT pk_contract_id
+                              FROM `contract`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 10
+                             )) t2) a10,
+             (SELECT t1.a + t2.a SUM
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '1'
+                         AND fk_order_con_id IN
+                             (SELECT order_id
+                              FROM `order`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 11
+                             )) t1,
+                   (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '2'
+                         AND fk_order_con_id IN
+                             (SELECT pk_contract_id
+                              FROM `contract`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 11
+                             )) t2) a11,
+             (SELECT t1.a + t2.a SUM
+              FROM (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '1'
+                         AND fk_order_con_id IN
+                             (SELECT order_id
+                              FROM `order`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 12
+                             )) t1,
+                   (
+                       SELECT COUNT(1) a
+                       FROM recei_plan
+                       WHERE fk_order_con_typeid = '2'
+                         AND fk_order_con_id IN
+                             (SELECT pk_contract_id
+                              FROM `contract`
+                              WHERE fk_user_id = #{userId}
+                                AND YEAR(gmt_create) = YEAR(NOW())
+                                AND MONTH(gmt_create) = 12
+                             )) t2) a12
+    </select>
+    <!--*********************************************************************************************************************-->
+    <!--本月回款业绩完成值-->
+    <select id="countReceivableMonth" resultType="StatisticalResult">
+        select
+                (select count(1) from recei_plan
+                 where re_plan_currentstate='已完成'
+                   and DATE_FORMAT(re_plan_actualreceipttime, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m')
+                   and re_plan_userid =#{userId})/
+                (select count(1) from recei_plan
+                 where DATE_FORMAT(re_plan_actualreceipttime, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m')
+                   and re_plan_userid =#{userId}) completeValue
+    </select>
+    <!--本季回款业绩完成值-->
+    <select id="countReceivableQuarter" resultType="StatisticalResult">
+        select
+                (select count(1) from recei_plan
+                 where re_plan_currentstate='已完成'
+                   and  QUARTER(re_plan_actualreceipttime) = QUARTER(NOW())
+                   and re_plan_userid =#{userId})/
+                (select count(1) from recei_plan
+                 where QUARTER(re_plan_actualreceipttime) = QUARTER(NOW())
+                   and re_plan_userid =#{userId}) completeValue
+    </select>
+    <!--本年回款业绩完成值-->
+    <select id="countReceivableYear" resultType="StatisticalResult">
+        select
+                (select count(1) from recei_plan
+                 where re_plan_currentstate='已完成'
+                   and  YEAR(re_plan_actualreceipttime) = YEAR(NOW())
+                   and re_plan_userid =#{userId})/
+                (select count(1) from recei_plan
+                 where YEAR(re_plan_actualreceipttime) = YEAR(NOW())
+                   and re_plan_userid =#{userId}) completeValue
+    </select>
+    <!--月度回款额统计图计划值-->
+    <select id="avgReceivableMonth" resultType="Map">
+        select
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=1 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=1 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a1,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=2 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=2 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a2,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=3 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid =#{userId}) )/
+                   (select count(1) from contract where MONTH(gmt_create)=3 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a3,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=4 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid =#{userId}) )/
+                   (select count(1) from contract where MONTH(gmt_create)=4 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a4,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=5 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=5 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a5,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=6 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=6 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a6,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=7 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=7 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a7,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=8 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=8 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a8,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=9 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=9 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a9,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=10 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=10 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a10,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=11 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid =#{userId}) )/
+                   (select count(1) from contract where MONTH(gmt_create)=11 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a11,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=12 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=12 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a12
+    </select>
+    <!--月度回款额统计图完成值-->
+    <select id="avgReceivableMonthOK" resultType="Map">
+        select
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=1 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=1 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a1,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=2 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=2 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a2,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=3 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=3 and fk_user_id in (select pk_user_id from `user` where  fk_department_id=3 )),0) a3,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=4 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=4 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a4,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=5 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=5 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a5,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=6 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=6 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a6,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=7 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=7 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a7,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=8 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=8 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a8,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=9 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=9 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a9,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=10 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=10 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a10,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=11 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=11 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a11,
+            IFNULL((select count(1) from contract where MONTH(gmt_create)=12 and  pk_contract_id in(select fk_order_con_id from recei_plan where re_plan_currentstate='已完成' and re_plan_userid =#{userId} ) )/
+                   (select count(1) from contract where MONTH(gmt_create)=12 and fk_user_id in (select pk_user_id from `user` where fk_department_id=3 )),0) a12
+    </select>
+    <!--*************************************************************************************************** -->
+    <!--机会跟进数-->
+    <select id="countSalesWith" resultType="Map">
+        select
+            (select count(*) from salesopp where fk_user_id =#{userId} and shut_down=1 and MONTH(salesopp_gmt_create)=1) a1,
+            (select count(*) from salesopp where fk_user_id =#{userId} and shut_down=1 and MONTH(salesopp_gmt_create)=2) a2,
+            (select count(*) from salesopp where fk_user_id =#{userId} and shut_down=1 and MONTH(salesopp_gmt_create)=3) a3,
+            (select count(*) from salesopp where fk_user_id =#{userId} and shut_down=1 and MONTH(salesopp_gmt_create)=4) a4,
+            (select count(*) from salesopp where fk_user_id =#{userId} and shut_down=1 and MONTH(salesopp_gmt_create)=5) a5,
+            (select count(*) from salesopp where fk_user_id =#{userId} and shut_down=1 and MONTH(salesopp_gmt_create)=6) a6,
+            (select count(*) from salesopp where fk_user_id =#{userId} and shut_down=1 and MONTH(salesopp_gmt_create)=7) a7,
+            (select count(*) from salesopp where fk_user_id =#{userId} and shut_down=1 and MONTH(salesopp_gmt_create)=8) a8,
+            (select count(*) from salesopp where fk_user_id =#{userId} and shut_down=1 and MONTH(salesopp_gmt_create)=9) a9,
+            (select count(*) from salesopp where fk_user_id =#{userId} and shut_down=1 and MONTH(salesopp_gmt_create)=10) a10,
+            (select count(*) from salesopp where fk_user_id =#{userId} and shut_down=1 and MONTH(salesopp_gmt_create)=11) a11,
+            (select count(*) from salesopp where fk_user_id =#{userId} and shut_down=1 and MONTH(salesopp_gmt_create)=12) a12
+    </select>
+    <!--机会增加数-->
+    <select id="countSalesIncrease" resultType="Map">
+        select
+            (select count(*) from salesopp where fk_user_id =#{userId} and MONTH(salesopp_gmt_create)=1) a1,
+            (select count(*) from salesopp where fk_user_id =#{userId} and MONTH(salesopp_gmt_create)=2) a2,
+            (select count(*) from salesopp where fk_user_id =#{userId} and MONTH(salesopp_gmt_create)=3) a3,
+            (select count(*) from salesopp where fk_user_id =#{userId} and MONTH(salesopp_gmt_create)=5) a5,
+            (select count(*) from salesopp where fk_user_id =#{userId} and MONTH(salesopp_gmt_create)=6) a6,
+            (select count(*) from salesopp where fk_user_id =#{userId} and MONTH(salesopp_gmt_create)=7) a7,
+            (select count(*) from salesopp where fk_user_id =#{userId} and MONTH(salesopp_gmt_create)=8) a8,
+            (select count(*) from salesopp where fk_user_id =#{userId} and MONTH(salesopp_gmt_create)=9) a9,
+            (select count(*) from salesopp where fk_user_id =#{userId} and MONTH(salesopp_gmt_create)=10) a10,
+            (select count(*) from salesopp where fk_user_id =#{userId} and MONTH(salesopp_gmt_create)=11) a11,
+            (select count(*) from salesopp where fk_user_id =#{userId} and MONTH(salesopp_gmt_create)=12) a12
+    </select>
+    <!--线索跟进数-->
+    <select id="countCluesWith" resultType="Map">
+        select
+            (select count(*) from clue where fk_user_res_id =#{userId} and clue_state='已分配' and MONTH(clue_gmt_create)=1) a1,
+            (select count(*) from clue where fk_user_res_id =#{userId} and clue_state='已分配' and MONTH(clue_gmt_create)=2) a2,
+            (select count(*) from clue where fk_user_res_id =#{userId} and clue_state='已分配' and MONTH(clue_gmt_create)=3) a3,
+            (select count(*) from clue where fk_user_res_id =#{userId} and clue_state='已分配' and MONTH(clue_gmt_create)=4) a4,
+            (select count(*) from clue where fk_user_res_id =#{userId} and clue_state='已分配' and MONTH(clue_gmt_create)=5) a5,
+            (select count(*) from clue where fk_user_res_id =#{userId} and clue_state='已分配' and MONTH(clue_gmt_create)=6) a6,
+            (select count(*) from clue where fk_user_res_id =#{userId} and clue_state='已分配' and MONTH(clue_gmt_create)=7) a7,
+            (select count(*) from clue where fk_user_res_id =#{userId} and clue_state='已分配' and MONTH(clue_gmt_create)=8) a8,
+            (select count(*) from clue where fk_user_res_id =#{userId} and clue_state='已分配' and MONTH(clue_gmt_create)=9) a9,
+            (select count(*) from clue where fk_user_res_id =#{userId} and clue_state='已分配' and MONTH(clue_gmt_create)=10) a10,
+            (select count(*) from clue where fk_user_res_id =#{userId} and clue_state='已分配' and MONTH(clue_gmt_create)=11) a11,
+            (select count(*) from clue where fk_user_res_id =#{userId} and clue_state='已分配' and MONTH(clue_gmt_create)=12) a12
+    </select>
+    <!--线索增加数-->
+    <select id="countCluesIncrease" resultType="Map">
+        select
+            (select count(*) from clue where fk_user_res_id =#{userId} and MONTH(clue_gmt_create)=1) a1,
+            (select count(*) from clue where fk_user_res_id =#{userId} and MONTH(clue_gmt_create)=2) a2,
+            (select count(*) from clue where fk_user_res_id =#{userId} and MONTH(clue_gmt_create)=3) a3,
+            (select count(*) from clue where fk_user_res_id =#{userId} and MONTH(clue_gmt_create)=4) a4,
+            (select count(*) from clue where fk_user_res_id =#{userId} and MONTH(clue_gmt_create)=5) a5,
+            (select count(*) from clue where fk_user_res_id =#{userId} and MONTH(clue_gmt_create)=6) a6,
+            (select count(*) from clue where fk_user_res_id =#{userId} and MONTH(clue_gmt_create)=7) a7,
+            (select count(*) from clue where fk_user_res_id =#{userId} and MONTH(clue_gmt_create)=8) a8,
+            (select count(*) from clue where fk_user_res_id =#{userId} and MONTH(clue_gmt_create)=9) a9,
+            (select count(*) from clue where fk_user_res_id =#{userId} and MONTH(clue_gmt_create)=10) a10,
+            (select count(*) from clue where fk_user_res_id =#{userId} and MONTH(clue_gmt_create)=11) a11,
+            (select count(*) from clue where fk_user_res_id =#{userId} and MONTH(clue_gmt_create)=12) a12
+    </select>
+    <!--客户跟进数-->
+    <select id="countCustomerWith" resultType="Map">
+        select
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=1) a1,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=2) a2,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=3) a3,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=4) a4,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=5) a5,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=6) a6,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=7) a7,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=8) a8,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=9) a9,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=10) a10,
+            (select count(*) from clienttable where fk_user_id =#{userId}  and MONTH(cus_gmt_create)=11) a11,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=12) a12
+    </select>
+    <!--客户增加数-->
+    <select id="countCustomerIncrease" resultType="Map">
+        select
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=1) a1,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=2) a2,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=3) a3,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=4) a4,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=5) a5,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=6) a6,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=7) a7,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=8) a8,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=9) a9,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=10) a10,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=11) a11,
+            (select count(*) from clienttable where fk_user_id =#{userId}   and MONTH(cus_gmt_create)=12) a12
+    </select>
 </mapper>

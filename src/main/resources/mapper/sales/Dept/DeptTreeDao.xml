@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.crmproject.crmproject.dao.Sales.TreeMenu.DeptTreeDao">
+    <select id="findFather" resultType="Department">
+        SELECT dep2.`pk_department_id`,dep2.`department_name`
+        FROM `department` AS dep1,`department` AS dep2
+        WHERE dep1.pk_department_id=7 AND dep2.`pid` = dep1.pk_department_id
+    </select>
+
+    <select id="findChild" resultType="Department" parameterType="Long">
+        SELECT dep2.`pk_department_id`,dep2.`department_name`
+        FROM `department` AS dep1,`department` AS dep2
+        WHERE dep1.pk_department_id=#{pid} AND dep2.`pid` = dep1.pk_department_id
+    </select>
+</mapper>
