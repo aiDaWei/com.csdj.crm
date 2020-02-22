@@ -49,9 +49,9 @@
                     <div class="layui-form-item" style="margin-bottom: -2px">
                         <label class="layui-form-label" style="font-size: 20px;color: #FFFFFF">销售业绩</label>
                         <div class="layui-input-block" style="color:#4488BB">
-                            <input type="radio" name="hood" value="订单+合同" title="订单+合同" checked>
-                            <input type="radio" name="hood" value="订单" title="订单">
-                            <input type="radio" name="hood" value="合同" title="合同">
+                            <input type="radio" name="hood" lay-filter="hooder" value="订单+合同" title="订单+合同" checked>
+                            <input type="radio" name="hood" lay-filter="hooder" value="订单" title="订单">
+                            <input type="radio" name="hood" lay-filter="hooder" value="合同" title="合同">
                         </div>
                     </div>
                 </div>
@@ -147,11 +147,7 @@
         showInstrumentPanelSale1();
         showInstrumentPanelSale2();
         showInstrumentPanelSale3();
-        showInstrumentPanelRec1();
-        showInstrumentPanelRec2();
-        showInstrumentPanelRec3();
         showHistogramSale();
-        showHistogramRec();
         //showSaleForecasting();
         showSaleDiligent();
 
@@ -176,13 +172,142 @@
             dataType :'json',
             success : function(data) {
                 let listSaleForecasting = [];
+                let listSales1 =[];//机会跟进数
+                let listSales2 =[];//线索跟进数
+                let listSales3 =[];//客户跟进数
+                let listSales4 =[];//机会增加数
+                let listSales5 =[];//线索增加数
+                let listSales6 =[];//客户增加数
+                //月度回款统计图
+                let listPlan =[];//计划值
+                let listComplete=[];//完成值
+                listPlan.push((data["receiveMonthAvgPlan"]["a1"]).toFixed(2));
+                listPlan.push((data["receiveMonthAvgPlan"]["a2"]).toFixed(2));
+                listPlan.push((data["receiveMonthAvgPlan"]["a3"]).toFixed(2));
+                listPlan.push((data["receiveMonthAvgPlan"]["a4"]).toFixed(2));
+                listPlan.push((data["receiveMonthAvgPlan"]["a5"]).toFixed(2));
+                listPlan.push((data["receiveMonthAvgPlan"]["a6"]).toFixed(2));
+                listPlan.push((data["receiveMonthAvgPlan"]["a7"]).toFixed(2));
+                listPlan.push((data["receiveMonthAvgPlan"]["a8"]).toFixed(2));
+                listPlan.push((data["receiveMonthAvgPlan"]["a9"]).toFixed(2));
+                listPlan.push((data["receiveMonthAvgPlan"]["a10"]).toFixed(2));
+                listPlan.push((data["receiveMonthAvgPlan"]["a11"]).toFixed(2));
+                listPlan.push((data["receiveMonthAvgPlan"]["a12"]).toFixed(2));
+
+                listComplete.push((data["receiveMonthAvgTrue"]["a1"]).toFixed(2));
+                listComplete.push((data["receiveMonthAvgTrue"]["a2"]).toFixed(2));
+                listComplete.push((data["receiveMonthAvgTrue"]["a3"]).toFixed(2));
+                listComplete.push((data["receiveMonthAvgTrue"]["a4"]).toFixed(2));
+                listComplete.push((data["receiveMonthAvgTrue"]["a5"]).toFixed(2));
+                listComplete.push((data["receiveMonthAvgTrue"]["a6"]).toFixed(2));
+                listComplete.push((data["receiveMonthAvgTrue"]["a7"]).toFixed(2));
+                listComplete.push((data["receiveMonthAvgTrue"]["a8"]).toFixed(2));
+                listComplete.push((data["receiveMonthAvgTrue"]["a9"]).toFixed(2));
+                listComplete.push((data["receiveMonthAvgTrue"]["a10"]).toFixed(2));
+                listComplete.push((data["receiveMonthAvgTrue"]["a11"]).toFixed(2));
+                listComplete.push((data["receiveMonthAvgTrue"]["a12"]).toFixed(2));
+
+                //销售预测
                 listSaleForecasting.push(data["saleForecasting1"]);
                 listSaleForecasting.push(data["saleForecasting2"]);
                 listSaleForecasting.push(data["saleForecasting3"]);
                 listSaleForecasting.push(data["saleForecasting4"]);
                 listSaleForecasting.push(data["saleForecasting5"]);
                 listSaleForecasting.push(data["saleForecasting6"]);
+                listSales1.push(data["countSales1"]["a1"]);
+                listSales1.push(data["countSales1"]["a2"]);
+                listSales1.push(data["countSales1"]["a3"]);
+                listSales1.push(data["countSales1"]["a4"]);
+                listSales1.push(data["countSales1"]["a5"]);
+                listSales1.push(data["countSales1"]["a6"]);
+                listSales1.push(data["countSales1"]["a7"]);
+                listSales1.push(data["countSales1"]["a8"]);
+                listSales1.push(data["countSales1"]["a9"]);
+                listSales1.push(data["countSales1"]["a10"]);
+                listSales1.push(data["countSales1"]["a11"]);
+                listSales1.push(data["countSales1"]["a12"]);
+
+
+                listSales2.push(data["countSales2"]["a1"]);
+                listSales2.push(data["countSales2"]["a2"]);
+                listSales2.push(data["countSales2"]["a3"]);
+                listSales2.push(data["countSales2"]["a4"]);
+                listSales2.push(data["countSales2"]["a5"]);
+                listSales2.push(data["countSales2"]["a6"]);
+                listSales2.push(data["countSales2"]["a7"]);
+                listSales2.push(data["countSales2"]["a8"]);
+                listSales2.push(data["countSales2"]["a9"]);
+                listSales2.push(data["countSales2"]["a10"]);
+                listSales2.push(data["countSales2"]["a11"]);
+                listSales2.push(data["countSales2"]["a12"]);
+
+
+                listSales3.push(data["countSales3"]["a1"]);
+                listSales3.push(data["countSales3"]["a2"]);
+                listSales3.push(data["countSales3"]["a3"]);
+                listSales3.push(data["countSales3"]["a4"]);
+                listSales3.push(data["countSales3"]["a5"]);
+                listSales3.push(data["countSales3"]["a6"]);
+                listSales3.push(data["countSales3"]["a7"]);
+                listSales3.push(data["countSales3"]["a8"]);
+                listSales3.push(data["countSales3"]["a9"]);
+                listSales3.push(data["countSales3"]["a10"]);
+                listSales3.push(data["countSales3"]["a11"]);
+                listSales3.push(data["countSales3"]["a12"]);
+
+
+                listSales4.push(data["countSales4"]["a1"]);
+                listSales4.push(data["countSales4"]["a2"]);
+                listSales4.push(data["countSales4"]["a3"]);
+                listSales4.push(data["countSales4"]["a4"]);
+                listSales4.push(data["countSales4"]["a5"]);
+                listSales4.push(data["countSales4"]["a6"]);
+                listSales4.push(data["countSales4"]["a7"]);
+                listSales4.push(data["countSales4"]["a8"]);
+                listSales4.push(data["countSales4"]["a9"]);
+                listSales4.push(data["countSales4"]["a10"]);
+                listSales4.push(data["countSales4"]["a11"]);
+                listSales4.push(data["countSales4"]["a12"]);
+
+
+                listSales5.push(data["countSales5"]["a1"]);
+                listSales5.push(data["countSales5"]["a2"]);
+                listSales5.push(data["countSales5"]["a3"]);
+                listSales5.push(data["countSales5"]["a4"]);
+                listSales5.push(data["countSales5"]["a5"]);
+                listSales5.push(data["countSales5"]["a6"]);
+                listSales5.push(data["countSales5"]["a7"]);
+                listSales5.push(data["countSales5"]["a8"]);
+                listSales5.push(data["countSales5"]["a9"]);
+                listSales5.push(data["countSales5"]["a10"]);
+                listSales5.push(data["countSales5"]["a11"]);
+                listSales5.push(data["countSales5"]["a12"]);
+
+
+                listSales6.push(data["countSales6"]["a1"]);
+                listSales6.push(data["countSales6"]["a2"]);
+                listSales6.push(data["countSales6"]["a3"]);
+                listSales6.push(data["countSales6"]["a4"]);
+                listSales6.push(data["countSales6"]["a5"]);
+                listSales6.push(data["countSales6"]["a6"]);
+                listSales6.push(data["countSales6"]["a7"]);
+                listSales6.push(data["countSales6"]["a8"]);
+                listSales6.push(data["countSales6"]["a9"]);
+                listSales6.push(data["countSales6"]["a10"]);
+                listSales6.push(data["countSales6"]["a11"]);
+                listSales6.push(data["countSales6"]["a12"]);
+
+                // showInstrumentPanelRec1(data["getReceiPlan"]);
+                // alert(data["getReceiPlan"]["dianasReceiPlan"]);
+                // showInstrumentPanelRec2(data["getReceiPlan"]);
+                // showInstrumentPanelRec3(data["getReceiPlan"]);
+                showInstrumentPanelRec1(data["receiveMonthData"]);
+                showInstrumentPanelRec2(data["receiveQuarterData"]);
+                showInstrumentPanelRec3(data["receiveYearData"]);
+                // showHistogramRec(data["getYearPercentage"]);
+                showHistogramRec(listPlan,listComplete);
                 showSaleForecasting(listSaleForecasting);
+                showSaleDiligent(listSales1,listSales2,listSales3,listSales4,listSales5,listSales6);
             },
             error : function() {
                 layer.msg('ajax执行错误！', {
@@ -206,7 +331,7 @@
                 $.each(data.data, function (index, user) {
                     //$('#temp').append(new Option(item.name, item.id));// 下拉菜单里添加元素
                     let txt2= null;
-                    if(index==0){
+                    if(index===0){
                         txt2=$("<option selected value='"+user["pkUserId"]+"'></option>").text(user["userName"]);
                     }
                     txt2=$("<option value='"+user["pkUserId"]+"'></option>").text(user["userName"]);
@@ -494,11 +619,11 @@
     /**
      * 本月回款完成仪表盘
      */
-    function showInstrumentPanelRec1(){
+    function showInstrumentPanelRec1(receiveMonthData){
         // 基于准备好的dom，初始化echarts实例
         let myChart3 = echarts.init(document.getElementById('main3'));
         // 指定图表的配置项和数据
-        myChart3.setOption({
+        let option={
             tooltip: {
                 formatter: "{a} <br/>{b} : {c}%"
             },
@@ -523,7 +648,8 @@
                         fontStyle: 'italic',
                     }
                 },
-                data: [{value: 80, name: '回款'}],
+                //data: [{value: data.dianasReceiPlan, name: '回款'}],
+                data: [{ value:0, name: '回款' }],
                 center: ["47%", "45%"], // 默认全局居中
                 splitLine: {           //分割线样式（及10、20等长线样式）
                     length: 15,
@@ -548,21 +674,20 @@
                     }
                 }
             }]
-        });
+        };
 
-        setInterval(function () {
-            option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+            option.series[0].data[0].value =(receiveMonthData["completeValue"]*100).toFixed(2);
             myChart3.setOption(option, true);
-        }, 2000);
+
     }
     /**
      * 本季回款完成仪表盘
      */
-    function showInstrumentPanelRec2(){
+    function showInstrumentPanelRec2(receiveQuarterData){
         // 基于准备好的dom，初始化echarts实例
         let myChart4 = echarts.init(document.getElementById('main4'));
         // 指定图表的配置项和数据
-        myChart4.setOption({
+        let option={
             tooltip: {
                 formatter: "{a} <br/>{b} : {c}%"
             },
@@ -587,7 +712,8 @@
                         fontStyle: 'italic',
                     }
                 },
-                data: [{value: 90, name: '回款'}],
+                //data: [{value: data.seasonReceiPlan, name: '回款'}],
+                data: [{ value:0, name: '回款' }],
                 center: ["47%", "45%"], // 默认全局居中
                 splitLine: {           //分割线样式（及10、20等长线样式）
                     length: 15,
@@ -612,21 +738,21 @@
                     }
                 }
             }]
-        });
+        };
 
-        setInterval(function () {
-            option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+
+            option.series[0].data[0].value =(receiveQuarterData["completeValue"]*100).toFixed(2);
             myChart4.setOption(option, true);
-        }, 2000);
+
     }
     /**
      * 本年回款完成仪表盘
      */
-    function showInstrumentPanelRec3(){
+    function showInstrumentPanelRec3(receiveYearData){
         // 基于准备好的dom，初始化echarts实例
         let myChart5 = echarts.init(document.getElementById('main5'));
         // 指定图表的配置项和数据
-        myChart5.setOption({
+        let option ={
             tooltip: {
                 formatter: "{a} <br/>{b} : {c}%"
             },
@@ -651,7 +777,8 @@
                         fontStyle: 'italic',
                     }
                 },
-                data: [{value: 100, name: '回款'}],
+                //data: [{value: data.yearReceiPlan, name: '回款'}],
+                data: [{ value:0, name: '回款' }],
                 center: ["47%", "45%"], // 默认全局居中
                 splitLine: {           //分割线样式（及10、20等长线样式）
                     length: 15,
@@ -676,17 +803,15 @@
                     }
                 }
             }]
-        });
-
-        setInterval(function () {
-            option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+        };
+            option.series[0].data[0].value =(receiveYearData["completeValue"]*100).toFixed(2);
             myChart5.setOption(option, true);
-        }, 2000);
+
     }
     /**
      * 月度回款额统计图
      */
-    function showHistogramRec() {
+    function showHistogramRec(listPlan,listComplete) {
         let myChartStat1 = echarts.init(document.getElementById('statistical1'));
         let optionStat1 = {
             title: {
@@ -741,7 +866,7 @@
                 {
                     name: '计划值',
                     type: 'bar',
-                    data: [0.2, 0.4, 0.47, 0.5, 0.2, 0.76, 0.13, 0.6, 0.32, 0.2, 0.6, 0.3],
+                    data:listPlan,
                     itemStyle: {   //配置样式，设置每个柱子的颜色
                         normal: {
                             color: '#0070A8'
@@ -751,7 +876,7 @@
                 {
                     name: '完成值',
                     type: 'bar',
-                    data: [0.2, 0.4, 0.47, 0.5, 0.2, 0.76, 0.13, 0.6, 0.32, 0.2, 0.6, 0.3],
+                    data: listComplete,
                     itemStyle: {   //配置样式，设置每个柱子的颜色
                         normal: {
                             color: '#E5323E'
@@ -851,7 +976,7 @@
     /**
      * 每月销售勤奋度
      */
-    function showSaleDiligent(){
+    function showSaleDiligent(listSales1,listSales2,listSales3,listSales4,listSales5,listSales6){
         let myChartDiligence = echarts.init(document.getElementById('diligence'));
         let optionDil = {
             title: {
@@ -906,60 +1031,60 @@
                 {
                     name: '机会跟进数',
                     type: 'bar',
-                    data: [0.02, 0.04, 0.07, 0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
+                    data: listSales1,
                     itemStyle: {   //配置样式，设置每个柱子的颜色
                         normal: {
-                            color: '#2D2DDF'
+                            color:'#2D2DDF'
                         }
                     }
                 },
                 {
                     name: '线索跟进数',
                     type: 'bar',
-                    data: [0.02, 0.04, 0.07, 0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
+                    data: listSales2,
                     itemStyle: {   //配置样式，设置每个柱子的颜色
                         normal: {
-                            color: '#0066FF'
+                            color:'#0066FF'
                         }
                     }
                 },
                 {
                     name: '客户跟进数',
                     type: 'bar',
-                    data: [0.02, 0.04, 0.07, 0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
+                    data: listSales3,
                     itemStyle: {   //配置样式，设置每个柱子的颜色
                         normal: {
-                            color: '#00CCFF'
+                            color:'#00CCFF'
                         }
                     }
                 },
                 {
                     name: '机会增加数',
                     type: 'bar',
-                    data: [0.02, 0.04, 0.07, 0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
+                    data: listSales4,
                     itemStyle: {   //配置样式，设置每个柱子的颜色
                         normal: {
-                            color: '#006600'
+                            color:'#006600'
                         }
                     }
                 },
                 {
                     name: '线索增加数',
                     type: 'bar',
-                    data: [0.02, 0.04, 0.07, 0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
+                    data: listSales5,
                     itemStyle: {   //配置样式，设置每个柱子的颜色
                         normal: {
-                            color: '#2DCA2D'
+                            color:'#2DCA2D'
                         }
                     }
                 },
                 {
                     name: '客户增加数',
                     type: 'bar',
-                    data: [0.02, 0.04, 0.07, 0.26, 0.45, 0.56, 0.58, 0.68, 0.88, 0.6, 0.56, 0.4],
+                    data: listSales6,
                     itemStyle: {   //配置样式，设置每个柱子的颜色
                         normal: {
-                            color: '#2DDF2D'
+                            color:'#2DDF2D'
                         }
                     }
                 },
