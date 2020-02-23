@@ -17,6 +17,11 @@ public class ClientTable {
      */
     private int pkCusCustomerid;
     /**
+     * 客户简称
+     */
+    private String abbreviation;
+
+    /**
      * 客户名称
      */
     private String cusCustomername;
@@ -175,7 +180,13 @@ public class ClientTable {
     public void setPkCusCustomerid(int pkCusCustomerid) {
         this.pkCusCustomerid = pkCusCustomerid;
     }
+    public String getAbbreviation() {
+        return abbreviation;
+    }
 
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
+    }
     public String getCusCustomername() {
         return cusCustomername;
     }

@@ -2,6 +2,7 @@ package com.csdj.crmproject.crmproject.controller.Sales.Indent;
 
 import com.alibaba.fastjson.JSON;
 import com.csdj.crmproject.crmproject.entity.User;
+import com.csdj.crmproject.crmproject.entity.customermanagement.ClientTable;
 import com.csdj.crmproject.crmproject.entity.salesmanagement.Order;
 import com.csdj.crmproject.crmproject.service.Sales.Indent.IndentService;
 import com.github.pagehelper.PageInfo;
@@ -30,7 +31,12 @@ public class IndentController {
         return "sales/Indent/order_manage";
     }
     @RequestMapping("add_order.html")
-    public String addOrderHtml(){
+    public String addOrderHtml(Model model,
+                               @RequestParam(value = "pageNo",required = false,defaultValue = "1")int pageNo,
+                               @RequestParam(value = "fkTypeNumberId",required = false)String fkTypeNumberId){
+        PageInfo<ClientTable> pageInfo=indentService.findClientTableById(fkTypeNumberId,pageNo);
+        System.out.println(pageInfo);
+        model.addAttribute("pageInfo",pageInfo);
         return "sales/Indent/add_order";
     }
     @RequestMapping("look_order.html")
@@ -77,6 +83,13 @@ public class IndentController {
         int i=indentService.addOrder(order);
         return i;
     }
+
+    /**
+     * 修改订单信息
+     * @param order
+     * @param session
+     * @return
+     */
     @RequestMapping("update_order_htmls")
     @ResponseBody
     public int updateOrder(Order order,HttpSession session){
@@ -96,6 +109,5 @@ public class IndentController {
             map.put("show", "fail");
         }
         return map;
-
     }
 }

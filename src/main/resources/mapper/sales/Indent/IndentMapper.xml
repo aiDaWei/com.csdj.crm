@@ -39,6 +39,18 @@
         <result column="order_context" property="orderContext"></result>
         <result column="fkUserId" property="fk_user_id"></result>
     </resultMap>
+
+    <resultMap id="clientTableMap" type="ClientTable">
+        <id column="pk_cus_customer_id" property="pkCusCustomerid"></id>
+        <result column="abbreviation" property="abbreviation"></result>
+        <result column="cus_customername" property="cusCustomername"></result>
+        <result column="cus_classif" property="fkClassifId"></result>
+        <result column="cus_financial_telephone" property="cusFinancialTelephone"></result>
+        <result column="fk_user_id" property="fkUserId"></result>
+        <result column="cus_industry" property="fkIndustryId"></result>
+        <result column="cus_gmt_create" property="cusGmtCreate"></result>
+        <result column="cus_gmt_modified" property="cusGmtModified"></result>
+    </resultMap>
     <select id="orderCount" resultType="int">
         SELECT COUNT(1) AS orderCount FROM `order`
         <where>
@@ -121,4 +133,13 @@
             #{array}
         </foreach>
     </delete>
+
+    <select id="findClientTableById" resultMap="clientTableMap">
+        select * from clienttable
+        <where>
+            <if test="fkTypeNumberId!=null and fkTypeNumberId!=''">
+               and fk_type_number_id=#{fkTypeNumberId}
+            </if>
+        </where>
+    </select>
 </mapper>

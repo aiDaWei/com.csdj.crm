@@ -1,6 +1,7 @@
 package com.csdj.crmproject.crmproject.service.impl.Sales.Indent;
 
 import com.csdj.crmproject.crmproject.dao.Sales.Indent.IndentDao;
+import com.csdj.crmproject.crmproject.entity.customermanagement.ClientTable;
 import com.csdj.crmproject.crmproject.entity.salesmanagement.Order;
 import com.csdj.crmproject.crmproject.service.Sales.Indent.IndentService;
 import com.github.pagehelper.PageHelper;
@@ -98,5 +99,13 @@ public class IndentServiceImpl implements IndentService {
             }
         }
         return result;
+    }
+
+    @Override
+    public PageInfo<ClientTable> findClientTableById(String fkTypeNumberId,int pageNo) {
+        PageHelper.startPage(pageNo,3);
+        List<ClientTable> list=indentDao.findClientTableById(fkTypeNumberId);
+        PageInfo<ClientTable> pageInfo=new PageInfo<>(list);
+        return pageInfo;
     }
 }
