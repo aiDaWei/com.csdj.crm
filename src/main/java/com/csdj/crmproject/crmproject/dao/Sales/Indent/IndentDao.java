@@ -1,4 +1,5 @@
 package com.csdj.crmproject.crmproject.dao.Sales.Indent;
+import com.csdj.crmproject.crmproject.entity.customermanagement.ClientTable;
 import com.csdj.crmproject.crmproject.entity.salesmanagement.Order;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -48,4 +49,11 @@ public interface IndentDao {
      * @return
      */
     public int deleteOrder(int[] array);
+
+    /**
+     * 根据客户类型查询客户信息
+     * @param fkTypeNumberId 客户类型编号
+     * @return
+     */
+    public List<ClientTable> findClientTableById(String fkTypeNumberId);
 }

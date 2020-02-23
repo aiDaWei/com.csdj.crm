@@ -61,6 +61,10 @@
             <select name="orderType" lay-filter="aihao">
                 <option value="0" th:selected="${order.orderType}==0">产品销售</option>
                 <option value="1" th:selected="${order.orderType}==1">服务</option>
+                <option value="2" th:selected="${order.orderType}==2">代销</option>
+                <option value="3" th:selected="${order.orderType}==3">分销</option>
+                <option value="4" th:selected="${order.orderType}==4">业务合作</option>
+                <option value="5" th:selected="${order.orderType}==5">其它</option>
             </select>
         </div>
     </div>
@@ -185,6 +189,7 @@
             <select name="orderTransportation" lay-filter="aihao">
                 <option value="0" th:selected="${order.orderTransportation}==0">顺丰快递</option>
                 <option value="1" th:selected="${order.orderTransportation}==1">中国邮政</option>
+                <option value="2" th:selected="${order.orderTransportation}==2">圆通快递</option>
             </select>
         </div>
     </div>

@@ -3,7 +3,7 @@
  * 版权(c) 2019-雷升公司 crm项目组：
  * 版 本 号：1.0
  */
-package com.csdj.crmproject.crmproject.entity;
+package com.csdj.crmproject.crmproject.entity.customermanagement;
 
 /**
  * 客户实体
@@ -16,6 +16,11 @@ public class ClientTable {
      * 客户编号(主键)
      */
     private int pkCusCustomerid;
+    /**
+     * 客户简称
+     */
+    private String abbreviation;
+
     /**
      * 客户名称
      */
@@ -175,7 +180,13 @@ public class ClientTable {
     public void setPkCusCustomerid(int pkCusCustomerid) {
         this.pkCusCustomerid = pkCusCustomerid;
     }
+    public String getAbbreviation() {
+        return abbreviation;
+    }
 
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
+    }
     public String getCusCustomername() {
         return cusCustomername;
     }

@@ -18,6 +18,42 @@ public interface SectionInstrumentService {
      */
     List<Department> listDepartmentService();
     /**
+     * 销售业绩订单仪表盘数据
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> avgSalesOrderService(Integer dip);
+    /**
+     * 销售业绩合同仪表盘数据
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> avgSalesContractService(Integer dip);
+    /**
+     * 销售业绩订单计划值数据
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> sumOrderMonthService(Integer dip);
+    /**
+     * 销售业绩订单完成值数据
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> sumOrderMonthOKService(Integer dip);
+    /**
+     * 销售业绩合同计划值数据
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> sumContractMonthService(Integer dip);
+    /**
+     * 销售业绩合同完成值数据
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> sumContractMonthOKService(Integer dip);
+    /**
      * 本月回款业绩完成值
      * @param dip
      * @return 统计结果类

@@ -13,14 +13,14 @@
         <result column="fk_object_id" property="fkObjectId"></result>
         <result column="fk_object_name" property="fkObjectName"></result>
         <result column="order_type" property="orderType"></result>
-        <result column="order_totalsum" property="orderTotalSum"></result>
+        <result column="order_total_sum" property="orderTotalSum"></result>
         <result column="order_gross_profit" property="orderGrossProfit"></result>
         <result column="order_revenue" property="orderRevenue"></result>
         <result column="order_saleroom" property="orderSaleroom"></result>
         <result column="fk_contacts_id" property="fkContactsId"></result>
         <result column="order_payment" property="orderPayment"></result>
-        <result column="order_start_time" property="orderStartTime"></result>
-        <result column="order_end_time" property="orderEndTime"></result>
+        <result column="order_start_times" property="orderStartTime"></result>
+        <result column="order_end_times" property="orderEndTime"></result>
         <result column="order_consignee_name" property="orderConsigneeName"></result>
         <result column="order_consignee_phone" property="orderConsigneePhone"></result>
         <result column="order_consignee_email" property="orderConsigneeEmail"></result>
@@ -29,7 +29,7 @@
         <result column="order_invoice_amount" property="orderInvoiceAmount"></result>
         <result column="order_approval_status" property="orderApprovalStatus"></result>
         <result column="order_approval_result" property="orderApprovalResult"></result>
-        <result column="order_approval_time" property="orderApprovalTime"></result>
+        <result column="order_approval_times" property="orderApprovalTime"></result>
         <result column="gmt_create" property="gmtCreate"></result>
         <result column="creator" property="creator"></result>
         <result column="gmt_modified" property="gmtModified"></result>
@@ -38,6 +38,18 @@
         <result column="order_settlement" property="orderSettlement"></result>
         <result column="order_context" property="orderContext"></result>
         <result column="fkUserId" property="fk_user_id"></result>
+    </resultMap>
+
+    <resultMap id="clientTableMap" type="ClientTable">
+        <id column="pk_cus_customer_id" property="pkCusCustomerid"></id>
+        <result column="abbreviation" property="abbreviation"></result>
+        <result column="cus_customername" property="cusCustomername"></result>
+        <result column="cus_classif" property="fkClassifId"></result>
+        <result column="cus_financial_telephone" property="cusFinancialTelephone"></result>
+        <result column="fk_user_id" property="fkUserId"></result>
+        <result column="cus_industry" property="fkIndustryId"></result>
+        <result column="cus_gmt_create" property="cusGmtCreate"></result>
+        <result column="cus_gmt_modified" property="cusGmtModified"></result>
     </resultMap>
     <select id="orderCount" resultType="int">
         SELECT COUNT(1) AS orderCount FROM `order`
@@ -54,7 +66,8 @@
         </where>
     </select>
     <select id="findOrder" resultMap="orderMap">
-        select * from `order`
+        select *,DATE_FORMAT(order_approval_time, '%Y-%m-%d %H:%i:%s')
+        order_approval_times from `order`
        <where>
            <if test="orderApprovalStatus==1">
                and order_approval_status=0
@@ -68,7 +81,9 @@
        </where>
     </select>
     <select id="findGetOrderId" resultMap="orderMap">
-        select * from `order` where order_id=#{orderId}
+        select *,DATE_FORMAT(order_start_time, '%Y-%m-%d %H:%i:%s') order_start_times,
+        DATE_FORMAT(order_end_time, '%Y-%m-%d %H:%i:%s') order_end_times,DATE_FORMAT(order_approval_time, '%Y-%m-%d %H:%i:%s')
+        order_approval_times from `order` where order_id=#{orderId}
     </select>
     <insert id="addOrder" parameterType="Order">
         INSERT INTO `order` (order_name,fk_cus_type_id,fk_cus_name,fk_object_type_id,fk_object_name,order_type,
@@ -118,4 +133,13 @@
             #{array}
         </foreach>
     </delete>
+
+    <select id="findClientTableById" resultMap="clientTableMap">
+        select * from clienttable
+        <where>
+            <if test="fkTypeNumberId!=null and fkTypeNumberId!=''">
+               and fk_type_number_id=#{fkTypeNumberId}
+            </if>
+        </where>
+    </select>
 </mapper>
