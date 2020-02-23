@@ -35,7 +35,7 @@ public class ShiroRealm extends AuthorizingRealm {
         //1.从principalcollection中来获取登录用户的信息
         User principal = (User) principalCollection.getPrimaryPrincipal();
         //2.利用登录的用户的信息来用户当前用户的角色或权限(可能需更查询数据库)
-        Set<String> roles = new HashSet<>();
+        Set<String> roles = new HashSet<String>();
         roles = userService.selectRole(principal.getUserName());
         //3.创建simpleAuthorizationInto,并设置其reles属性。
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);

@@ -1,6 +1,7 @@
 package com.csdj.crmproject.crmproject.controller.Instrument.SectionInstrument;
 
 import com.csdj.crmproject.crmproject.entity.Department;
+import com.csdj.crmproject.crmproject.entity.salesmanagement.Order;
 import com.csdj.crmproject.crmproject.entity.salesmanagement.StatisticalResult;
 import com.csdj.crmproject.crmproject.service.Instrument.SectionInstrument.SectionInstrumentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class SectionInstrumentController {
     @ResponseBody
     public Map<String, Object> listDepartment() {
         List<Department> list = service.listDepartmentService();
-        Map<String,Object> map = new HashMap<>(0);
+        Map<String,Object> map = new HashMap<String,Object>(0);
         map.put("data",list);
         return map;
     }
@@ -72,7 +73,7 @@ public class SectionInstrumentController {
     @ResponseBody
     public Map<String, Object> countReceivableMonth(@RequestParam(value = "dip",  required = false) Integer dip) {
         StatisticalResult count = service.countReceivableMonthService(dip);
-        Map<String,Object> map = new HashMap<>(0);
+        Map<String,Object> map = new HashMap<String,Object>(0);
         map.put("data",count);
         return map;
     }
@@ -84,7 +85,7 @@ public class SectionInstrumentController {
     @ResponseBody
     public Map<String, Object> countReceivableQuarter(@RequestParam(value = "dip",  required = false) Integer dip) {
         StatisticalResult count = service.countReceivableQuarterService(dip);
-        Map<String,Object> map = new HashMap<>(0);
+        Map<String,Object> map = new HashMap<String,Object>(0);
         map.put("data",count);
         return map;
     }
@@ -96,7 +97,7 @@ public class SectionInstrumentController {
     @ResponseBody
     public Map<String, Object> countReceivableYear(@RequestParam(value = "dip",  required = false) Integer dip) {
         StatisticalResult count = service.countReceivableYearService(dip);
-        Map<String,Object> map = new HashMap<>(0);
+        Map<String,Object> map = new HashMap<String,Object>(0);
         map.put("data",count);
         return map;
     }
@@ -109,7 +110,7 @@ public class SectionInstrumentController {
     public Map<String, Object> avgReceivableMonth(@RequestParam(value = "dip",  required = false) Integer dip) {
         Map<String,Object> count = service.avgReceivableMonthService(dip);
         Map<String,Object> count1=service.avgReceivableMonthOKService(dip);
-        Map<String,Object> map = new HashMap<>(0);
+        Map<String,Object> map = new HashMap<String,Object>(0);
         map.put("data",count);
         map.put("data1",count1);
         return map;
@@ -122,7 +123,7 @@ public class SectionInstrumentController {
     @PostMapping("/countSaleForecasting")
     @ResponseBody
     public Map<String, Object> countSaleForecasting(@RequestParam(value = "dip", required = false) Integer dip) {
-        Map<String, Object> map = new HashMap<>(0);
+        Map<String, Object> map = new HashMap<String,Object>(0);
         //销售预测数据源
         map.put("saleForecasting1", service.countSaleForecasting1Service(dip));
         map.put("saleForecasting2", service.countSaleForecasting2Service(dip));
@@ -139,7 +140,7 @@ public class SectionInstrumentController {
     @PostMapping("/countSales")
     @ResponseBody
     public Map<String, Object> countSales(@RequestParam(value = "dip", required = false) Integer dip) {
-        Map<String, Object> map = new HashMap<>(0);
+        Map<String, Object> map = new HashMap<String,Object>(0);
         //销售预测数据源
         map.put("countSales1", service.countSalesWithService(dip));
         map.put("countSales2", service.countCluesWithService(dip));

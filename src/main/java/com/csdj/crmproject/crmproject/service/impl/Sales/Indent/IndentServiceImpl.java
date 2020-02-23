@@ -35,7 +35,7 @@ public class IndentServiceImpl implements IndentService {
     public PageInfo<Order> findOrder(int pageNum, int pageSize,String orderApprovalStatus) {
         PageHelper.startPage(pageNum, pageSize);
         List<Order> list=indentDao.findOrder(orderApprovalStatus);
-        PageInfo<Order> pageInfo=new PageInfo<>(list);
+        PageInfo<Order> pageInfo=new PageInfo<Order>(list);
         return pageInfo;
     }
 

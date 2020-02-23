@@ -102,7 +102,7 @@ public class IndentController {
     @ResponseBody
     public Object deleteOrder(int[] array){
         int i = indentService.deleteOrder(array);
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<String, Object>();
         if (i > 0) {
             map.put("show", "success");
         } else {
