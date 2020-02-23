@@ -26,6 +26,36 @@ public class SectionInstrumentServiceImpl implements SectionInstrumentService {
     }
 
     @Override
+    public Map<String, Object> avgSalesOrderService(Integer dip) {
+        return objMapp.avgSalesOrder(dip);
+    }
+
+    @Override
+    public Map<String, Object> avgSalesContractService(Integer dip) {
+        return objMapp.avgSalesContract(dip);
+    }
+
+    @Override
+    public Map<String, Object> sumOrderMonthService(Integer dip) {
+        return objMapp.sumOrderMonth(dip);
+    }
+
+    @Override
+    public Map<String, Object> sumOrderMonthOKService(Integer dip) {
+        return objMapp.sumOrderMonthOK(dip);
+    }
+
+    @Override
+    public Map<String, Object> sumContractMonthService(Integer dip) {
+        return objMapp.sumContractMonth(dip);
+    }
+
+    @Override
+    public Map<String, Object> sumContractMonthOKService(Integer dip) {
+        return objMapp.sumContractMonthOK(dip);
+    }
+
+    @Override
     public StatisticalResult countReceivableMonthService(Integer dip) {
         return objMapp.countReceivableMonth(dip);
     }

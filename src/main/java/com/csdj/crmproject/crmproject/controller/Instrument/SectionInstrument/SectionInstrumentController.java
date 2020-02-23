@@ -48,6 +48,23 @@ public class SectionInstrumentController {
         return map;
     }
     /**
+     *销售业绩
+     * @return Map
+     */
+    @PostMapping("/salesResults")
+    @ResponseBody
+    public Map<String, Object> salesResults(@RequestParam(value = "dip", required = false) Integer dip) {
+        Map<String, Object> map = new HashMap<>(0);
+        //销售预测数据源
+        map.put("avgSales1", service.avgSalesOrderService(dip));
+        map.put("avgSales2", service.avgSalesContractService(dip));
+        map.put("sumOrder", service.sumOrderMonthService(dip));
+        map.put("sumOrderOK", service.sumOrderMonthOKService(dip));
+        map.put("sumContract", service.sumContractMonthService(dip));
+        map.put("sumContractOK", service.sumContractMonthOKService(dip));
+        return map;
+    }
+    /**
      * 本月回款业绩完成值
      * @return Map集合
      */
