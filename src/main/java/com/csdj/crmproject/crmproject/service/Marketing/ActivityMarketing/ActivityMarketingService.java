@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface ActivityMarketingService {
     //查询所有活动
-    public List<MarketActivity> activi();
+    public List<MarketActivity> activi(int page, int limit,String activityApprovalProcess);
     //查询总记录数
-    public int marketCount();
+    public int marketCount(String activityApprovalProcess);
     //增加
     public int addMarket(MarketActivity activity);
     //逻辑删除

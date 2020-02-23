@@ -1,8 +1,13 @@
 package com.csdj.crmproject.crmproject.service.Marketing.ActivityMarketing.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.csdj.crmproject.crmproject.dao.Marketing.ActivityMarketing.ActivityMarketingMapper;
+import com.csdj.crmproject.crmproject.entity.CusSalesTarget;
 import com.csdj.crmproject.crmproject.entity.marketingactivity.MarketActivity;
 import com.csdj.crmproject.crmproject.service.Marketing.ActivityMarketing.ActivityMarketingService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.jdbc.SQL;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,14 +19,24 @@ public class ActivityMarketingServiceImpl implements ActivityMarketingService {
 
 
     @Override
-    public List<MarketActivity> activi() {
-        return ActivityMarketingMapper.activi();
+    public List<MarketActivity> activi(int page, int limit,String activityApprovalProcess) {
+        //开启分页
+        PageHelper.startPage(page, limit);
+        //查询的数据
+        List<MarketActivity> list =ActivityMarketingMapper.activi(activityApprovalProcess);
+        System.out.println(list.size()+"--"+ JSON.toJSON(list));
+        //数据传入pagehelper中
+        PageInfo<MarketActivity> pInfo =new PageInfo<MarketActivity>(list);
+        System.out.println("1234567"+ activityApprovalProcess);
+        return pInfo.getList();
     }
 
     @Override
-    public int marketCount() {
-        return ActivityMarketingMapper.marketCount();
+    public int marketCount(String activityApprovalProcess) {
+
+        return ActivityMarketingMapper.marketCount(activityApprovalProcess);
     }
+
 
     @Override
     public int addMarket(MarketActivity activity) {

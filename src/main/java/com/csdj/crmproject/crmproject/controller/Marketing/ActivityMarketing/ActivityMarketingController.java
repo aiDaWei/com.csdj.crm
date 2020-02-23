@@ -1,5 +1,6 @@
 package com.csdj.crmproject.crmproject.controller.Marketing.ActivityMarketing;
 
+import com.csdj.crmproject.crmproject.entity.CusSalesTarget;
 import com.csdj.crmproject.crmproject.entity.marketingactivity.MarketActivity;
 
 import com.csdj.crmproject.crmproject.service.Marketing.ActivityMarketing.ActivityMarketingService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,14 +35,18 @@ public class ActivityMarketingController {
 
    @RequestMapping("/skipPage")
     @ResponseBody
-    public Object skipShow(@RequestParam(value = "page", required = false, defaultValue = "1") int pageNum,
-                           @RequestParam(value = "limit", required = false, defaultValue = "4") int pageSize){
-        List<MarketActivity> list= service.activi();
-        System.out.println("JSON："+list);
-        Map<String,Object> map=new HashMap<>();
+    public Object skipShow(HttpServletRequest request,@RequestParam(value ="activityApprovalProcess",required = false)String activityApprovalProcess){
+       int page =Integer.parseInt(request.getParameter("page"));
+       int limit =Integer.parseInt(request.getParameter("limit"));
+       List<MarketActivity> list = service.activi(page,limit,activityApprovalProcess);
+       System.out.println("进入是》》》"+list.size());
+       int sum =service.marketCount(activityApprovalProcess);
+
+
+        Map<String,Object> map=new HashMap<String,Object>();
         map.put("code",0);
-        map.put("data",service.activi());
-        map.put("count",5);
+        map.put("data",service.activi(page,limit,activityApprovalProcess));
+        map.put("count",service.marketCount(activityApprovalProcess));
         //System.out.println("JSON："+json);
         return map;
     }
