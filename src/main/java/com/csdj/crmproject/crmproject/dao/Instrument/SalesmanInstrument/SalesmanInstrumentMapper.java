@@ -199,6 +199,49 @@ public interface SalesmanInstrumentMapper {
      */
     Map<String,Double> yearAnswerAccomplish(@Param("userId") String userId);
 
+    //******************************************************************
+    /**
+     * 本月销售业绩完成值
+     * @param userId 业务员id
+     * @param saleType 类型
+     * @return 统计结果类
+     */
+    StatisticalResult countSaleableMonth(@Param("userId") Integer userId,
+                                         @Param("saleType") String saleType);
+    /**
+     * 本季销售业绩完成值
+     * @param userId 业务员id
+     * @param saleType 类型
+     * @return 统计结果类
+     */
+    StatisticalResult countSaleableQuarter(@Param("userId") Integer userId,
+                                           @Param("saleType") String saleType);
+    /**
+     * 本年销售业绩完成值
+     * @param userId 业务员id
+     * @param saleType 类型
+     * @return 统计结果类
+     */
+    StatisticalResult countSaleableYear(@Param("userId") Integer userId,
+                                        @Param("saleType") String saleType);
+    /**
+     * 月度销售额统计图计划值
+     * @param userId 业务员id
+     * @param saleType 类型
+     * @return map数据
+     */
+    Map<String, Object> avgSaleableMonth(@Param("userId") Integer userId,
+                                           @Param("saleType") String saleType);
+    /**
+     * 月度销售额统计图完成值
+     * @param userId 业务员id
+     * @param saleType 类型
+     * @return map数据
+     */
+    Map<String, Object> avgSaleableMonthOK(@Param("userId") Integer userId,
+                                             @Param("saleType") String saleType);
+
+
     //********************************************************************
 
 

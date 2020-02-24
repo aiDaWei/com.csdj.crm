@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>CRM管理系统</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta http-equiv="content-type" content="no-siteapp"/>
+    <!--    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>-->
+    <link rel="stylesheet" th:href="@{./static/css/font.css}">
+    <link rel="stylesheet" th:href="@{./static/css/xadmin.css}">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script th:src="@{./static/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{./static/js/xadmin.js}"></script>
+</head>
+<body class="login-bg">
+<div class="login">
+    <div class="message">管理注册</div>
+    <div id="darkbannerwrap"></div>
+    <form method='post' class='layui-form'>
+        <label class='layui-form-label' for="reg_user_name" style="display:none"></label>
+        <div class='layui-input-inline'>
+            <input id='reg_user_name' type='text' class='layui-input' style='width:340px;height:50px'
+                   lay-verify='required' name='user_name' placeholder='请输入用户名' autocomplete="off" required>
+        </div>
+        <div id='occupy' style="position:absolute;top:274px;left:1090px"></div>
+        <label class='layui-form-label' for="reg_password" style="display:none"></label>
+        <div class='layui-input-inline'>
+            <input id='reg_password' type='password' class='layui-input' style='width:340px;height:50px'
+                   lay-verify='required' name='password' placeholder='请输入密码' autocomplete="off" required>
+        </div>
+        <label class='layui-form-label' for="password_verify" style="display:none"></label>
+        <div class='layui-input-inline'>
+            <input id='password_verify' type='password' class='layui-input' style='width:340px;height:50px'
+                   lay-verify='required' name='password_verify' placeholder='确认密码' autocomplete="off" required>
+        </div>
+        <div id='verify' style="position:absolute;top:374px;left:1090px"></div>
+        <label class='layui-form-label' for="department_id" style="display:none"></label>
+        <span>部门：</span>
+        <div class='layui-input-inline'>
+            <select id="department_id" name="department_id" lay-filter='department_id' lay-search='' required>
+                <option value=''></option>
+            </select>
+        </div>
+        <div id='select' style="position:absolute;top:424px;left:1040px;color:red">请选择部门</div>
+        <label class='layui-form-label' for="reg_user_iphone" style="display:none"></label>
+        <div class='layui-input-inline'>
+            <input id='reg_user_iphone' type='tel' class='layui-input' style='width:340px;height:50px'
+                   name='user_iphone' placeholder='手机' autocomplete="off">
+        </div>
+        <div id='iphone_verify' style="position:absolute;top:474px;left:1040px"></div>
+        <label class='layui-form-label' for="reg_user_email" style="display:none"></label>
+        <div class='layui-input-inline'>
+            <input id='reg_user_email' type='email' class='layui-input' style='width:340px;height:50px'
+                   name='user_email' placeholder='邮箱' autocomplete="off">
+        </div>
+        <div id='email_verify' style="position:absolute;top:524px;left:1040px"></div>
+        <input id='reg_now' class='layui-input layui-disabled' style='width:340px;height:48px' value='立即注册' lay-submit
+               lay-filter='reg_now' type='submit' disabled>
+    </form>
+</div>
+<script>
+    "use strict";
+    let form, layer;
+    let occupy, reg_user_name, reg_password, password_verify, verify, reg_now, department_id, select, reg_user_iphone,
+        iphone_verify, reg_user_email, email_verify;
+    let username_is_ok = false, password_is_ok = false, department_is_ok = false, user_iphone_is_ok = true,
+        user_email_is_ok = true;
+    layui.use(['form', 'layer'], function () {
+        form = layui.form;
+        layer = layui.layer;
+        form.on('submit(reg_now)', function (data) {
+            if (enable()) {
+                disable();
+                const field = data.field;
+                const payload = {};
+                const user_name = field["user_name"];
+                if (user_name && user_name.trim() !== "") {
+                    payload["user_name"] = user_name
+                }
+                const password = field["password"];
+                if (password && password.trim() !== "" && password === field["password_verify"]) {
+                    payload["user_password"] = password
+                }
+                const department_id = field["department_id"];
+                if (department_id) {
+                    payload["department_id"] = parseInt(department_id)
+                }
+                const user_email = field["user_email"];
+                if (user_email && user_email.trim() !== "") {
+                    payload["user_email"] = user_email
+                }
+                const user_iphone = field["user_iphone"];
+                if (user_iphone && user_iphone.trim() !== "") {
+                    payload["user_iphone"] = user_iphone
+                }
+                $.ajax({
+                    type: "post", url: "./register/register",
+                    data: payload,
+                    success: function (data) {
+                        if (data.code === 200) {
+                            if (data.count > 0) {
+                                layer.msg("<i class='layui-icon layui-icon-ok-circle'>注册成功，3秒后跳转</i>");
+                                setTimeout(function () {
+                                    window.location.href = "./skipLogin"
+                                }, 3000)
+                            } else {
+                                layer.msg("<i class='layui-icon layui-icon-face-surprised'>未保存成功</i>")
+                            }
+                        } else {
+                            layer.msg("<i class='layui-icon layui-icon-face-surprised'>" + data.code + " " + data.msg + "</i>");
+                        }
+                    },
+                    error: function (e) {
+                        layer.msg("<i class='layui-icon layui-icon-face-cry'>" + e.status + " " + e.statusText + "</i>");
+                    }
+                });
+            } else {
+                layer.msg("<i class='layui-icon layui-icon-face-surprised'>错误的提交了表单</i>")
+            }
+            layer.msg("<i class='layui-icon layui-icon-loading-1 layui-anim layui-anim-rotate layui-anim-loop'></i>正在提交表单");
+            return false
+        });
+        form.on('select(department_id)', function (data) {
+            if (data.value) {
+                select.innerHTML = "<i class='layui-icon layui-icon-ok-circle' style='color: green'>";
+                select.style.color = "green";
+                select.style.left = "1090px";
+                department_is_ok = true;
+                enable()
+            } else {
+                disable();
+                select.innerText = "请选择部门";
+                select.style.color = "red";
+                select.style.left = "1040px";
+                department_is_ok = false
+            }
+        });
+        $.ajax({
+            type: "get", url: "./listDepartment",
+            success: function (data) {
+                let department_list = data.data;
+                for (let i = 0; i < department_list.length; i++) {
+                    department_id.innerHTML += "<option value='" + department_list[i]["pkDepartmentId"] + "'>" +
+                        department_list[i]["departmentName"] + "</option>"
+                }
+                form.render();
+            },
+            error: function (e) {
+                layer.msg("<i class='layui-icon layui-icon-face-cry'>" + e.status + " " + e.statusText + "</i>");
+            }
+        });
+    });
+
+    function enable() {
+        if (username_is_ok && password_is_ok && department_is_ok && user_iphone_is_ok && user_email_is_ok) {
+            reg_now.disabled = false;
+            reg_now.className = "layui-input";
+            return true
+        }
+    }
+
+    function disable() {
+        reg_now.disabled = true;
+        reg_now.className = "layui-input layui-disabled"
+    }
+
+    function check_username(username) {
+        return $.ajax({
+            type: "get", url: "./register/username_check",
+            data: {
+                username: username
+            },
+            success: function (data) {
+                if (data.code === 200) {
+                    if (data["occupy"]) {
+                        disable();
+                        occupy.innerText = "用户名被占用";
+                        occupy.style.color = "red";
+                        occupy.style.left = "1040px";
+                        username_is_ok = false
+                    } else {
+                        occupy.innerHTML = "<i class='layui-icon layui-icon-ok-circle' style='color: green'>";
+                        occupy.style.color = "green";
+                        occupy.style.left = "1090px";
+                        username_is_ok = true;
+                        enable()
+                    }
+                } else {
+                    layer.msg("<i class='layui-icon layui-icon-face-surprised'>" + data.code + " " + data.msg + "</i>");
+                }
+            },
+            error: function (e) {
+                layer.msg("<i class='layui-icon layui-icon-face-cry'>" + e.status + " " + e.statusText + "</i>");
+            }
+        });
+    }
+
+    function check_password() {
+        let value = password_verify.value;
+        if (value && value.trim() !== "") {
+            if (value === reg_password.value) {
+                verify.innerHTML = "<i class='layui-icon layui-icon-ok-circle' style='color: green'>";
+                verify.style.color = "green";
+                verify.style.left = "1090px";
+                password_is_ok = true;
+                enable()
+            } else {
+                disable();
+                password_is_ok = false;
+                verify.innerText = "密码不匹配";
+                verify.style.color = "red";
+                verify.style.left = "1040px"
+            }
+        } else {
+            disable();
+            password_is_ok = false;
+            verify.innerHTML = "";
+            verify.style.color = null
+        }
+    }
+
+    occupy = document.getElementById("occupy");
+    reg_user_name = document.getElementById("reg_user_name");
+    reg_password = document.getElementById("reg_password");
+    password_verify = document.getElementById("password_verify");
+    verify = document.getElementById("verify");
+    reg_now = document.getElementById("reg_now");
+    department_id = document.getElementById("department_id");
+    select = document.getElementById("select");
+    reg_user_iphone = document.getElementById("reg_user_iphone");
+    iphone_verify = document.getElementById("iphone_verify");
+    reg_user_email = document.getElementById("reg_user_email");
+    email_verify = document.getElementById("email_verify");
+    reg_user_name.addEventListener("blur", function () {
+        let value = reg_user_name.value;
+        username_is_ok = false;
+        disable();
+        occupy.innerHTML = "";
+        occupy.style.color = null;
+        if (value && value.trim() !== "") {
+            check_username(value)
+        }
+    });
+    reg_password.addEventListener("blur", check_password);
+    password_verify.addEventListener("blur", check_password);
+    reg_user_iphone.addEventListener("blur", function () {
+        let value = reg_user_iphone.value;
+        if (value && value.trim() !== "") {
+            if (/^[1][345789][0-9]{9}$/.test(value)) {
+                iphone_verify.innerHTML = "<i class='layui-icon layui-icon-ok-circle' style='color: green'>";
+                iphone_verify.style.color = "green";
+                iphone_verify.style.left = "1090px";
+                user_iphone_is_ok = true;
+                enable()
+            } else {
+                user_iphone_is_ok = false;
+                disable();
+                if (/^[1][0-9][0-9]{9}$/.test(value)) {
+                    iphone_verify.innerText = "只支持13,14,15,17,18,19开头的手机号";
+                    iphone_verify.style.left = "896px"
+                } else {
+                    iphone_verify.innerText = "手机号格式不正确";
+                    iphone_verify.style.left = "1004px"
+                }
+                iphone_verify.style.color = "red"
+            }
+        } else {
+            user_iphone_is_ok = true;
+            iphone_verify.innerHTML = "";
+            iphone_verify.style.color = null;
+            enable()
+        }
+    });
+    reg_user_email.addEventListener("blur", function () {
+        let value = reg_user_email.value;
+        if (value && value.trim() !== "") {
+            if (/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(value)) {
+                email_verify.innerHTML = "<i class='layui-icon layui-icon-ok-circle' style='color: green'>";
+                email_verify.style.color = "green";
+                email_verify.style.left = "1090px";
+                user_email_is_ok = true;
+                enable()
+            } else {
+                disable();
+                user_email_is_ok = false;
+                email_verify.innerText = "邮箱格式不正确";
+                email_verify.style.color = "red";
+                email_verify.style.left = "1040px"
+            }
+        } else {
+            user_email_is_ok = true;
+            email_verify.innerHTML = "";
+            email_verify.style.color = null;
+            enable()
+        }
+    })
+</script>
+</body>
+</html>

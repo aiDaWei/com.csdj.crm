@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.csdj.crmproject.crmproject.dao.RegisterMapper">
+    <!--注册-->
+    <insert id="register">
+        INSERT INTO crmproject.user(user_name, user_password, fk_department_id, user_gmt_create, user_iphone,
+                                    user_email)
+        VALUES (#{user_name}, #{user_password}, #{fk_department_id}, #{user_gmt_create}, #{user_iphone}, #{user_email})
+    </insert>
+    <!--判断部门ID是否存在-->
+    <select id="getDepartment" resultType="com.csdj.crmproject.crmproject.entity.Department">
+        SELECT pk_department_id pkDepartmentId, department_name departmentName
+        FROM department
+        <where>
+            <if test="departmentId!=null">
+                AND pk_department_id=#{departmentId}
+            </if>
+        </where>
+    </select>
+</mapper>
