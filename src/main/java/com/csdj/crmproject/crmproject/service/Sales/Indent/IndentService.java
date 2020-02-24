@@ -1,8 +1,11 @@
 package com.csdj.crmproject.crmproject.service.Sales.Indent;
 
+import com.csdj.crmproject.crmproject.entity.customermanagement.ClientTable;
 import com.csdj.crmproject.crmproject.entity.salesmanagement.Order;
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 订单管理
@@ -44,4 +47,10 @@ public interface IndentService {
      * @return
      */
     public int deleteOrder(int[] array);
+    /**
+     * 根据客户类型查询客户信息
+     * @param fkTypeNumberId 客户类型编号
+     * @return
+     */
+    public PageInfo<ClientTable> findClientTableById(String fkTypeNumberId,int pageNo);
 }

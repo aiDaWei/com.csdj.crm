@@ -10,9 +10,9 @@ import java.util.List;
 @org.apache.ibatis.annotations.Mapper
 public interface ActivityMarketingMapper {
     //查询所有
-    List<MarketActivity> activi();
+    List<MarketActivity> activi(@Param(value = "activityApprovalProcess")String activityApprovalProcess);
     //查询总记录数
-    public int marketCount();
+    public int marketCount(@Param(value = "activityApprovalProcess")String activityApprovalProcess);
     //增加
     int addMarket(MarketActivity activity);
     //逻辑删除

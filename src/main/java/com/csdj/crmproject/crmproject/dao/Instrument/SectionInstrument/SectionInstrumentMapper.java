@@ -22,6 +22,42 @@ public interface SectionInstrumentMapper {
      */
     List<Department> listDepartment();
     /**
+     * 销售业绩订单仪表盘数据
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> avgSalesOrder(@Param("dip")Integer dip);
+    /**
+     * 销售业绩合同仪表盘数据
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> avgSalesContract(@Param("dip")Integer dip);
+    /**
+     * 销售业绩订单计划值数据
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> sumOrderMonth(@Param("dip")Integer dip);
+    /**
+     * 销售业绩订单完成值数据
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> sumOrderMonthOK(@Param("dip")Integer dip);
+    /**
+     * 销售业绩合同计划值数据
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> sumContractMonth(@Param("dip")Integer dip);
+    /**
+     * 销售业绩合同完成值数据
+     * @param dip
+     * @return map数据
+     */
+    Map<String, Object> sumContractMonthOK(@Param("dip")Integer dip);
+    /**
      * 本月回款业绩完成值
      * @param dip
      * @return 统计结果类

@@ -20,7 +20,7 @@
         <button class="layui-btn layui-btn-sm" lay-event="isAll">发起流程</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">流程审批</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">流程痕迹</button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">流程图</button>
+        <button class="layui-btn layui-btn-sm" lay-event="flowImg">流程图</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">反审批</button>
     </div>
 
@@ -206,6 +206,22 @@
                         });
                     }
                     break;
+                case 'flowImg':
+                    layer.open({
+                        type: 1,
+                        title:'流程图',
+                        area: ['1000px', '450px'],
+                        content: $('#layer-photos-demo'),
+                        btn: ['确定','取消'],
+                        btnAlign: 'c',
+                        yes: function (index, layero) {
+                            layer.close(index);
+                        },
+                        btn2: function(index, layero){
+                            layer.close(index);
+                        }
+                    });
+                    break;
 
                 //自定义头工具栏右侧图标 - 提示
                 case 'LAYTABLE_TIPS':
@@ -231,5 +247,9 @@
 
     });
 </script>
+
+<div id="layer-photos-demo" class="layer-photos-demo" hidden>
+    <img layer-src="static/images/flowImg.png" src="static/images/flowImg.png" alt="流程图" width="900px" height="400px">
+</div>
 </body>
 </html>

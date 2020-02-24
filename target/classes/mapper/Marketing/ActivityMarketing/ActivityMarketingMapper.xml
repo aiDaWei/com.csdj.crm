@@ -25,12 +25,35 @@
 `activity_actual_number`,`activity_planned_start_date` ,`activity_planned_end_date`,
 `activity_approval_process` ,
 `activity_circulation_date`  ,`activity_approval_result`  ,(SELECT `user_name` FROM `user` WHERE `pk_user_id`=`activity_founder`) as cname,
-`activity_gmt_create`   FROM `market_activity` WHERE isdel=0
-
+`activity_gmt_create`   FROM `market_activity`
+        <where>
+            <if test="activityApprovalProcess==1">
+                and activity_approval_process='审批中'
+            </if>
+            <if test="activityApprovalProcess==2">
+                and activity_approval_process='已成功'
+            </if>
+            <if test="activityApprovalProcess==3">
+                and activity_approval_process='已失败'
+            </if>
+            and isdel=0
+        </where>
     </select>
 
     <select id="marketCount" resultType="int">
-    SELECT COUNT(1) AS marketCount FROM `market_activity` where isdel=0
+    SELECT COUNT(1) AS marketCount FROM `market_activity`
+        <where>
+            <if test="activityApprovalProcess==1">
+                and activity_approval_process='审批中'
+            </if>
+            <if test="activityApprovalProcess==2">
+                and activity_approval_process='已成功'
+            </if>
+            <if test="activityApprovalProcess==3">
+                and activity_approval_process='已失败'
+            </if>
+            and isdel=0
+        </where>
     </select>
 
     <insert id="addMarket" >
@@ -39,7 +62,7 @@ activity_planned_start_date,activity_planned_end_date,activity_approval_process,
 activity_approval_result,activity_founder,activity_gmt_create,isdel)
 VALUES(#{activityName},#{activityHead},#{activityType},
 #{activityBudget},#{activityActualNumber},#{activityPlannedStartdate},
-#{activityPlannedEnddate},#{activityApprovalProcess},#{activityCirculationdate},
+#{activityPlannedEnddate},'审批中',#{activityCirculationdate},
 #{activityApprovalResult},#{activityFounder},#{activityGmtCreate},0)
 
     </insert>
@@ -52,10 +75,14 @@ VALUES(#{activityName},#{activityHead},#{activityType},
 
 SELECT pk_mark_activity_id, `activity_name`  ,(SELECT `user_name` FROM `user` WHERE `pk_user_id`=`fk_user_id`) AS NAME ,`activity_type` ,
 `activity_budget` ,
-`activity_actual_number`,`activity_planned_start_date` ,`activity_planned_end_date`,
+`activity_actual_number`,DATE_FORMAT(`activity_planned_start_date`,'%Y-%m-%d %H:%i:%s')as activity_planned_start_date ,DATE_FORMAT(`activity_planned_end_date`,'%Y-%m-%d %H:%i:%s') as activity_planned_end_date,
 `activity_approval_process` ,
 `activity_circulation_date`  ,`activity_approval_result`  ,(SELECT `user_name` FROM `user` WHERE `pk_user_id`=`activity_founder`) AS cname,
-`activity_gmt_create`   FROM `market_activity` where pk_mark_activity_id=#{pkMarkActivityId}
+DATE_FORMAT(`activity_gmt_create`,'%Y-%m-%d %H:%i:%s')AS activity_gmt_create   FROM `market_activity`
+        where
+            pk_mark_activity_id=#{pkMarkActivityId}
+
+
     </select>
 
     <update id="updaMarket" parameterType="MarketActivity" >
