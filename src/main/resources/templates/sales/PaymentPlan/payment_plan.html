@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>主页面</title>
+    <link rel="stylesheet" href="static/lib/layui/css/layui.css">
+    <script src="static/js/jquery-2.1.1.js"></script>
+    <script src="static/lib/layui/layui.js"></script>
+</head>
+<body>
+
+<table id="demo" lay-filter="test"></table>
+
+<script type="text/html" id="toolbarDemo">
+
+    <div class="layui-btn-container layui-input-inline">
+        <button class="layui-btn layui-btn-sm" lay-event="addPlan">新增</button>
+        <button class="layui-btn layui-btn-sm" lay-event="updatePlan">编辑</button>
+        <button class="layui-btn layui-btn-sm" lay-event="deletePlan">删除</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">查看</button>
+    </div>
+
+    <div class="layui-input-inline">
+        <select name="rePlanCurrentState" lay-filter="rePlanCurrentState">
+            <option value="0" selected="">所有人的收款计划 (全部)</option>
+            <option value="1">我的收款计划 (全部)</option>
+            <option value="2">我的收款计划 (已完成)</option>
+            <option value="3">我的收款计划 (未完成)</option>
+            <option value="4">所有人的收款计划  (未完成)</option>
+            <option value="5">所有人的收款计划  (已完成)</option>
+        </select>
+    </div>
+</script>
+
+
+<script>
+    layui.use(['table','form'], function(){
+        let table = layui.table,
+            form = layui.form;
+
+        //第一个实例
+        table.render({
+            elem: '#demo'
+            ,height: 312
+            ,url: 'find_plan.htmls' //数据接口
+            ,page: true //开启分页
+            ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            ,limit : 3//默认1条数据一页
+            ,limits : [3,5,10,15] //数据分页条
+            ,cols: [
+                [ //表头
+                    {type:'checkbox', fixed: 'left'}
+                    // ,{field:'pkRePlanId', width:160, title: '编号'}
+                    ,{field:'rePlanPlanStWe', width:160, title: '标题'}
+                    ,{field:'rePlanMoney ', width:120, title: '预计收款金额'}
+                    ,{field:'rePlanCurrentState', width:120,title: '当前状态',templet:function (data){
+                        if (data.rePlanCurrentState == 0) {
+                            return "已完成";
+                        }
+                        if (data.rePlanCurrentState == 1) {
+                            return "未完成";
+                        }
+                        if (data.rePlanCurrentState == 2) {
+                            return "进行中";
+                        }
+                    }
+                }
+                    ,{field:'fkOrderConId', width:160, title: '合同/订单'}
+                    ,{field:'fkCustomerId',title: '客户', width:120, templet:function (data){
+                        if (data.fkCustomerId == 0) {
+                            return "企业客户";
+                        }
+                        if (data.fkCustomerId == 1) {
+                            return "个人客户";
+                        }
+                    }
+                }
+                    ,{field:'rePlanPlannedTime', width:120, title: '计划收款日期'}
+                    ,{field:'rePlanAcTulReceiptTime', width:120, title: '实际收款日期'}
+                    ,{field:'rePlanUserId', width:120, title: '负责人'}
+                    ,{field:'rePlanMtCreate', width:120, title: '创建时间'}
+                ]
+            ]
+        });
+
+        //头工具栏事件
+        table.on('toolbar(test)', function(obj){
+            let checkStatus = table.checkStatus(obj.config.id)
+                , data = checkStatus.data; //获取选中的数据
+            switch(obj.event){
+                case 'addPlan':
+                    layer.open({
+                        type: 2,
+                        area: ['1000px', '460px'],
+                        title:'新增[收款计划]',
+                        content: 'add_plan.html',
+                        btn: ['保存', '取消'],
+                        btnAlign: 'c',
+                        yes: function (index, layero) {
+                            var body = layer.getChildFrame('body', index);
+                            body.find('#btnAddPlan').click();
+                        },
+                        btn2: function(index, layero){
+                            layer.close(index);
+                        }
+                    });
+                    break;
+
+                case 'updatePlan':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else if (data.length > 1) {
+                        layer.msg('只能同时编辑一个');
+                    } else {
+                        let Id=data[0].pkRePlanId;
+                        layer.open({
+                            title: '修改收款计划',
+                            type: 2,
+                            area: ['1000px', '450px'],
+                            content: 'update_plan.html?pkRePlanId=' + Id + ''
+                            , btn: ['保存','取消']
+                            , btnAlign: 'c'
+                            , yes: function (index, layero) {
+                                var body = layer.getChildFrame('body', index);
+                                body.find('#btnUpdatePlan').click();
+                            }
+                            ,btn2: function(index, layero){
+                                layer.close(index);
+                            }
+                        });
+                    }
+                    break;
+
+                case 'deletePlan':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else {
+                        layer.confirm('确定要删除选中的行?', {icon: 3, title: '提示'}, function (index) {
+                            let data = checkStatus.data;
+                            let array = new Array();
+                            for (let i = 0; i < data.length; i++) {
+                                array[i] = data[i].pkRePlanId;
+                            }
+                            $.ajax({
+                                url: "delete_plan.htmls",
+                                type: "get",
+                                data: {array: array},
+                                traditional: true,
+                                success: function (data) {
+                                    if (data.show == "success") {
+                                        layer.msg('删除成功', {icon: 1, time: 2000}, function () {
+                                            window.location.reload();
+                                        });
+                                    }
+                                },
+                                error:function () {
+                                    layer.msg('ajax执行错误',{icon:2,time:2000});
+                                }
+                            })
+                        });
+                    }
+                    break;
+
+                //自定义头工具栏右侧图标 - 提示
+                case 'LAYTABLE_TIPS':
+                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                    break;
+            };
+        });
+
+        //审批状态监听
+        form.on('select(rePlanCurrentState)', function(data){
+            let orderApprovalStatus=data.value;
+            table.reload('demo', {
+                url: 'find_plan.htmls'
+                , where: {
+                    orderApprovalStatus: orderApprovalStatus,
+                } //设定异步数据接口的额外参数
+                , page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                //,height: 300
+            });
+        });
+
+    });
+
+
+</script>
+
+<div class="layui-tab layui-tab-card">
+    <ul class="layui-tab-title">
+        <li class="layui-this">提醒</li>
+    </ul>
+    <div class="layui-tab-content" >
+        <div class="layui-tab-item layui-show">
+
+            <table class="layui-hide" id="demos" lay-filter="detail"></table>
+
+            <script type="text/html" id="toolbarDemos">
+                <div class="layui-btn-container layui-input-inline">
+                    <button class="layui-btn layui-btn-sm" lay-event="addPlanRemind">新增</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="updatePlanRemind">编辑</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="deletePlanRemind">删除</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="isAll">查看</button>
+                </div>
+            </script>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

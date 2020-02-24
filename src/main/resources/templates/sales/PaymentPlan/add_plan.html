@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增收款计划</title>
+    <link rel="stylesheet" href="static/lib/layui/css/layui.css">
+    <script src="static/js/jquery-2.1.1.js"></script>
+    <script src="static/lib/layui/layui.js"></script>
+    <style>
+        .layui-form-label{
+            width: 85px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" action="javascript:;" id="addPlanForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label">计划ID</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" autocomplete="off" class="layui-input" disabled>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="rePlanPlanStWe" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">预计收款金额</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="rePlanMoney"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">当前状态</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <select name="rePlanCurrentState" lay-filter="fang">
+                <option value="0" selected="">未开始</option>
+                <option value="1">进行中</option>
+                <option value="2">已暂停</option>
+                <option value="3">已完成</option>
+                <option value="4">已取消</option>
+            </select>
+        </div>
+    </div>
+
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">合同/订单</label>
+        <label class="layui-form-label"style="margin-left: -60px;">类型</label>
+        <div class="layui-input-inline">
+            <select name="fkOrDerConTypeId" lay-filter="fkOrDerConTypeId" id="fkOrDerConTypeId" lay-verify="required">
+                <option value="0" selected="">无</option>
+                <option value="1">业务机会</option>
+                <option value="2">报价单</option>
+                <option value="3">合同</option>
+                <option value="4">订单</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <input type="text" name="rePlanOrderContractName" id="rePlanOrderContractName"  autocomplete="off" class="layui-input">
+        </div>
+        <button class="layui-btn" onclick="htType()">选择</button>
+        <button class="layui-btn" onclick="clears(1)">清空</button>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">客户</label>
+        <label class="layui-form-label"style="margin-left: -60px;">类型</label>
+        <div class="layui-input-inline">
+            <select name="reUserTypeId" lay-filter="reUserTypeId"   id="reUserTypeId"  lay-verify="required">
+                <option value="0" selected="">企业客户</option>
+                <option value="1">个人客户</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <input type="text" name="rePlanCustomerName" id="rePlanCustomerName"  autocomplete="off" class="layui-input">
+        </div>
+        <button class="layui-btn" onclick="khType()">选择</button>
+        <button class="layui-btn" onclick="clears(2)">清空</button>
+    </div>
+
+
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">计划收款日期</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="rePlanPlannedTime" class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">实计收款日期</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="rePlanAcTulReceiptTime" class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <textarea name="rePlanRemark"  class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item" hidden>
+        <div class="layui-input-block">
+            <button class="layui-btn" id="btnAddPlan" lay-submit lay-filter="formDemo">提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use(['form','table','layer','laydate'], function(){
+        var form = layui.form
+            ,table = layui.table
+            ,layer = layui.layer
+            ,laydate=layui.laydate;
+
+        lay('.test-item').each(function(){
+            laydate.render({
+                elem: this
+                ,trigger: 'click'
+                ,type: 'datetime'
+            });
+        });
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            $.ajax({
+                url:"add_plan_htmls",
+                type:"post",
+                data:$("#addPlanForm").serialize(),
+                dataType:"json",
+                success:function (data) {
+                    if (data>0){
+                        layer.msg('添加成功', {icon: 1, time: 2000}, function () {
+                            parent.location.reload();
+                        });
+
+                    }else{
+                        layer.msg('添加失败',{icon:2})
+                    }
+                },
+                error:function () {
+                    layer.msg('ajax执行失败',{icon:2})
+                }
+            })
+            return false;
+        });
+
+        //监听合同订单
+        form.on('select(fkOrDerConTypeId)', function(data){
+            $("#rePlanOrderContractName").val("");
+        });
+
+        //监听客户类型
+        form.on('select(reUserTypeId)', function(data){
+            $("#rePlanCustomerName").val("");
+        });
+    });
+</script>
+<script>
+    //打开合同/订单页面
+    function htType(){
+        var a=$('[name=fkOrDerConTypeId]').val();
+        var index=$('#fkOrDerConTypeId1');
+        if(a==1){
+            index=$('#khType2')
+        }
+        layer.open({
+            type: 1,
+            area: ['900px', '300px'],
+            content: index //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            ,btn: ['确定', '取消']
+            ,btnAlign: 'c'
+            ,title:'类型'
+            ,yes: function(index, layero){
+                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                $("#rePlanOrderContractName").val(xzval.val());
+                xzval.attr("checked",false);
+                xzval.parent("td").parent("tr").css("background-color", "transparent")
+                layer.close(index);
+            }
+            ,btn2: function(index, layero){
+                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                xzval.attr("checked",false);
+                xzval.parent("td").parent("tr").css("background-color", "transparent")
+                layer.close(index);
+            }
+        });
+    }
+
+    //打开客户类型页面
+    function khType(){
+        var reUserTypeId=$("#reUserTypeId").val();
+        var index=$('#khType');
+        if(reUserTypeId=1){
+            index=$('#khType2')
+        }
+        layer.open({
+            type: 1,
+            area: ['900px', '300px'],
+            content: index //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            ,btn: ['确定', '取消']
+            ,btnAlign: 'c'
+            ,title:'类型'
+            ,yes: function(index, layero){
+                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                $("#rePlanCustomerName").val(xzval.val());
+                xzval.attr("checked",false);
+                xzval.parent("td").parent("tr").css("background-color", "transparent")
+                layer.close(index);
+            }
+            ,btn2: function(index, layero){
+                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                xzval.attr("checked",false);
+                xzval.parent("td").parent("tr").css("background-color", "transparent")
+                layer.close(index);
+            }
+        });
+    }
+
+
+
+    //清空数据方法
+    function clears(i) {
+        if(i==1){
+            $("#fkOrderConId").val("");
+        }
+        if (i==2){
+            $("#fkCustomerId").val("");
+        }
+    }
+
+</script>
+<!--合同/订单(业务机会)-->
+<table class="layui-table" id="fkOrDerConTypeId1" style="overflow-x: auto; width: 1500px" hidden>
+    <colgroup>
+        <col width="50">
+        <col width="200">
+        <col width="200">
+        <col width="100">
+        <col width="150">
+        <col width="150">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+    </colgroup>
+    <thead>
+    <tr>
+        <th></th>
+        <th>销售机会名称</th>
+        <th>所属客户</th>
+        <th>负责人</th>
+        <th>预期签单时间</th>
+        <th>预期签单金额</th>
+        <th>预期利润</th>
+        <th>成功率(%)</th>
+        <th>当前阶段</th>
+        <th>销售模式</th>
+        <th>是否关闭</th>
+        <th>是否成功</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="checkbox" value="免费服务" style="zoom:150%;"></td>
+        <td>免费服务</td>
+        <td>深圳ddd的大大</td>
+        <td>普通</td>
+        <td>无</td>
+        <td>李销售</td>
+        <td>服务业</td>
+        <td>20</td>
+        <td>20</td>
+        <td>无</td>
+        <td>是</td>
+        <td>否</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" value="李四" style="zoom:150%;"></td>
+        <td>测试</td>
+        <td>广州ddd的大大</td>
+        <td>普通</td>
+        <td>无</td>
+        <td>李销售</td>
+        <td>服务业</td>
+        <td>20</td>
+        <td>20</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+<!--客户类型(企业客户)-->
+<table class="layui-table" id="khType" hidden>
+    <thead>
+    <tr>
+        <th></th>
+        <th>简称</th>
+        <th>客户全称</th>
+        <th>分类</th>
+        <th>联系电话</th>
+        <th>负责人</th>
+        <th>所属行业</th>
+        <th>创建时间</th>
+        <th>最后修改时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="checkbox" value="深圳dddd" style="zoom:150%;"></td>
+        <td>深圳dddd</td>
+        <td>深圳ddd的大大</td>
+        <td>普通</td>
+        <td>无</td>
+        <td>李销售</td>
+        <td>服务业</td>
+        <td>2020-02-01</td>
+        <td>2020-02-01</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" value="深圳bbbb" style="zoom:150%;"></td>
+        <td>深圳bbbb</td>
+        <td>深圳ddd的大大</td>
+        <td>普通</td>
+        <td>无</td>
+        <td>李销售</td>
+        <td>服务业</td>
+        <td>2020-02-01</td>
+        <td>2020-02-01</td>
+    </tr>
+    </tbody>
+</table>
+
+<!--客户类型(个人客户)-->
+<table class="layui-table" id="khType2" hidden>
+    <thead>
+    <tr>
+        <th></th>
+        <th>客户姓名</th>
+        <th>客户分类</th>
+        <th>所属行业</th>
+        <th>电子邮箱</th>
+        <th>移动电话</th>
+        <th>单位名称</th>
+        <th>负责人</th>
+        <th>创建时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="checkbox" value="张三" style="zoom:150%;"></td>
+        <td>张三</td>
+        <td>深圳ddd的大大</td>
+        <td>普通</td>
+        <td>无</td>
+        <td>李销售</td>
+        <td>服务业</td>
+        <td>2020-02-01</td>
+        <td>2020-02-01</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" value="李四" style="zoom:150%;"></td>
+        <td>李四</td>
+        <td>深圳ddd的大大</td>
+        <td>普通</td>
+        <td>无</td>
+        <td>李销售</td>
+        <td>服务业</td>
+        <td>2020-02-01</td>
+        <td>2020-02-01</td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+    </tbody>
+</table>
+<script>
+    //点击选中
+    $("table tr").slice(1).click(function () {
+        var chks = $("input[type='checkbox']",this);
+        if(!chks[0].checked){
+            chks.prop("checked",true);
+            $(this).css("background-color", "#93FF93");
+        }else{
+            chks.prop("checked",false);
+            $(this).css("background-color", "transparent");
+        }
+        var length=$("input[type='checkbox']:checked").length;//获取选中的个数
+        if (length>1){
+            layer.msg('只能选中一个');
+            chks.prop("checked",false);
+            $(this).css("background-color", "transparent");
+        }
+    });
+</script>
+</body>
+</html>

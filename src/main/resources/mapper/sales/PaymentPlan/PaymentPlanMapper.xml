@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.crmproject.crmproject.dao.Sales.PaymentPlan.PaymentPlanMapper">
+
+    <resultMap type="ReCeiPlan" id="planMap">
+        <id property="pkRePlanId" column="pk_re_plan_id"/>
+        <result property="rePlanPlanStWe" column="re_plan_planste"/>
+        <result property="rePlanMoney" column="re_plan_money"/>
+        <result property="rePlanCurrentState" column="re_plan_currentstate"/>
+
+        <result property="reUserTypeId" column="re_user_type_id"/>
+        <result property="fkCustomerId" column="fk_customer_id"/>
+        <result property="rePlanCustomerName" column="re_plan_customername"/>
+        <result property="fkOrderConId" column="fk_order_con_id"/>
+        <result property="rePlanOrderContractName" column="re_plan_order_contract_name"/>
+        <result property="fkOrDerConTypeId" column="fk_order_con_typeid"/>
+
+        <result property="rePlanPlannedTime" column="re_plan_plannedtime"/>
+        <result property="rePlanAcTulReceiptTime" column="re_plan_actualreceipttime"/>
+        <result property="rePlanUserId" column="re_plan_userid"/>
+        <result property="rePlanMtCreate" column="re_plan_gmt_create"/>
+        <result property="rePlanRemark" column="re_plan_remark"/>
+    </resultMap>
+
+
+    <!--查询收款计划总数-->
+    <select id="planCount" resultType="int">
+        SELECT COUNT(1) AS planCount FROM `recei_plan`
+    <where>
+        <if test="rePlanCurrentState==1">
+            and re_plan_currentstate=0
+        </if>
+        <if test="rePlanCurrentState==2">
+            and re_plan_currentstate=1
+        </if>
+    </where>
+    </select>
+
+
+    <!--查询所有收款计划-->
+    <select id="findPlan"  resultMap="planMap">
+        select `re_plan_planste`,`re_plan_money`,`re_plan_currentstate`,fk_order_con_id,fk_customer_id,re_plan_plannedtime,re_plan_actualreceipttime,`re_plan_userid`,re_plan_gmt_create
+        from recei_plan
+        <where>
+            <if test="rePlanCurrentState==1">
+                and re_plan_currentstate=0
+            </if>
+            <if test="rePlanCurrentState==2">
+                and re_plan_currentstate=1
+            </if>
+        </where>
+    </select>
+
+
+    <!--新增收款计划-->
+    <insert id="addPlan" parameterType="ReCeiPlan">
+        INSERT INTO recei_plan(pk_re_plan_id,re_plan_planste,re_plan_money,re_plan_currentstate,fk_order_con_typeid,re_plan_orderorcontractname
+        ,re_user_type_id,re_plan_custome,re_plan_plannedtime,re_plan_actualreceipttime,re_plan_remark)VALUES
+        (#{pkRePlanId},
+        #{rePlanPlanStWe},
+        #{rePlanMoney},
+        #{rePlanCurrentState},
+        #{fkOrDerConTypeId},
+        #{rePlanOrderContractName},
+        #{reUserTypeId},          ,
+        #{rePlanCustomerName},
+        #{rePlanPlannedTime},
+        #{rePlanAcTulReceiptTime},
+        #{rePlanRemark}'
+        )
+    </insert>
+
+    <!--根据ID查询收款计划-->
+    <select id="findGetPlanId" resultMap="planMap">
+        select * from `recei_plan` where pk_re_plan_id=#{pkRePlanId}
+    </select>
+
+    <!--修改收款计划-->
+    <update id="updatePlan" parameterType="ReCeiPlan">
+        update `recei_plan`
+        <trim prefix="set" suffixOverrides="," suffix="where pk_re_plan_id = #{pkRePlanId}">
+            <if test="rePlanPlanStWe != null">re_plan_planste=#{rePlanPlanStWe},</if>
+
+            <if test="rePlanMoney != null">re_plan_money=#{rePlanMoney},</if>
+
+            <if test="rePlanCurrentState != null">re_plan_currentstate=#{rePlanCurrentState},</if>
+
+            <if test="fkOrDerConTypeId != null">fk_order_con_typeid=#{fkOrDerConTypeId},</if>
+
+            <if test="fkOrderConId != null">fk_order_con_id=#{fkOrderConId},</if>
+
+            <if test="reUserTypeId != null">re_user_type_id=#{reUserTypeId},</if>
+
+            <if test="fkCustomerId != null">fk_customer_id=#{fkCustomerId},</if>
+
+            <if test="rePlanPlannedTime != null">re_plan_plannedtime=#{rePlanPlannedTime},</if>
+
+            <if test="rePlanAcTulReceiptTime != null">re_plan_actualreceipttime=#{rePlanAcTulReceiptTime},</if>
+
+            <if test="rePlanRemark != null">re_plan_remark=#{rePlanRemark},</if>
+            gmt_modified=DATE_FORMAT(NOW(),'%Y-%m-%d %H:%m:%s'),
+        </trim>
+    </update>
+
+
+    <!--收款计划的删除-->
+    <delete id="deletePlan">
+        delete from `recei_plan` where pk_re_plan_id in
+        <foreach collection="array" item="array" open="(" separator="," close=")">
+            #{array}
+        </foreach>
+    </delete>
+
+</mapper>
