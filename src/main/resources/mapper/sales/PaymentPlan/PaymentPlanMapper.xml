@@ -25,6 +25,19 @@
     </resultMap>
 
 
+    <resultMap id="clientTableMap" type="ClientTable">
+        <id column="pk_cus_customer_id" property="pkCusCustomerid"></id>
+        <result column="abbreviation" property="abbreviation"></result>
+        <result column="cus_customername" property="cusCustomername"></result>
+        <result column="cus_classif" property="fkClassifId"></result>
+        <result column="cus_financial_telephone" property="cusFinancialTelephone"></result>
+        <result column="fk_user_id" property="fkUserId"></result>
+        <result column="cus_industry" property="fkIndustryId"></result>
+        <result column="cus_gmt_create" property="cusGmtCreate"></result>
+        <result column="cus_gmt_modified" property="cusGmtModified"></result>
+    </resultMap>
+
+
     <!--查询收款计划总数-->
     <select id="planCount" resultType="int">
         SELECT COUNT(1) AS planCount FROM `recei_plan`
@@ -57,7 +70,7 @@
     <!--新增收款计划-->
     <insert id="addPlan" parameterType="ReCeiPlan">
         INSERT INTO recei_plan(pk_re_plan_id,re_plan_planste,re_plan_money,re_plan_currentstate,fk_order_con_typeid,re_plan_orderorcontractname
-        ,re_user_type_id,re_plan_custome,re_plan_plannedtime,re_plan_actualreceipttime,re_plan_remark)VALUES
+        ,re_user_type_id,re_plan_customername,re_plan_plannedtime,re_plan_actualreceipttime,re_plan_remark)VALUES
         (#{pkRePlanId},
         #{rePlanPlanStWe},
         #{rePlanMoney},
@@ -71,6 +84,7 @@
         #{rePlanRemark}'
         )
     </insert>
+
 
     <!--根据ID查询收款计划-->
     <select id="findGetPlanId" resultMap="planMap">
@@ -89,11 +103,11 @@
 
             <if test="fkOrDerConTypeId != null">fk_order_con_typeid=#{fkOrDerConTypeId},</if>
 
-            <if test="fkOrderConId != null">fk_order_con_id=#{fkOrderConId},</if>
+            <if test="rePlanOrderContractName != null">re_plan_orderorcontractname=#{rePlanOrderContractName},</if>
 
             <if test="reUserTypeId != null">re_user_type_id=#{reUserTypeId},</if>
 
-            <if test="fkCustomerId != null">fk_customer_id=#{fkCustomerId},</if>
+            <if test="rePlanCustomerName != null">re_plan_customername=#{rePlanCustomerName},</if>
 
             <if test="rePlanPlannedTime != null">re_plan_plannedtime=#{rePlanPlannedTime},</if>
 
@@ -113,4 +127,15 @@
         </foreach>
     </delete>
 
+
+
+    <!--客户类型-->
+    <select id="findClientTableById" resultMap="clientTableMap">
+        select * from clienttable
+        <where>
+            <if test="fkTypeNumberId!=null and fkTypeNumberId!=''">
+                and fk_type_number_id=#{fkTypeNumberId}
+            </if>
+        </where>
+    </select>
 </mapper>

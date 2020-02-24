@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +17,7 @@
         <button class="layui-btn layui-btn-sm" lay-event="addPlan">新增</button>
         <button class="layui-btn layui-btn-sm" lay-event="updatePlan">编辑</button>
         <button class="layui-btn layui-btn-sm" lay-event="deletePlan">删除</button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">查看</button>
+        <button class="layui-btn layui-btn-sm" lay-event="lookPlan">查看</button>
     </div>
 
     <div class="layui-input-inline">
@@ -59,7 +58,7 @@
                             return "已完成";
                         }
                         if (data.rePlanCurrentState == 1) {
-                            return "未完成";
+                            return "未开始";
                         }
                         if (data.rePlanCurrentState == 2) {
                             return "进行中";
@@ -158,6 +157,30 @@
                                     layer.msg('ajax执行错误',{icon:2,time:2000});
                                 }
                             })
+                        });
+                    }
+                    break;
+
+                case 'lookPlan':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else if (data.length > 1) {
+                        layer.msg('只能同时查看一条');
+                    } else {
+                        let pkRePlanId=data[0].pkRePlanId;
+                        layer.open({
+                            title: '查看收款计划',
+                            type: 2,
+                            area: ['600px', '400px'],
+                            content: 'look_plan.html?pkRePlanId=' + pkRePlanId + ''
+                            , btn: ['确定','取消']
+                            , btnAlign: 'c'
+                            , yes: function (index, layero) {
+                                layer.close(index);
+                            }
+                            ,btn2: function(index, layero){
+                                layer.close(index);
+                            }
                         });
                     }
                     break;

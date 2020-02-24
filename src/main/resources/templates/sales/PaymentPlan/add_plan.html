@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>新增收款计划</title>
@@ -177,7 +176,7 @@
         var a=$('[name=fkOrDerConTypeId]').val();
         var index=$('#fkOrDerConTypeId1');
         if(a==1){
-            index=$('#khType2')
+            index=$('#fkOrDerConTypeId1')
         }
         layer.open({
             type: 1,
@@ -187,14 +186,14 @@
             ,btnAlign: 'c'
             ,title:'类型'
             ,yes: function(index, layero){
-                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                let xzval=$("input[type='checkbox']:checked")//获取选中的值;
                 $("#rePlanOrderContractName").val(xzval.val());
                 xzval.attr("checked",false);
                 xzval.parent("td").parent("tr").css("background-color", "transparent")
                 layer.close(index);
             }
             ,btn2: function(index, layero){
-                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                let xzval=$("input[type='checkbox']:checked")//获取选中的值;
                 xzval.attr("checked",false);
                 xzval.parent("td").parent("tr").css("background-color", "transparent")
                 layer.close(index);
@@ -204,9 +203,12 @@
 
     //打开客户类型页面
     function khType(){
-        var reUserTypeId=$("#reUserTypeId").val();
-        var index=$('#khType');
+        let reUserTypeId=$("#reUserTypeId").val();
+        let index=$('#khType');
         if(reUserTypeId=1){
+            index=$('#khType')
+        }
+        if(reUserTypeId=2){
             index=$('#khType2')
         }
         layer.open({
@@ -217,14 +219,14 @@
             ,btnAlign: 'c'
             ,title:'类型'
             ,yes: function(index, layero){
-                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                let xzval=$("input[type='checkbox']:checked")//获取选中的值;
                 $("#rePlanCustomerName").val(xzval.val());
                 xzval.attr("checked",false);
                 xzval.parent("td").parent("tr").css("background-color", "transparent")
                 layer.close(index);
             }
             ,btn2: function(index, layero){
-                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                let xzval=$("input[type='checkbox']:checked")//获取选中的值;
                 xzval.attr("checked",false);
                 xzval.parent("td").parent("tr").css("background-color", "transparent")
                 layer.close(index);
@@ -237,10 +239,10 @@
     //清空数据方法
     function clears(i) {
         if(i==1){
-            $("#fkOrderConId").val("");
+            $("#rePlanOrderContractName").val("");
         }
         if (i==2){
-            $("#fkCustomerId").val("");
+            $("#rePlanCustomerName").val("");
         }
     }
 
@@ -330,27 +332,16 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td><input type="checkbox" value="深圳dddd" style="zoom:150%;"></td>
-        <td>深圳dddd</td>
-        <td>深圳ddd的大大</td>
-        <td>普通</td>
-        <td>无</td>
-        <td>李销售</td>
-        <td>服务业</td>
-        <td>2020-02-01</td>
-        <td>2020-02-01</td>
-    </tr>
-    <tr>
-        <td><input type="checkbox" value="深圳bbbb" style="zoom:150%;"></td>
-        <td>深圳bbbb</td>
-        <td>深圳ddd的大大</td>
-        <td>普通</td>
-        <td>无</td>
-        <td>李销售</td>
-        <td>服务业</td>
-        <td>2020-02-01</td>
-        <td>2020-02-01</td>
+    <tr th:each="client:${pageInfo.list}">
+        <td><input type="checkbox" th:value="${client.abbreviation}" style="zoom:150%;"></td>
+        <td th:text="${client.abbreviation}"></td>
+        <td th:text="${client.cusCustomername}"></td>
+        <td th:text="${client.fkClassifId}"></td>
+        <td th:text="${client.cusFinancialTelephone}"></td>
+        <td th:text="${client.fkUserId}"></td>
+        <td th:text="${client.fkIndustryId}"></td>
+        <td th:text="${client.cusGmtCreate}"></td>
+        <td th:text="${client.cusGmtModified}"></td>
     </tr>
     </tbody>
 </table>

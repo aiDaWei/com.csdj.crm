@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>查看</title>
+    <link rel="stylesheet" href="static/lib/layui/css/layui.css">
+    <script src="static/js/jquery-2.1.1.js"></script>
+    <script src="static/lib/layui/layui.js"></script>
+</head>
+<body>
+<table class="layui-table" style="width: 400px;margin-left: 80px;">
+    <colgroup>
+        <col width="100">
+        <col width="100">
+    </colgroup>
+    <tbody>
+    <tr>
+        <td hidden><strong>收款编号</strong></td>
+        <td th:text="${reCeiPlan.pkRePlanId}"></td>
+    </tr>
+    <tr>
+        <td><strong>标题</strong></td>
+        <td th:text="${reCeiPlan.rePlanPlanStWe}"></td>
+    </tr>
+
+    <tr>
+        <td><strong>预计收款金额</strong></td>
+        <td th:text="${reCeiPlan.rePlanMoney}"></td>
+    </tr>
+
+    <tr>
+        <td><strong>合同/订单</strong></td>
+        <td th:text="${reCeiPlan.fkOrDerConTypeId}"></td>
+    </tr>
+    <tr>
+        <td><strong>客户</strong></td>
+        <td th:if="${reCeiPlan.reUserTypeId}==0">企业客户</td>
+        <td th:if="${reCeiPlan.reUserTypeId}==1">个人客户</td>
+    </tr>
+
+    <tr>
+        <td><strong>计划收款日期</strong></td>
+        <td th:text="${order.rePlanPlannedTime}"></td>
+    </tr>
+    <tr>
+        <td><strong>实计收款日期</strong></td>
+        <td th:text="${reCeiPlan.orderEndTime}"></td>
+    </tr>
+    <tr>
+        <td><strong>负责人</strong></td>
+        <td th:text="${reCeiPlan.rePlanUserId}"></td>
+    </tr>
+    <tr>
+        <td><strong>创建时间</strong></td>
+        <td th:text="${reCeiPlan.rePlanMtCreate}"></td>
+    </tr>
+
+    <tr>
+        <td><strong>备注</strong></td>
+        <td th:text="${reCeiPlan.rePlanRemark}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
