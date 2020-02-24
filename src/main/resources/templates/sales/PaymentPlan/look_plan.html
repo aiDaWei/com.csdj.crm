@@ -11,12 +11,12 @@
 <body>
 <table class="layui-table" style="width: 400px;margin-left: 80px;">
     <colgroup>
-        <col width="100">
-        <col width="100">
+        <col width="150">
+        <col width="150">
     </colgroup>
     <tbody>
     <tr>
-        <td hidden><strong>收款编号</strong></td>
+        <td><strong>收款编号</strong></td>
         <td th:text="${reCeiPlan.pkRePlanId}"></td>
     </tr>
     <tr>
@@ -41,11 +41,11 @@
 
     <tr>
         <td><strong>计划收款日期</strong></td>
-        <td th:text="${order.rePlanPlannedTime}"></td>
+        <td th:text="${reCeiPlan.rePlanPlannedTime}"></td>
     </tr>
     <tr>
         <td><strong>实计收款日期</strong></td>
-        <td th:text="${reCeiPlan.orderEndTime}"></td>
+        <td th:text="${reCeiPlan.rePlanAcTulReceiptTime}"></td>
     </tr>
     <tr>
         <td><strong>负责人</strong></td>

@@ -54,7 +54,7 @@
 
     <!--查询所有收款计划-->
     <select id="findPlan"  resultMap="planMap">
-        select `re_plan_planste`,`re_plan_money`,`re_plan_currentstate`,fk_order_con_id,fk_customer_id,re_plan_plannedtime,re_plan_actualreceipttime,`re_plan_userid`,re_plan_gmt_create
+        select pk_re_plan_id,`re_plan_planste`,`re_plan_money`,`re_plan_currentstate`,fk_order_con_id,fk_customer_id,re_plan_plannedtime,re_plan_actualreceipttime,`re_plan_userid`,re_plan_gmt_create
         from recei_plan
         <where>
             <if test="rePlanCurrentState==1">
@@ -69,19 +69,20 @@
 
     <!--新增收款计划-->
     <insert id="addPlan" parameterType="ReCeiPlan">
-        INSERT INTO recei_plan(pk_re_plan_id,re_plan_planste,re_plan_money,re_plan_currentstate,fk_order_con_typeid,re_plan_orderorcontractname
+        INSERT INTO recei_plan (pk_re_plan_id,re_plan_planste,re_plan_money,re_plan_currentstate,fk_order_con_typeid,re_plan_orderorcontractname
         ,re_user_type_id,re_plan_customername,re_plan_plannedtime,re_plan_actualreceipttime,re_plan_remark)VALUES
-        (#{pkRePlanId},
+        (
+        #{pkRePlanId},
         #{rePlanPlanStWe},
         #{rePlanMoney},
         #{rePlanCurrentState},
         #{fkOrDerConTypeId},
         #{rePlanOrderContractName},
-        #{reUserTypeId},          ,
+        #{reUserTypeId},
         #{rePlanCustomerName},
         #{rePlanPlannedTime},
         #{rePlanAcTulReceiptTime},
-        #{rePlanRemark}'
+        #{rePlanRemark}
         )
     </insert>
 
