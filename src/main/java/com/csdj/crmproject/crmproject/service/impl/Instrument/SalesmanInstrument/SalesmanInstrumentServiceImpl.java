@@ -1,7 +1,6 @@
 package com.csdj.crmproject.crmproject.service.impl.Instrument.SalesmanInstrument;
 
 import com.csdj.crmproject.crmproject.dao.Instrument.SalesmanInstrument.SalesmanInstrumentMapper;
-import com.csdj.crmproject.crmproject.entity.CusSalesTarget;
 import com.csdj.crmproject.crmproject.entity.User;
 import com.csdj.crmproject.crmproject.entity.salesmanagement.StatisticalResult;
 import com.csdj.crmproject.crmproject.service.Instrument.SalesmanInstrument.SalesmanInstrumentService;
@@ -60,109 +59,28 @@ public class SalesmanInstrumentServiceImpl implements SalesmanInstrumentService 
     }
 
     @Override
-    public StatisticalResult countRetrospectiveMonth(Integer userId) {
-        return salesmanInstrumentMapper.countRetrospectiveMonth(userId);
+    public StatisticalResult countSaleableMonth(Integer userId, String saleType) {
+        return salesmanInstrumentMapper.countSaleableMonth(userId, saleType);
     }
 
     @Override
-    public StatisticalResult countRetrospectiveQuarter(Integer userId) {
-        return salesmanInstrumentMapper.countRetrospectiveQuarter(userId);
+    public StatisticalResult countSaleableQuarter(Integer userId, String saleType) {
+        return salesmanInstrumentMapper.countSaleableQuarter(userId, saleType);
     }
 
     @Override
-    public StatisticalResult countRetrospectiveYear(Integer userId) {
-        return salesmanInstrumentMapper.countRetrospectiveYear(userId);
+    public StatisticalResult countSaleableYear(Integer userId, String saleType) {
+        return salesmanInstrumentMapper.countSaleableYear(userId, saleType);
     }
 
     @Override
-    public CusSalesTarget reviewPerformancePlan(Integer userId) {
-        return salesmanInstrumentMapper.reviewPerformancePlan(userId);
-    }
-
-    ////////////////////////////////////////////////////////////
-    @Override
-    public CusSalesTarget getOrder(String userId,String year) {
-        return salesmanInstrumentMapper.getOrder(userId,year);
+    public Map<String, Object> avgSaleableMonth(Integer userId, String saleType) {
+        return salesmanInstrumentMapper.avgSaleableMonth(userId, saleType);
     }
 
     @Override
-    public Map<Object, String> dianasOrder(String userId) {
-        return salesmanInstrumentMapper.dianasOrder(userId);
-    }
-
-    @Override
-    public Map<Object, String> seasonOrder(String userId) {
-        return salesmanInstrumentMapper.seasonOrder(userId);
-    }
-
-    @Override
-    public Map<Object, String> yearOrder(String userId) {
-        return salesmanInstrumentMapper.yearOrder(userId);
-    }
-
-    @Override
-    public Map<Object, String> contract(String userId) {
-        return salesmanInstrumentMapper.contract(userId);
-    }
-
-    @Override
-    public Map<Object, String> dianasContract(String userId) {
-        return salesmanInstrumentMapper.dianasContract(userId);
-    }
-
-    @Override
-    public Map<Object, String> order(String userId) {
-        return salesmanInstrumentMapper.order(userId);
-    }
-
-    @Override
-    public Map<Object, String> seasonContract(String userId) {
-        return salesmanInstrumentMapper.seasonContract(userId);
-    }
-
-    @Override
-    public Map<Object, String> yearContract(String userId) {
-        return salesmanInstrumentMapper.yearContract(userId);
-    }
-
-    @Override
-    public Double dianasOrReceiPlan(String userId) {
-        return salesmanInstrumentMapper.dianasOrReceiPlan(userId);
-    }
-
-    @Override
-    public Double dianasRecei_plan(String userId) {
-        return salesmanInstrumentMapper.dianasRecei_plan(userId);
-    }
-
-    @Override
-    public Double seasonOrReceiPlan(String userId) {
-        return salesmanInstrumentMapper.seasonOrReceiPlan(userId);
-    }
-
-    @Override
-    public Double seasonRecei_plan(String userId) {
-        return salesmanInstrumentMapper.seasonRecei_plan(userId);
-    }
-
-    @Override
-    public Double yearOrReceiPlan(String userId) {
-        return salesmanInstrumentMapper.yearOrReceiPlan(userId);
-    }
-
-    @Override
-    public Double yearRecei_plan(String userId) {
-        return salesmanInstrumentMapper.yearRecei_plan(userId);
-    }
-
-    @Override
-    public Map<String, Double> yearAccomplish(String userId) {
-        return salesmanInstrumentMapper.yearAccomplish(userId);
-    }
-
-    @Override
-    public Map<String, Double> yearAnswerAccomplish(String userId) {
-        return salesmanInstrumentMapper.yearAnswerAccomplish(userId);
+    public Map<String, Object> avgSaleableMonthOK(Integer userId, String saleType) {
+        return salesmanInstrumentMapper.avgSaleableMonthOK(userId, saleType);
     }
 
     @Override
