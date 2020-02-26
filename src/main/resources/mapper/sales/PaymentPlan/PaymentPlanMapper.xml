@@ -43,10 +43,10 @@
         SELECT COUNT(1) AS planCount FROM `recei_plan`
     <where>
         <if test="rePlanCurrentState==1">
-            and re_plan_currentstate=0
+            and re_plan_currentstate='已完成'
         </if>
         <if test="rePlanCurrentState==2">
-            and re_plan_currentstate=1
+            and re_plan_currentstate='未完成'
         </if>
     </where>
     </select>
@@ -58,10 +58,10 @@
         from recei_plan
         <where>
             <if test="rePlanCurrentState==1">
-                and re_plan_currentstate=0
+                and re_plan_currentstate='已完成'
             </if>
             <if test="rePlanCurrentState==2">
-                and re_plan_currentstate=1
+                and re_plan_currentstate='未完成'
             </if>
         </where>
     </select>
@@ -115,7 +115,6 @@
             <if test="rePlanAcTulReceiptTime != null">re_plan_actualreceipttime=#{rePlanAcTulReceiptTime},</if>
 
             <if test="rePlanRemark != null">re_plan_remark=#{rePlanRemark},</if>
-            gmt_modified=DATE_FORMAT(NOW(),'%Y-%m-%d %H:%m:%s'),
         </trim>
     </update>
 
