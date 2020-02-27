@@ -179,7 +179,7 @@
         table.render({
             elem: '#sales'
             , height: 315 //容器高度
-            , url: 'SalemanSalesTarget.list'
+            , url: './SalemanSalesTargetList'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             ,where:{
                 selType:1,
@@ -250,7 +250,7 @@
                         yes: function(index, layero){ //选择保存
                             var fromData =form.val("contract-form");
                             $.ajax({
-                                url:"addSales",
+                                url:"./addSales",
                                 type:"post",
                                 data:fromData,
                                 dataType:"json",
@@ -295,7 +295,7 @@
             if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     $.ajax({
-                        url:"isDel",
+                        url:"./isDel",
                         data:{
                             salesId:data.pkCusSalesTargetId
                         },
@@ -328,10 +328,10 @@
                     area:['800px','500px'],
                     content: $("#add-sales-script"), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
                     yes: function(index, layero){//点击保存
-                        contractUrl = "updSales";
+                        contractUrl = "./updSales";
                         var fromData =form.val("contract-form");
                         $.ajax({
-                            url:"updSales",
+                            url:contractUrl,
                             type:"post",
                             data:fromData,
                             dataType:"json",

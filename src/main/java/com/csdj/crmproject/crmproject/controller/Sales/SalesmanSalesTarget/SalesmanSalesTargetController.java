@@ -5,6 +5,7 @@ import com.csdj.crmproject.crmproject.entity.CusSalesTarget;
 import com.csdj.crmproject.crmproject.service.impl.Sales.SalesmanSalesTarget.SalesmanSalesTargetServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@RequestMapping("salesman")
 @Controller
 public class SalesmanSalesTargetController {
     @Autowired
@@ -29,7 +31,7 @@ public class SalesmanSalesTargetController {
     }
 
     @ResponseBody
-    @RequestMapping("/SalemanSalesTarget.list")
+    @RequestMapping("SalemanSalesTargetList")
     public String list( int selType,int id, HttpServletRequest request){
         int page =Integer.parseInt(request.getParameter("page"));
         int limit =Integer.parseInt(request.getParameter("limit"));

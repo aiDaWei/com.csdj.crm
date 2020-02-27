@@ -2,22 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bee9f4f5-f7bf-4b11-9c73-87741c4a6159" name="Default Changelist" comment="创建了mapper里面的包名">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/dao/Sales/SalesmanSalesTarget/SalesmanSalesTargetMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/service/impl/Sales/SalesmanSalesTarget/SalesmanSalesTargetServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/sales/SalesmanSalesTarget/SalesmanSalesTargetMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/SalesmanSalesTarget/addSales.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/crmproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/crmproject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/controller/Sales/SalesmanSalesTarget/SalesmanSalesTargetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/controller/Sales/SalesmanSalesTarget/SalesmanSalesTargetController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/dao/Sales/SalesmanSalesTarget/SalesmanSalesTargetDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/entity/CusSalesTarget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/entity/CusSalesTarget.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/service/Sales/SalesmanSalesTarget/SalesmanSalesTargetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/service/Sales/SalesmanSalesTarget/SalesmanSalesTargetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sales/SalesmanSalesTarget/SalesmanSalesTarget.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/SalesmanSalesTarget/SalesmanSalesTarget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sales/SalesmanSalesTarget/a.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SalesmanInstrument/SalesmanInstrumentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SalesmanInstrument/SalesmanInstrumentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SectionInstrument/SectionInstrumentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SectionInstrument/SectionInstrumentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/PaymentPlan/PaymentPlanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/PaymentPlan/PaymentPlanController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/SalesmanSalesTarget/SalesmanSalesTargetController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/SalesmanSalesTarget/SalesmanSalesTargetController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/entity/CusSalesTarget.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/entity/CusSalesTarget.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Sales/SalesmanSalesTarget/SalesmanSalesTargetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Sales/SalesmanSalesTarget/SalesmanSalesTargetService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Instrument/SectionInstrument/SectionInstrumentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Instrument/SectionInstrument/SectionInstrumentMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Marketing/ActivityMarketing/ActivityMarketingMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Marketing/ActivityMarketing/ActivityMarketingMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Sales/PaymentPlan/PaymentPlanMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Sales/PaymentPlan/PaymentPlanMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/entity/ReCeiPlan.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/entity/ReCeiPlan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Instrument/SalesmanInstrument/SalesmanInstrumentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Instrument/SalesmanInstrument/SalesmanInstrumentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Instrument/SectionInstrument/SectionInstrumentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Instrument/SectionInstrument/SectionInstrumentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Sales/PaymentPlan/PaymentPlanServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Sales/PaymentPlan/PaymentPlanServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SalesmanInstrument/SalesmanInstrumentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SalesmanInstrument/SalesmanInstrumentServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SectionInstrument/SectionInstrumentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SectionInstrument/SectionInstrumentServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Sales/PaymentPlan/PaymentPlanServerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Sales/PaymentPlan/PaymentPlanServerImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/Instrument/SalesmanInstrument/SalesmanInstrument.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/Instrument/SalesmanInstrument/SalesmanInstrument.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/Instrument/SectionInstrument/SectionInstrument.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/Instrument/SectionInstrument/SectionInstrument.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/sales/PaymentPlan/a.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/Instrument/SalesmanInstrument/SalesmanInstrument.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Instrument/SalesmanInstrument/SalesmanInstrument.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/Instrument/SectionInstrument/SectionInstrument.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Instrument/SectionInstrument/SectionInstrument.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/sales/Indent/order_manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/sales/Indent/order_manage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/sales/SalesmanSalesTarget/SalesmanSalesTarget.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/sales/SalesmanSalesTarget/SalesmanSalesTarget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/sales/SalesmanSalesTarget/a.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582360921328</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="写了增删查改代码">
+      <created>1582778496723</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1582778496723</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +292,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="订单管理" />
     <MESSAGE value="谭芝豪" />
-    <option name="LAST_COMMIT_MESSAGE" value="谭芝豪" />
+    <MESSAGE value="写了增删查改代码" />
+    <MESSAGE value="页面显示问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="页面显示问题" />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="3" key="#Notifications" timestamp="1581768512882">
