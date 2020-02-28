@@ -102,10 +102,8 @@ public class IndentServiceImpl implements IndentService {
     }
 
     @Override
-    public PageInfo<ClientTable> findClientTableById(String fkTypeNumberId,int pageNo) {
-        PageHelper.startPage(pageNo,3);
+    public List<ClientTable> findClientTableById(String fkTypeNumberId) {
         List<ClientTable> list=indentDao.findClientTableById(fkTypeNumberId);
-        PageInfo<ClientTable> pageInfo=new PageInfo<>(list);
-        return pageInfo;
+        return list;
     }
 }

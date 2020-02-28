@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bee9f4f5-f7bf-4b11-9c73-87741c4a6159" name="Default Changelist" comment="创建了mapper里面的包名">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/SalesmanSalesTarget/addSales.html" afterDir="false" />
+    <list default="true" id="0da754bf-c7e6-4673-bfa0-5c9fee579996" name="默认更改列表" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/crmproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/crmproject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/controller/Sales/SalesmanSalesTarget/SalesmanSalesTargetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/controller/Sales/SalesmanSalesTarget/SalesmanSalesTargetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/dao/Sales/SalesmanSalesTarget/SalesmanSalesTargetDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sales/SalesmanSalesTarget/SalesmanSalesTarget.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/SalesmanSalesTarget/SalesmanSalesTarget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/controller/Sales/Indent/IndentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/controller/Sales/Indent/IndentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/dao/Sales/Indent/IndentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/dao/Sales/Indent/IndentDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/service/Sales/Indent/IndentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/service/Sales/Indent/IndentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/service/impl/Sales/Indent/IndentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/service/impl/Sales/Indent/IndentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/add_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/add_order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/order_manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/order_manage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SalesmanInstrument/SalesmanInstrumentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SalesmanInstrument/SalesmanInstrumentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SectionInstrument/SectionInstrumentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SectionInstrument/SectionInstrumentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/Indent/IndentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/Indent/IndentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/PaymentPlan/PaymentPlanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/PaymentPlan/PaymentPlanController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/SalesmanSalesTarget/SalesmanSalesTargetController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/SalesmanSalesTarget/SalesmanSalesTargetController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Instrument/SectionInstrument/SectionInstrumentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Instrument/SectionInstrument/SectionInstrumentMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Marketing/ActivityMarketing/ActivityMarketingMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Marketing/ActivityMarketing/ActivityMarketingMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Sales/PaymentPlan/PaymentPlanMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Sales/PaymentPlan/PaymentPlanMapper.class" afterDir="false" />
@@ -21,6 +23,7 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Sales/PaymentPlan/PaymentPlanServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Sales/PaymentPlan/PaymentPlanServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SalesmanInstrument/SalesmanInstrumentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SalesmanInstrument/SalesmanInstrumentServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SectionInstrument/SectionInstrumentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SectionInstrument/SectionInstrumentServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Sales/Indent/IndentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Sales/Indent/IndentServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Sales/PaymentPlan/PaymentPlanServerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Sales/PaymentPlan/PaymentPlanServerImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/Instrument/SalesmanInstrument/SalesmanInstrument.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/Instrument/SalesmanInstrument/SalesmanInstrument.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/Instrument/SectionInstrument/SectionInstrument.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/Instrument/SectionInstrument/SectionInstrument.xml" afterDir="false" />
@@ -30,8 +33,6 @@
       <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/sales/Indent/order_manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/sales/Indent/order_manage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/sales/SalesmanSalesTarget/SalesmanSalesTarget.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/sales/SalesmanSalesTarget/SalesmanSalesTarget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/sales/SalesmanSalesTarget/a.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +101,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -116,18 +117,6 @@
       <recent name="D:\Users\tzh\IdeaProjects\crmproject\src\main\resources\mapper\orderManage" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
     <configuration name="CrmprojectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="crmproject" />
@@ -136,6 +125,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -183,7 +184,11 @@
       <workItem from="1582339914596" duration="2031000" />
       <workItem from="1582355203565" duration="6273000" />
       <workItem from="1582367503084" duration="3049000" />
-      <workItem from="1582422832054" duration="5101000" />
+      <workItem from="1582422832054" duration="5403000" />
+      <workItem from="1582547805449" duration="213000" />
+      <workItem from="1582549242613" duration="1099000" />
+      <workItem from="1582551374402" duration="2482000" />
+      <workItem from="1582787847647" duration="6330000" />
     </task>
     <task id="LOCAL-00001" summary="订单管理">
       <created>1581768442120</created>
@@ -276,12 +281,12 @@
       <option name="project" value="LOCAL" />
       <updated>1582360921328</updated>
     </task>
-    <task id="LOCAL-00014" summary="写了增删查改代码">
-      <created>1582778496723</created>
+    <task id="LOCAL-00014" summary="谭芝豪">
+      <created>1582428232084</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1582778496723</updated>
+      <updated>1582428232084</updated>
     </task>
     <option name="localTasksCounter" value="15" />
     <servers />
@@ -292,9 +297,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="订单管理" />
     <MESSAGE value="谭芝豪" />
-    <MESSAGE value="写了增删查改代码" />
-    <MESSAGE value="页面显示问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="页面显示问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="谭芝豪" />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="3" key="#Notifications" timestamp="1581768512882">
@@ -313,62 +316,62 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1582369156120" />
-    <state x="264" y="0" key="CommitChangelistDialog2" timestamp="1582360919462">
+    <state x="264" y="0" key="CommitChangelistDialog2" timestamp="1582428230364">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="264" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1582360919462" />
+    <state x="264" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1582428230364" />
     <state x="421" y="99" key="FileChooserDialogImpl" timestamp="1580963761685">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1580963761685" />
-    <state width="1237" height="246" key="GridCell.Tab.0.bottom" timestamp="1582428039693">
+    <state width="1237" height="32" key="GridCell.Tab.0.bottom" timestamp="1582794233060">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="246" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582428039693" />
-    <state width="1237" height="246" key="GridCell.Tab.0.center" timestamp="1582428039690">
+    <state width="1237" height="32" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
+    <state width="1237" height="32" key="GridCell.Tab.0.center" timestamp="1582794233060">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="246" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582428039690" />
-    <state width="1237" height="246" key="GridCell.Tab.0.left" timestamp="1582428039690">
+    <state width="1237" height="32" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
+    <state width="1237" height="32" key="GridCell.Tab.0.left" timestamp="1582794233060">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="246" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582428039690" />
-    <state width="1237" height="246" key="GridCell.Tab.0.right" timestamp="1582428039690">
+    <state width="1237" height="32" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
+    <state width="1237" height="32" key="GridCell.Tab.0.right" timestamp="1582794233060">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="246" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582428039690" />
-    <state width="1237" height="246" key="GridCell.Tab.1.bottom" timestamp="1582428039693">
+    <state width="1237" height="32" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
+    <state width="1237" height="32" key="GridCell.Tab.1.bottom" timestamp="1582794233060">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="246" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582428039693" />
-    <state width="1237" height="246" key="GridCell.Tab.1.center" timestamp="1582428039693">
+    <state width="1237" height="32" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
+    <state width="1237" height="32" key="GridCell.Tab.1.center" timestamp="1582794233060">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="246" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1582428039693" />
-    <state width="1237" height="246" key="GridCell.Tab.1.left" timestamp="1582428039693">
+    <state width="1237" height="32" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
+    <state width="1237" height="32" key="GridCell.Tab.1.left" timestamp="1582794233060">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="246" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1582428039693" />
-    <state width="1237" height="246" key="GridCell.Tab.1.right" timestamp="1582428039693">
+    <state width="1237" height="32" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
+    <state width="1237" height="32" key="GridCell.Tab.1.right" timestamp="1582794233060">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="246" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1582428039693" />
-    <state width="1237" height="274" key="GridCell.Tab.2.bottom" timestamp="1582209242779">
+    <state width="1237" height="32" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
+    <state width="1237" height="382" key="GridCell.Tab.2.bottom" timestamp="1582550341838">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="274" key="GridCell.Tab.2.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582209242779" />
-    <state width="1237" height="274" key="GridCell.Tab.2.center" timestamp="1582209242779">
+    <state width="1237" height="382" key="GridCell.Tab.2.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582550341838" />
+    <state width="1237" height="382" key="GridCell.Tab.2.center" timestamp="1582550341838">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="274" key="GridCell.Tab.2.center/0.0.1280.680@0.0.1280.680" timestamp="1582209242779" />
-    <state width="1237" height="274" key="GridCell.Tab.2.left" timestamp="1582209242779">
+    <state width="1237" height="382" key="GridCell.Tab.2.center/0.0.1280.680@0.0.1280.680" timestamp="1582550341838" />
+    <state width="1237" height="382" key="GridCell.Tab.2.left" timestamp="1582550341838">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="274" key="GridCell.Tab.2.left/0.0.1280.680@0.0.1280.680" timestamp="1582209242779" />
-    <state width="1237" height="274" key="GridCell.Tab.2.right" timestamp="1582209242779">
+    <state width="1237" height="382" key="GridCell.Tab.2.left/0.0.1280.680@0.0.1280.680" timestamp="1582550341838" />
+    <state width="1237" height="382" key="GridCell.Tab.2.right" timestamp="1582550341838">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="274" key="GridCell.Tab.2.right/0.0.1280.680@0.0.1280.680" timestamp="1582209242779" />
+    <state width="1237" height="382" key="GridCell.Tab.2.right/0.0.1280.680@0.0.1280.680" timestamp="1582550341838" />
     <state x="122" y="57" key="MergeDialog" timestamp="1581768031967">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -389,10 +392,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="412" y="59" key="VCS.ChangeListViewerDialog/0.0.1280.680@0.0.1280.680" timestamp="1582298123001" />
-    <state x="233" y="77" key="Vcs.Push.Dialog.v2" timestamp="1582361091831">
+    <state x="233" y="77" key="Vcs.Push.Dialog.v2" timestamp="1582428251836">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="77" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1582361091831" />
+    <state x="233" y="77" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1582428251836" />
     <state x="93" y="93" width="1095" height="495" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1581590808058">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -405,10 +408,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="439" y="259" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1581570822088" />
-    <state x="351" y="143" key="git4idea.merge.GitPullDialog" timestamp="1582030818648">
+    <state x="351" y="143" key="git4idea.merge.GitPullDialog" timestamp="1582547827340">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="351" y="143" key="git4idea.merge.GitPullDialog/0.0.1280.680@0.0.1280.680" timestamp="1582030818648" />
+    <state x="351" y="143" key="git4idea.merge.GitPullDialog/0.0.1280.680@0.0.1280.680" timestamp="1582547827340" />
     <state x="444" y="247" key="git4idea.ui.GitResetDialog" timestamp="1581590692583">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
