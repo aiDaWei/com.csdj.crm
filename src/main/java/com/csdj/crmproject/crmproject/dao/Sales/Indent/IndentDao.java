@@ -55,5 +55,5 @@ public interface IndentDao {
      * @param fkTypeNumberId 客户类型编号
      * @return
      */
-    public List<ClientTable> findClientTableById(String fkTypeNumberId);
+    public List<ClientTable> findClientTableById(@Param(value = "fkTypeNumberId") String fkTypeNumberId);
 }

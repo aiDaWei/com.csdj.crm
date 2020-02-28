@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,12 +32,11 @@ public class IndentController {
         return "sales/Indent/order_manage";
     }
     @RequestMapping("add_order.html")
-    public String addOrderHtml(Model model,
-                               @RequestParam(value = "pageNo",required = false,defaultValue = "1")int pageNo,
-                               @RequestParam(value = "fkTypeNumberId",required = false)String fkTypeNumberId){
-        PageInfo<ClientTable> pageInfo=indentService.findClientTableById(fkTypeNumberId,pageNo);
-        System.out.println(pageInfo);
-        model.addAttribute("pageInfo",pageInfo);
+    public String addOrderHtml(Model model){
+        List<ClientTable> qyClient=indentService.findClientTableById("2");
+        List<ClientTable> grClient=indentService.findClientTableById("1");
+        model.addAttribute("qyClient",qyClient);
+        model.addAttribute("grClient",grClient);
         return "sales/Indent/add_order";
     }
     @RequestMapping("look_order.html")
@@ -98,6 +98,12 @@ public class IndentController {
         int i=indentService.updateOrder(order);
         return i;
     }
+
+    /**
+     * 删除订单信息
+     * @param array
+     * @return
+     */
     @RequestMapping("delete_order.htmls")
     @ResponseBody
     public Object deleteOrder(int[] array){
@@ -110,4 +116,5 @@ public class IndentController {
         }
         return map;
     }
+
 }

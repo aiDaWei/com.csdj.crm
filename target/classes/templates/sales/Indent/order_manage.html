@@ -20,7 +20,7 @@
         <button class="layui-btn layui-btn-sm" lay-event="isAll">发起流程</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">流程审批</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">流程痕迹</button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">流程图</button>
+        <button class="layui-btn layui-btn-sm" lay-event="flowImg">流程图</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">反审批</button>
     </div>
 
@@ -53,7 +53,15 @@
                  {type: 'checkbox', fixed: 'left'}
                 ,{field: 'orderId', title: '订单编号',width:120}
                 ,{field: 'orderName', title: '名称',width:120}
-                ,{field: 'fkCusName', title: '所属客户',width:120}
+                ,{field: 'fkCusName', title: '所属客户',width:190,templet:function(data){
+                    if(data.fkCusTypeId==0){
+                        return "<a href='#' style='color: #0000FF'>[企业客户]"+data.fkCusName+"</a>"
+                    }
+                    if(data.fkCusTypeId==1){
+                        return "<a href='#' style='color: #0000FF'>[个人客户]"+data.fkCusName+"</a>"
+                    }
+                    }
+                    }
                 ,{field: 'fkObjectName', title: '所属对象',width:120}
                 ,{field: 'orderType', title: '分类',width:120,templet: function (data) {
                         if (data.orderType == 0) {
@@ -206,6 +214,22 @@
                         });
                     }
                     break;
+                case 'flowImg':
+                    layer.open({
+                        type: 1,
+                        title:'流程图',
+                        area: ['1000px', '450px'],
+                        content: $('#layer-photos-demo'),
+                        btn: ['确定','取消'],
+                        btnAlign: 'c',
+                        yes: function (index, layero) {
+                            layer.close(index);
+                        },
+                        btn2: function(index, layero){
+                            layer.close(index);
+                        }
+                    });
+                    break;
 
                 //自定义头工具栏右侧图标 - 提示
                 case 'LAYTABLE_TIPS':
@@ -231,5 +255,9 @@
 
     });
 </script>
+
+<div id="layer-photos-demo" class="layer-photos-demo" hidden>
+    <img layer-src="static/images/flowImg.png" src="static/images/flowImg.png" alt="流程图" width="900px" height="400px">
+</div>
 </body>
 </html>

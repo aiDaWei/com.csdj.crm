@@ -52,5 +52,5 @@ public interface IndentService {
      * @param fkTypeNumberId 客户类型编号
      * @return
      */
-    public PageInfo<ClientTable> findClientTableById(String fkTypeNumberId,int pageNo);
+    public List<ClientTable> findClientTableById(String fkTypeNumberId);
 }
