@@ -47,12 +47,13 @@
             ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             ,limit : 3//默认1条数据一页
             ,limits : [3,5,10,15] //数据分页条
+            ,id:'pkRePlanId'
             ,cols: [
                 [ //表头
                     {type:'checkbox', fixed: 'left'}
-                    //,{field:'pkRePlanId', width:160, title: '编号'}
                     ,{field:'rePlanPlanStWe', width:160, title: '标题'}
                     ,{field:'rePlanMoney ', width:120, title: '预计收款金额'}
+
                     ,{field:'rePlanCurrentState', width:120,title: '当前状态',templet:function (data){
                         if (data.rePlanCurrentState == 0) {
                             return "已完成";
@@ -75,10 +76,10 @@
                         }
                     }
                 }
-                    ,{field:'rePlanPlannedTime', width:120, title: '计划收款日期'}
-                    ,{field:'rePlanAcTulReceiptTime', width:120, title: '实际收款日期'}
+                    ,{field:'rePlanPlannedTime', width:160, title: '计划收款日期'}
+                    ,{field:'rePlanAcTulReceiptTime', width:160, title: '实际收款日期'}
                     ,{field:'rePlanUserId', width:120, title: '负责人'}
-                    ,{field:'rePlanMtCreate', width:120, title: '创建时间'}
+                    ,{field:'rePlanMtCreate', width:160, title: '创建时间'}
                 ]
             ]
         });
@@ -114,14 +115,14 @@
                     } else {
                         let Id=data[0].pkRePlanId;
                         layer.open({
-                            title: '修改收款计划',
+                            title: '修改[收款计划]',
                             type: 2,
                             area: ['1000px', '450px'],
                             content: 'update_plan.html?pkRePlanId=' + Id + ''
                             , btn: ['保存','取消']
                             , btnAlign: 'c'
                             , yes: function (index, layero) {
-                                var body = layer.getChildFrame('body', index);
+                                let body = layer.getChildFrame('body', index);
                                 body.find('#btnUpdatePlan').click();
                             }
                             ,btn2: function(index, layero){
@@ -169,9 +170,9 @@
                     } else {
                         let pkRePlanId=data[0].pkRePlanId;
                         layer.open({
-                            title: '查看收款计划',
+                            title: '查看[收款计划]',
                             type: 2,
-                            area: ['900px', '450px'],
+                            area: ['600px', '460px'],
                             content: 'look_plan.html?pkRePlanId=' + pkRePlanId + ''
                             , btn: ['确定','取消']
                             , btnAlign: 'c'
@@ -212,6 +213,9 @@
 
 </script>
 
+
+
+
 <div class="layui-tab layui-tab-card">
     <ul class="layui-tab-title">
         <li class="layui-this">提醒</li>
@@ -223,13 +227,43 @@
 
             <script type="text/html" id="toolbarDemos">
                 <div class="layui-btn-container layui-input-inline">
-                    <button class="layui-btn layui-btn-sm" lay-event="addPlanRemind">新增</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="addPlanRemind">增加</button>
                     <button class="layui-btn layui-btn-sm" lay-event="updatePlanRemind">编辑</button>
                     <button class="layui-btn layui-btn-sm" lay-event="deletePlanRemind">删除</button>
-                    <button class="layui-btn layui-btn-sm" lay-event="isAll">查看</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="lookPlanRemind">查看</button>
                 </div>
             </script>
 
+            <script>
+                layui.use(['table','form'], function() {
+                        let table = layui.table,
+                            form = layui.form;
+
+                        //第一个实例
+                        table.render({
+                            elem: '#demos'
+                            , height: 312
+                            , url: '#' //数据接口
+                            , page: true //开启分页
+                            , toolbar: '#toolbarDemos' //开启头部工具栏，并为其绑定左侧模板
+                            , limit: 3//默认1条数据一页
+                            , limits: [3, 5, 10, 15] //数据分页条
+                            , cols: [
+                                [ //表头
+                                    {type: 'checkbox', fixed: 'left'}
+                                    , {field: '#', width: 120, title: '提前'}
+                                    , {field: '#', width: 160, title: '提醒周期'}
+                                    , {field: '# ', width: 120, title: '今天不再提醒'}
+                                    , {field: '#', width: 120, title: '是否启用'}
+                                    , {field: '#', width: 160, title: '弹窗提醒'}
+                                    , {field: '#', title: '提醒基准时间', width: 120}
+                                    , {field: '#', width: 160, title: '上次提醒时间'}
+                                    , {field: '#', width: 160, title: '提醒业务对象'}
+
+                                ]
+                            ]
+                        });
+                    }
         </div>
     </div>
 </div>

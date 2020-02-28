@@ -173,10 +173,15 @@
 <script>
     //打开合同/订单页面
     function htType(){
-        var a=$('[name=fkOrDerConTypeId]').val();
-        var index=$('#fkOrDerConTypeId1');
+        let a=$('[name=fkOrDerConTypeId]').val();
+        let index=$('#fkOrDerConTypeId1');
+        let b=$('[name=fkOrDerConTypeId]').val();
+        let index1=$('#fkOrDerConTypeId2');
         if(a==1){
             index=$('#fkOrDerConTypeId1')
+        }
+        if(b==2){
+            index1=$('#fkOrDerConTypeId2')
         }
         layer.open({
             type: 1,
@@ -204,11 +209,12 @@
     //打开客户类型页面
     function khType(){
         let reUserTypeId=$("#reUserTypeId").val();
+        let reUserTypeId1=$("#reUserTypeId").val();
         let index=$('#khType');
         if(reUserTypeId=1){
             index=$('#khType')
         }
-        if(reUserTypeId=2){
+        if(reUserTypeId1=2){
             index=$('#khType2')
         }
         layer.open({
@@ -312,6 +318,69 @@
 </table>
 
 
+<!--合同/订单(报价单)-->
+<table class="layui-table" id="fkOrDerConTypeId2" style="overflow-x: auto; width: 1500px" hidden>
+    <colgroup>
+        <col width="50">
+        <col width="200">
+        <col width="200">
+        <col width="100">
+        <col width="150">
+        <col width="150">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+    </colgroup>
+    <thead>
+    <tr>
+        <th></th>
+        <th>名称</th>
+        <th>不含税总额</th>
+        <th>毛利润</th>
+        <th>税额</th>
+        <th>销售额</th>
+        <th>报价日期</th>
+        <th>报废人</th>
+        <th>审批状态</th>
+        <th>审批时间</th>
+        <th>审批结果</th>
+        <th>所属业务机会</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="checkbox" value="报价" style="zoom:150%;"></td>
+        <td>报价</td>
+        <td>无</td>
+        <td>无</td>
+        <td>无</td>
+        <td>无</td>
+        <td>2020-01-19</td>
+        <td>admin</td>
+        <td>审批中</td>
+        <td>2020-01-22</td>
+        <td>无</td>
+        <td>无</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" value="设备采购" style="zoom:150%;"></td>
+        <td>设备采购</td>
+        <td>10000.0</td>
+        <td>10000.0</td>
+        <td>10000.0</td>
+        <td>10000.0</td>
+        <td>2020-02-11</td>
+        <td>admin</td>
+        <td>审批中</td>
+        <td>2020-01-25/td>
+        <td>无</td>
+        <td>无</td>
+    </tr>
+    </tbody>
+</table>
 
 
 
@@ -332,16 +401,27 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="client:${pageInfo.list}">
-        <td><input type="checkbox" th:value="${client.abbreviation}" style="zoom:150%;"></td>
-        <td th:text="${client.abbreviation}"></td>
-        <td th:text="${client.cusCustomername}"></td>
-        <td th:text="${client.fkClassifId}"></td>
-        <td th:text="${client.cusFinancialTelephone}"></td>
-        <td th:text="${client.fkUserId}"></td>
-        <td th:text="${client.fkIndustryId}"></td>
-        <td th:text="${client.cusGmtCreate}"></td>
-        <td th:text="${client.cusGmtModified}"></td>
+<!--    <tr th:each="client:${pageInfo.list}">-->
+<!--        <td><input type="checkbox" th:value="${client.abbreviation}" style="zoom:150%;"></td>-->
+<!--        <td th:text="${client.abbreviation}"></td>-->
+<!--        <td th:text="${client.cusCustomername}"></td>-->
+<!--        <td th:text="${client.fkClassifId}"></td>-->
+<!--        <td th:text="${client.cusFinancialTelephone}"></td>-->
+<!--        <td th:text="${client.fkUserId}"></td>-->
+<!--        <td th:text="${client.fkIndustryId}"></td>-->
+<!--        <td th:text="${client.cusGmtCreate}"></td>-->
+<!--        <td th:text="${client.cusGmtModified}"></td>-->
+<!--    </tr>-->
+    <tr>
+        <td><input type="checkbox" value="小芳" style="zoom:150%;"></td>
+        <td>小芳</td>
+        <td>fang</td>
+        <td>vip</td>
+        <td>13678923451</td>
+        <td>哈哈</td>
+        <td>服务业</td>
+        <td>2020-02-01</td>
+        <td>2020-02-02</td>
     </tr>
     </tbody>
 </table>
@@ -390,7 +470,7 @@
 
 
 
-    </tbody>
+</tbody>
 </table>
 <script>
     //点击选中

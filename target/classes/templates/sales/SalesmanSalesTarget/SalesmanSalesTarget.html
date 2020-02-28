@@ -1,10 +1,354 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>业务员销售目标</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{./../static/lib/layui/css/layui.css}">
+    <script th:src="@{./../static/lib/layui/layui.js}" charset="utf-8"></script>
+    <style>
+        .layui-form-label{
+            width: 60px;
+        }
+    </style>
 </head>
 <body>
+<table class="layui-hide" id="sales" lay-filter="sales"></table>
 
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container layui-form">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+
+        <div class="layui-input-inline layui-btn-sm">
+            <select name="selType" lay-filter="selType" id="selType">
+                <option value="1" selected="selected">我的销售目标</option>
+                <option value="2">我所创建的业务员销售目标</option>
+                <option value="0">所有人的销售目标</option>
+            </select>
+        </div>
+
+    </div>
+</script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-xs" lay-event="sel">查看</a>
+</script>
+
+<!--添加页面部分-->
+
+<div id="add-sales-script" style="display: none;">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend align="sales" id="fieldTitle"></legend>
+    </fieldset>
+    <form class="layui-form" id="contract-form" lay-filter="contract-form" >
+        <input type="hidden" name="pkCusSalesTargetId" id="pkCusSalesTargetId">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">销售员：</label>
+            <div class="layui-input-block">
+                <select name="fkUserBusinessId">
+                    <option value="1">小红</option>
+                    <option value="2">小黄</option>
+                    <option value="3">小绿</option>
+                    <option value="4">admin</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">年度</label>
+            <div class="layui-input-block">
+                <select name="cusSalesTargetYear">
+                    <option value="2015">2015</option>
+                    <option value="2016" >2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">销售目标类型</label>
+            <div class="layui-input-block">
+                <select name="salesTargetType">
+                    <option value="订单+合同">订单+合同</option>
+                    <option value="订单">订单</option>
+                    <option value="合同">合同</option>
+                    <option value="回款">回款</option>
+                    <option value="销售利润">销售利润</option>
+                    <option value="销售机会">销售机会</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">一月</label>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" name="cusSalesTarJanuary"  autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">二月</label>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" name="cusSalesTarFebruary" th:width="50px" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">三月</label>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" name="cusSalesTarMarch"  autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">4月</label>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" name="cusSalesTarApril"  autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">5月</label>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" name="cusSalesTarMay" th:width="50px" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">6月</label>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" name="cusSalesTarJun"  autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">7月</label>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" name="cusSalesTarJuly"  autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">8月</label>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" name="cusSalesTarAugust"   autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">9月</label>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" name="cusSalesTarSeptember"  autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">10月</label>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" name="cusSalesTarOctober"  autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">11月</label>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" name="cusSalesTarNovember"   autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">12月</label>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" name="cusSalesTarDecember"  autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="timeAndPeople" style="display: none">
+            <label class="layui-form-label">创建时间</label>
+            <input type="text" name="cusSalesTarGmtCreate"  autocomplete="off" class="layui-input">
+        </div>
+        <div class="timeAndPeople" style="display: none">
+            <label class="layui-form-label">创建人</label>
+            <input type="text" name="cusSalesTarCreator"  autocomplete="off" class="layui-input">
+        </div>
+        <div class="timeAndPeople" style="display: none">
+            <label class="layui-form-label">最后修改时间</label>
+            <input type="text" name="cusSalesTarGmtModified"  autocomplete="off" class="layui-input">
+        </div>
+        <div class="timeAndPeople" style="display: none">
+            <label class="layui-form-label">修改人</label>
+            <input type="text" name="cusSalesTarLastModifier"  autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block" style="display: none">
+                <button type="submit" class="layui-btn" lay-submit  lay-filter="con-form-submit" id="con-form-submit">立即提交</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    var layuiOpenContract;
+    layui.use(['table','jquery','layedit','form','laydate'], function() {
+        var layer = layui.layer;
+        var table = layui.table;
+        var $ = layui.jquery;
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var $$ =layui.$;
+
+
+
+        //日期
+        laydate.render({
+            elem: '#cusSalesTarGmtCreate'
+        });
+        table.render({
+            elem: '#sales'
+            , height: 315 //容器高度
+            , url: 'SalemanSalesTarget.list'
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            ,where:{
+                selType:1,
+                id: 4
+            }
+            , title: '销售合同表'
+            , cols: [
+                [
+                    {type: 'checkbox', fixed: 'left'}
+                    , {field: 'pkCusSalesTargetId', title: '编号', width: 80, fixed: 'left', unresize: true}
+                    , {field: 'userBusiness', title: '业务员', width: 80}
+                    , {field: 'cusSalesTargetYear', title: '年度', width: 120}
+                    , {field: 'salesTargetType', title: '销售目标类型', width: 200}
+                    , {field: 'cusSalesTarJanuary', title: '一月', width: 100}
+                    , {field: 'cusSalesTarFebruary', title: '二月'}
+                    , {field: 'cusSalesTarMarch', title: '三月', width: 80}
+                    , {field: 'cusSalesTarApril', title: '四月', width: 120}
+                    , {field: 'cusSalesTarMay', title: '五月', width: 100}
+                    , {field: 'cusSalesTarJun', title: '六月', width: 100}
+                    , {field: 'cusSalesTarJuly', title: '七月'}
+                    , {field: 'cusSalesTarAugust', title: '八月', width: 80}
+                    , {field: 'cusSalesTarSeptember', title: '九月', width: 120}
+                    , {field: 'cusSalesTarOctober', title: '十月', width: 100}
+                    , {field: 'cusSalesTarNovember', title: '十一月', width: 120}
+                    , {field: 'cusSalesTarDecember', title: '十二月', width: 100}
+                    , {field: 'cusSalesTarGmtCreate',title: '创建时间', templet: "<div>{{layui.util.toDateString(d.startTime,'yyyy-MM-dd HH:mm:ss')}}</div>"}
+                    , {field: 'fkUserBusinessId', title: '', width:0 ,style:'display:none;'}
+                    , {field: 'cusSalesTarCreator', title: '', width: 0,style:'display:none;'}
+                    , {field: 'cusSalesTarGmtModified', title: '', width: 0,style:'display:none;'}
+                    , {field: 'cusSalesTarLastModifier', title: '', width: 0,style:'display:none;'}
+
+
+                    , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
+                ]
+            ]
+            , page: true
+            , limits: [3, 5, 10]
+            , limit: 3 //每页默认显示的数量
+            , id: 'salesTable'
+        });
+
+        //下拉框选中事件
+        form.on('select(selType)', function(data){
+            var value = data.value;//选中的value值
+            //执行重载
+            table.reload('salesTable', {
+                where: {
+                    selType: value
+                    , id: 4
+                }
+            }, 'data');
+            $('#selType').val(value);
+            console.log($('#selType').val());
+        });
+
+        var contractUrl;
+        //头工具栏事件
+        table.on('toolbar(sales)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);  //获取layui-event的值
+            switch(obj.event){
+                case 'add':
+                    $("#contract-form")[0].reset();//重置
+                    form.render();//渲染select
+                    layuiOpenContract = layer.open({
+                        title:"增加",
+                        btn: ['保存', '取消'],
+                        yes: function(index, layero){ //选择保存
+                            contractUrl = "addSales";
+                            $("#con-form-submit").click();
+                        },
+                        btn2: function(index, layero){ //选择取消
+                            layer.msg("取消")
+                            //return false 开启该代码可禁止点击该按钮关闭
+                        },
+                        type: 1,
+                        area:['800px','500px'],
+                        content: $("#add-sales-script"), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                        success:function(){
+                            $("#fieldTitle").text("新增[业务员销售目标]");
+                        }
+                    });
+                    break;
+                //自定义头工具栏右侧图标 - 提示
+                case 'LAYTABLE_TIPS':
+                    layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                    break;
+            };
+        });
+
+        //监听行工具事件
+        table.on('tool(sales)', function(obj){
+            var data = obj.data;//获取当前行数的值
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    $.ajax({
+                        url:"isDel",
+                        data:{
+                            salesId:data.pkCusSalesTargetId
+                        },
+                        type:"post",
+                        dataType:"json",
+                        success:function(data){
+                            if (data=="1"){
+                                layer.msg("操作成功",{icon:1, time: 500},function () {
+                                    //执行重载
+                                    table.reload('salesTable','data');
+                                });
+                            }else{
+                                layer.msg("操作失败",{icon:2, time: 1000});
+                            }
+                        }
+                    })
+
+
+                });
+            } else if(obj.event === 'edit'){
+                layuiOpenContract = layer.open({
+                    title:"编辑",
+                    btn: ['保存', '取消'],
+                    yes: function(index, layero){//点击保存
+                        contractUrl = "updSales";
+                        var fromData =form.val("contract-form");
+                        console.log(fromData);
+                        /*$.ajax({
+
+                        });*/
+
+                    },
+                    type: 1,
+                    area:['800px','500px'],
+                    content: $("#add-sales-script"), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    success:function(){
+                        $("#fieldTitle").text("编辑[合同销售]");
+                        form.val("contract-form",data);//当前选中行数据赋值给form表单
+                        console.log($("#pkCusSalesTargetId").val());
+                    }
+                });
+            }else if(obj.event === 'sel'){
+                layuiOpenContract = layer.open({
+                    title:"查看",
+                    btn: ['确定'],
+                    yes: function(index){
+                        this.cancel();
+                        layer.close(layuiOpenContract);
+                    },
+                    type: 1,
+                    area:['800px','500px'],
+                    content: $("#add-sales-script"), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    success:function(){
+                        $("#fieldTitle").text("查看[业务员销售目标]");
+                        form.val("contract-form",data);//赋值
+                        layui.$('#contract-form input').attr('disabled',true);
+                        layui.$('#contract-form select').attr('disabled',true);
+                        layui.$('.timeAndPeople').attr('display','black');
+                        layui.form.render();//渲染
+                    },
+                    cancel:function () {
+                        $('#contract-form input').removeAttr('disabled');
+                        $('#contract-form select').removeAttr('disabled');
+                        $('.timeAndPeople').attr('display','none');
+                    }
+                });
+            }
+        });
+
+
+    });
+
+</script>
 </body>
 </html>

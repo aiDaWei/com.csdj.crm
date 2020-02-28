@@ -43,10 +43,10 @@
         SELECT COUNT(1) AS planCount FROM `recei_plan`
     <where>
         <if test="rePlanCurrentState==1">
-            and re_plan_currentstate=0
+            and re_plan_currentstate='已完成'
         </if>
         <if test="rePlanCurrentState==2">
-            and re_plan_currentstate=1
+            and re_plan_currentstate='未完成'
         </if>
     </where>
     </select>
@@ -54,14 +54,14 @@
 
     <!--查询所有收款计划-->
     <select id="findPlan"  resultMap="planMap">
-        select `re_plan_planste`,`re_plan_money`,`re_plan_currentstate`,fk_order_con_id,fk_customer_id,re_plan_plannedtime,re_plan_actualreceipttime,`re_plan_userid`,re_plan_gmt_create
+        select pk_re_plan_id,`re_plan_planste`,`re_plan_money`,`re_plan_currentstate`,fk_order_con_id,fk_customer_id,re_plan_plannedtime,re_plan_actualreceipttime,`re_plan_userid`,re_plan_gmt_create
         from recei_plan
         <where>
             <if test="rePlanCurrentState==1">
-                and re_plan_currentstate=0
+                and re_plan_currentstate='已完成'
             </if>
             <if test="rePlanCurrentState==2">
-                and re_plan_currentstate=1
+                and re_plan_currentstate='未完成'
             </if>
         </where>
     </select>
@@ -69,19 +69,20 @@
 
     <!--新增收款计划-->
     <insert id="addPlan" parameterType="ReCeiPlan">
-        INSERT INTO recei_plan(pk_re_plan_id,re_plan_planste,re_plan_money,re_plan_currentstate,fk_order_con_typeid,re_plan_orderorcontractname
+        INSERT INTO recei_plan (pk_re_plan_id,re_plan_planste,re_plan_money,re_plan_currentstate,fk_order_con_typeid,re_plan_orderorcontractname
         ,re_user_type_id,re_plan_customername,re_plan_plannedtime,re_plan_actualreceipttime,re_plan_remark)VALUES
-        (#{pkRePlanId},
+        (
+        #{pkRePlanId},
         #{rePlanPlanStWe},
         #{rePlanMoney},
         #{rePlanCurrentState},
         #{fkOrDerConTypeId},
         #{rePlanOrderContractName},
-        #{reUserTypeId},          ,
+        #{reUserTypeId},
         #{rePlanCustomerName},
         #{rePlanPlannedTime},
         #{rePlanAcTulReceiptTime},
-        #{rePlanRemark}'
+        #{rePlanRemark}
         )
     </insert>
 
@@ -114,7 +115,6 @@
             <if test="rePlanAcTulReceiptTime != null">re_plan_actualreceipttime=#{rePlanAcTulReceiptTime},</if>
 
             <if test="rePlanRemark != null">re_plan_remark=#{rePlanRemark},</if>
-            gmt_modified=DATE_FORMAT(NOW(),'%Y-%m-%d %H:%m:%s'),
         </trim>
     </update>
 
