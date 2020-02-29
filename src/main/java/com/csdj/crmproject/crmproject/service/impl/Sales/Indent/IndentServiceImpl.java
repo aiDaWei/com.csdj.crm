@@ -87,6 +87,24 @@ public class IndentServiceImpl implements IndentService {
     }
 
     @Override
+    public int updateOrderByOrderId(long orderId) {
+        ValueOperations valueOperations=redisTemplate.opsForValue();
+        int i=indentDao.updateOrderByOrderId(orderId);
+        if(i!=0){
+            String key="order_"+orderId;
+            boolean keyHas=redisTemplate.hasKey(key);
+            if (keyHas){
+                redisTemplate.delete(key);
+                Order newOrder=indentDao.findGetOrderId(orderId);
+                if (newOrder!=null){
+                    valueOperations.set(key,newOrder,5, TimeUnit.MINUTES);
+                }
+            }
+        }
+        return i;
+    }
+
+    @Override
     public int deleteOrder(int[] array) {
         int result=indentDao.deleteOrder(array);
         if (result!=0){
