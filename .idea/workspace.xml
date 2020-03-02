@@ -2,37 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0da754bf-c7e6-4673-bfa0-5c9fee579996" name="默认更改列表" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/crmproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/crmproject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/controller/Sales/Indent/IndentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/controller/Sales/Indent/IndentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/dao/Sales/Indent/IndentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/dao/Sales/Indent/IndentDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/service/Sales/Indent/IndentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/service/Sales/Indent/IndentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/service/impl/Sales/Indent/IndentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csdj/crmproject/crmproject/service/impl/Sales/Indent/IndentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/add_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/add_order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/sales/Indent/IndentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/sales/Indent/IndentMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/order_manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/order_manage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SalesmanInstrument/SalesmanInstrumentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SalesmanInstrument/SalesmanInstrumentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SectionInstrument/SectionInstrumentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Instrument/SectionInstrument/SectionInstrumentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/update_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sales/Indent/update_order.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/Indent/IndentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/Indent/IndentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/PaymentPlan/PaymentPlanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/PaymentPlan/PaymentPlanController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Instrument/SectionInstrument/SectionInstrumentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Instrument/SectionInstrument/SectionInstrumentMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Marketing/ActivityMarketing/ActivityMarketingMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Marketing/ActivityMarketing/ActivityMarketingMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Sales/PaymentPlan/PaymentPlanMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Sales/PaymentPlan/PaymentPlanMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/entity/ReCeiPlan.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/entity/ReCeiPlan.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Instrument/SalesmanInstrument/SalesmanInstrumentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Instrument/SalesmanInstrument/SalesmanInstrumentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Instrument/SectionInstrument/SectionInstrumentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Instrument/SectionInstrument/SectionInstrumentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Sales/PaymentPlan/PaymentPlanServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Sales/PaymentPlan/PaymentPlanServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SalesmanInstrument/SalesmanInstrumentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SalesmanInstrument/SalesmanInstrumentServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SectionInstrument/SectionInstrumentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Instrument/SectionInstrument/SectionInstrumentServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/SalesmanSalesTarget/SalesmanSalesTargetController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/controller/Sales/SalesmanSalesTarget/SalesmanSalesTargetController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Sales/Indent/IndentDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/dao/Sales/Indent/IndentDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Sales/Indent/IndentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/Sales/Indent/IndentService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Sales/Indent/IndentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Sales/Indent/IndentServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Sales/PaymentPlan/PaymentPlanServerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/csdj/crmproject/crmproject/service/impl/Sales/PaymentPlan/PaymentPlanServerImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/Instrument/SalesmanInstrument/SalesmanInstrument.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/Instrument/SalesmanInstrument/SalesmanInstrument.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/Instrument/SectionInstrument/SectionInstrument.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/Instrument/SectionInstrument/SectionInstrument.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/sales/PaymentPlan/a.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Instrument/SalesmanInstrument/SalesmanInstrument.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Instrument/SalesmanInstrument/SalesmanInstrument.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Instrument/SectionInstrument/SectionInstrument.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Instrument/SectionInstrument/SectionInstrument.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/sales/Indent/IndentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/sales/Indent/IndentMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/sales/Indent/order_manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/sales/Indent/order_manage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/sales/SalesmanSalesTarget/SalesmanSalesTarget.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/sales/SalesmanSalesTarget/SalesmanSalesTarget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/sales/SalesmanSalesTarget/a.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,6 +176,10 @@
       <workItem from="1582549242613" duration="1099000" />
       <workItem from="1582551374402" duration="2482000" />
       <workItem from="1582787847647" duration="6330000" />
+      <workItem from="1582869164906" duration="575000" />
+      <workItem from="1582870386149" duration="617000" />
+      <workItem from="1582942728737" duration="8007000" />
+      <workItem from="1582963317012" duration="352000" />
     </task>
     <task id="LOCAL-00001" summary="订单管理">
       <created>1581768442120</created>
@@ -288,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582428232084</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="谭芝豪">
+      <created>1582869197560</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1582869197560</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,50 +310,54 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1580967430088" />
-    <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser" timestamp="1582369156120">
+    <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser" timestamp="1582960841121">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1582369156120" />
-    <state x="264" y="0" key="CommitChangelistDialog2" timestamp="1582428230364">
+    <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1582960841121" />
+    <state x="264" y="0" key="CommitChangelistDialog2" timestamp="1582869195998">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="264" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1582428230364" />
+    <state x="264" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1582869195998" />
+    <state x="121" y="57" key="DiffContextDialog" timestamp="1582869296027">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="121" y="57" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1582869296027" />
     <state x="421" y="99" key="FileChooserDialogImpl" timestamp="1580963761685">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1580963761685" />
-    <state width="1237" height="32" key="GridCell.Tab.0.bottom" timestamp="1582794233060">
+    <state width="1237" height="95" key="GridCell.Tab.0.bottom" timestamp="1582962988510">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="32" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
-    <state width="1237" height="32" key="GridCell.Tab.0.center" timestamp="1582794233060">
+    <state width="1237" height="95" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582962988510" />
+    <state width="1237" height="95" key="GridCell.Tab.0.center" timestamp="1582962988509">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="32" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
-    <state width="1237" height="32" key="GridCell.Tab.0.left" timestamp="1582794233060">
+    <state width="1237" height="95" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582962988509" />
+    <state width="1237" height="95" key="GridCell.Tab.0.left" timestamp="1582962988509">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="32" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
-    <state width="1237" height="32" key="GridCell.Tab.0.right" timestamp="1582794233060">
+    <state width="1237" height="95" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582962988509" />
+    <state width="1237" height="95" key="GridCell.Tab.0.right" timestamp="1582962988510">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="32" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
-    <state width="1237" height="32" key="GridCell.Tab.1.bottom" timestamp="1582794233060">
+    <state width="1237" height="95" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582962988510" />
+    <state width="1237" height="95" key="GridCell.Tab.1.bottom" timestamp="1582962988510">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="32" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
-    <state width="1237" height="32" key="GridCell.Tab.1.center" timestamp="1582794233060">
+    <state width="1237" height="95" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582962988510" />
+    <state width="1237" height="95" key="GridCell.Tab.1.center" timestamp="1582962988510">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="32" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
-    <state width="1237" height="32" key="GridCell.Tab.1.left" timestamp="1582794233060">
+    <state width="1237" height="95" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1582962988510" />
+    <state width="1237" height="95" key="GridCell.Tab.1.left" timestamp="1582962988510">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="32" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
-    <state width="1237" height="32" key="GridCell.Tab.1.right" timestamp="1582794233060">
+    <state width="1237" height="95" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1582962988510" />
+    <state width="1237" height="95" key="GridCell.Tab.1.right" timestamp="1582962988510">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="32" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1582794233060" />
+    <state width="1237" height="95" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1582962988510" />
     <state width="1237" height="382" key="GridCell.Tab.2.bottom" timestamp="1582550341838">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -372,14 +374,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="382" key="GridCell.Tab.2.right/0.0.1280.680@0.0.1280.680" timestamp="1582550341838" />
-    <state x="122" y="57" key="MergeDialog" timestamp="1581768031967">
+    <state x="122" y="57" key="MergeDialog" timestamp="1582869277818">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="122" y="57" key="MergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1581768031967" />
-    <state x="352" y="58" key="MultipleFileMergeDialog" timestamp="1582361056880">
+    <state x="122" y="57" key="MergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1582869277818" />
+    <state x="352" y="58" key="MultipleFileMergeDialog" timestamp="1582869280159">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="352" y="58" key="MultipleFileMergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1582361056880" />
+    <state x="352" y="58" key="MultipleFileMergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1582869280159" />
     <state x="393" y="54" key="RollbackChangesDialog" timestamp="1581590629035">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -392,10 +394,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="412" y="59" key="VCS.ChangeListViewerDialog/0.0.1280.680@0.0.1280.680" timestamp="1582298123001" />
-    <state x="233" y="77" key="Vcs.Push.Dialog.v2" timestamp="1582428251836">
+    <state x="233" y="77" key="Vcs.Push.Dialog.v2" timestamp="1582869297742">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="77" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1582428251836" />
+    <state x="233" y="77" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1582869297742" />
     <state x="93" y="93" width="1095" height="495" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1581590808058">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -404,10 +406,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1581590462209" />
-    <state x="439" y="259" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581570822088">
+    <state x="439" y="259" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582961172088">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="439" y="259" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1581570822088" />
+    <state x="439" y="259" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1582961172088" />
     <state x="351" y="143" key="git4idea.merge.GitPullDialog" timestamp="1582547827340">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
