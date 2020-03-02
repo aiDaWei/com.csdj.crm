@@ -24,7 +24,7 @@ public class SalesmanSalesTargetServiceImpl implements SalesmanSalesTargetServic
         //开启分页
         PageHelper.startPage(page, limit);
         //查询的数据
-        List<CusSalesTarget> list =dao.findPages(selType,id);
+        List list =dao.findPages(selType,id);
         System.out.println(selType+"---"+id);
         System.out.println(list.size()+"--"+JSON.toJSON(list));
         //数据传入pagehelper中

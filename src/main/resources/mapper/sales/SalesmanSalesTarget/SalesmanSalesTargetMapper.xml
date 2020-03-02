@@ -16,10 +16,11 @@
         cus_sales_tar_august cusSalesTarAugust,cus_sales_tar_september cusSalesTarSeptember,
         cus_sales_tar_october cusSalesTarOctober,cus_sales_tar_november cusSalesTarNovember,
         cus_sales_tar_december cusSalesTarDecember,
-        cus_sales_tar_gmt_create cusSalesTarGmtCreate ,c.fk_user_Cre_id cusSalesTarCreator,
-        c.cus_sales_tar_gmt_modified cusSalesTarGmtModified,c.fk_user_Upd_id cusSalesTarLastModifier,
         fk_user_res_id fkUserId,
-        u.user_name userBusiness
+        u.user_name userBusiness,u.user_name pkCusSalesTargetName,
+        cus_sales_tar_gmt_create cusSalesTarGmtCreate , c.cus_sales_tar_gmt_modified cusSalesTarGmtModified,
+        (select user_name where fk_user_res_id =c.fk_user_Cre_id)  cusSalesTarCreator,
+        (select user_name where fk_user_res_id =c.fk_user_Upd_id) cusSalesTarLastModifier
         FROM  cus_sales_target c,`user` u
         where c.fk_user_business_id = u.pk_user_id and isdel != 0
         <if test="selType!=0 and selType ==1">

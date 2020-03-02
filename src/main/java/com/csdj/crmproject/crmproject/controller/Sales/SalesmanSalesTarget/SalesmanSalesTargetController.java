@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +37,7 @@ public class SalesmanSalesTargetController {
         int page =Integer.parseInt(request.getParameter("page"));
         int limit =Integer.parseInt(request.getParameter("limit"));
         System.out.println(selType+"====="+id);
-        List<CusSalesTarget> list = service.findPage(page,limit,selType,id);
+        List list = service.findPage(page,limit,selType,id);
         System.out.println("进入是》》》"+list.size());
         int sum =service.getCount(selType,id);
 
@@ -59,6 +60,7 @@ public class SalesmanSalesTargetController {
     @ResponseBody
     @RequestMapping("addSales")
     public String add(CusSalesTarget salesTarget){
+        salesTarget.setPkCusSalesTargetId(0);
         System.out.println(salesTarget);
         int res =service.addSales(salesTarget);
         return res+"";
