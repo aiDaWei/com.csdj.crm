@@ -10,7 +10,7 @@ public interface SalesmanSalesTargetService {
      * @param
      * @return list
      */
-    public List<CusSalesTarget> findPage(int page,int limit,int selType,int id);
+    public List findPage(int page,int limit,int selType,int id);
     int getCount(int selType,int id);
 
     /**

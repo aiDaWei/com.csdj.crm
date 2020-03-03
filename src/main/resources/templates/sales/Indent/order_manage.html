@@ -17,7 +17,7 @@
         <button class="layui-btn layui-btn-sm" lay-event="updateOrder">编辑</button>
         <button class="layui-btn layui-btn-sm" lay-event="deleteOrder">删除</button>
         <button class="layui-btn layui-btn-sm" lay-event="lookOrder">查看</button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">发起流程</button>
+        <button class="layui-btn layui-btn-sm" lay-event="startFlow">发起流程</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">流程审批</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">流程痕迹</button>
         <button class="layui-btn layui-btn-sm" lay-event="flowImg">流程图</button>
@@ -84,12 +84,48 @@
                         }
                     }
                 }
-                ,{field: 'orderTotalSum', title: '不含税总额',width:120}
-                ,{field: 'orderGrossProfit', title: '毛利润',width:120}
-                ,{field: 'orderRevenue', title: '税额',width:120}
-                ,{field: 'orderSaleroom', title: '销售额',width:120}
-                ,{field: 'orderAmountRemitted', title: '已收款金额',width:120}
-                ,{field: 'orderInvoiceAmount', title: '已开票金额',width:120}
+                ,{field: 'orderTotalSum', title: '不含税总额',width:120,templet:function(data){
+                    if (data.orderTotalSum==0){
+                        return"无";
+                    }else{
+                        return data.orderTotalSum;
+                    }
+                    }}
+                ,{field: 'orderGrossProfit', title: '毛利润',width:120,templet:function(data){
+                        if (data.orderGrossProfit==0){
+                            return"无";
+                        }else{
+                            return data.orderGrossProfit;
+                        }
+                    }}
+                ,{field: 'orderRevenue', title: '税额',width:120,templet:function(data){
+                        if (data.orderRevenue==0){
+                            return"无";
+                        }else{
+                            return data.orderRevenue;
+                        }
+                    }}
+                ,{field: 'orderSaleroom', title: '销售额',width:120,templet:function(data){
+                        if (data.orderSaleroom==0){
+                            return"无";
+                        }else{
+                            return data.orderSaleroom;
+                        }
+                    }}
+                ,{field: 'orderAmountRemitted', title: '已收款金额',width:120,templet:function(data){
+                        if (data.orderAmountRemitted==0){
+                            return"无";
+                        }else{
+                            return data.orderAmountRemitted;
+                        }
+                    }}
+                ,{field: 'orderInvoiceAmount', title: '已开票金额',width:120,templet:function(data){
+                        if (data.orderInvoiceAmount==0){
+                            return"无";
+                        }else{
+                            return data.orderInvoiceAmount;
+                        }
+                    }}
                 ,{field: 'orderApprovalStatus', title: '审批状态',width:120,templet: function (data) {
                         if (data.orderApprovalStatus == 0) {
                             return "审批中";
@@ -229,6 +265,51 @@
                             layer.close(index);
                         }
                     });
+                    break;
+                case 'startFlow':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else if (data.length > 1) {
+                        layer.msg('只能选择一行');
+                    } else {
+                        var orderApprovalStatus=data[0].orderApprovalStatus;
+                        var orderId=data[0].orderId;
+                        if (orderApprovalStatus!=1){
+                            layer.msg('流程以存在不能再次创建',{icon:2})
+                        }else{
+                            $.ajax({
+                                url: "update_order_approval_status_htmls",
+                                type: "get",
+                                data: {"orderId":orderId},
+                                traditional: true,
+                                success: function (data) {
+                                    if (data>0){
+                                        layer.msg('流程创建成功', {icon: 1, time: 2000}, function () {
+                                            window.location.reload();
+                                        });
+                                    }
+                                },
+                                error:function () {
+                                    layer.msg('ajax执行错误',{icon:2,time:2000});
+                                }
+                            })
+                        }
+
+                        /*layer.open({
+                            title: '查看订单',
+                            type: 2,
+                            area: ['600px', '400px'],
+                            content: 'look_order.html?orderId=' + orderId + ''
+                            , btn: ['确定','取消']
+                            , btnAlign: 'c'
+                            , yes: function (index, layero) {
+                                layer.close(index);
+                            }
+                            ,btn2: function(index, layero){
+                                layer.close(index);
+                            }
+                        });*/
+                    }
                     break;
 
                 //自定义头工具栏右侧图标 - 提示

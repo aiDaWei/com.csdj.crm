@@ -42,6 +42,13 @@ public interface IndentDao {
      * @return
      */
     public int updateOrder(Order order);
+
+    /**
+     * 根据订单编号修改订单的审批状态
+     * @param orderId
+     * @return
+     */
+    public int updateOrderByOrderId(long orderId);
     /**
      * 批量删除订单
      *

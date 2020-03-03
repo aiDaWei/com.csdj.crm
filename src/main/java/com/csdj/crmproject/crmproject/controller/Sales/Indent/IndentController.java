@@ -48,6 +48,10 @@ public class IndentController {
     @RequestMapping("update_order.html")
     public String updateOrderHtml(long orderId, Model model){
         Order order=indentService.findGetOrderId(orderId);
+        List<ClientTable> qyClient=indentService.findClientTableById("2");
+        List<ClientTable> grClient=indentService.findClientTableById("1");
+        model.addAttribute("qyClient",qyClient);
+        model.addAttribute("grClient",grClient);
         model.addAttribute("order",order);
         return "sales/Indent/update_order";
     }
@@ -96,6 +100,12 @@ public class IndentController {
         User user=(User)session.getAttribute("user");
         order.setModifier(user.getUserName());
         int i=indentService.updateOrder(order);
+        return i;
+    }
+    @RequestMapping("update_order_approval_status_htmls")
+    @ResponseBody
+    public int updateOrderByOrderId(long orderId){
+        int i=indentService.updateOrderByOrderId(orderId);
         return i;
     }
 
