@@ -51,6 +51,25 @@
         <result column="cus_gmt_create" property="cusGmtCreate"></result>
         <result column="cus_gmt_modified" property="cusGmtModified"></result>
     </resultMap>
+
+    <resultMap id="salesoppMap" type="Salesopp">
+        <id column="pk_salesopp_id" property="pkSalesoppId"></id>
+        <result column="salesopp_name" property="salesoppName"></result>
+        <result column="salesopp_cus_name" property="salesoppCusName"></result>
+        <result column="salesopp_expected_signing_times" property="salesoppExpectedSigningTime"></result>
+        <result column="salesopp_expected_signing_money" property="salesoppExpectedSigningMoney"></result>
+        <result column="salesopp_anticipated_profit" property="salesoppAnticipatedProfit"></result>
+    </resultMap>
+
+    <resultMap id="faultWarMap" type="FaultWar">
+        <id column="pk_fault_war_id" property="pkFaultWarId"></id>
+        <result column="fk_war_id" property="fkWarId"></result>
+        <result column="fault_war_name" property="faultWarName"></result>
+        <result column="fault_war_tension_level" property="faultWarTensionLevel"></result>
+        <result column="fault_war_fault_happen_times" property="faultWarFaultHappenTime"></result>
+        <result column="fault_war_dispose_way" property="faultWarDisposeWay"></result>
+    </resultMap>
+
     <select id="orderCount" resultType="int">
         SELECT COUNT(1) AS orderCount FROM `order`
         <where>
@@ -85,6 +104,21 @@
         DATE_FORMAT(order_end_time, '%Y-%m-%d %H:%i:%s') order_end_times,DATE_FORMAT(order_approval_time, '%Y-%m-%d %H:%i:%s')
         order_approval_times from `order` where order_id=#{orderId}
     </select>
+    <select id="findGetOrderApprovalStatus" resultMap="orderMap">
+        select order_id,order_name,order_type,order_approval_status,DATE_FORMAT(order_approval_time, '%Y-%m-%d %H:%i:%s') order_approval_times from `order`
+        <where>
+            order_approval_status=#{orderApprovalStatus}
+        </where>
+    </select>
+    <select id="findSalesopp" resultMap="salesoppMap">
+       select salesopp_name,salesopp_cus_name,DATE_FORMAT(salesopp_expected_signing_time, '%Y-%m-%d %H:%i:%s') salesopp_expected_signing_times,
+       salesopp_expected_signing_money,salesopp_anticipated_profit from salesopp
+    </select>
+    <select id="findFaultWar" resultMap="faultWarMap">
+         select fk_war_id,fault_war_name,fault_war_tension_level,DATE_FORMAT(fault_war_fault_happen_time, '%Y-%m-%d %H:%i:%s') fault_war_fault_happen_times,
+       fault_war_dispose_way from fault_war
+    </select>
+
     <insert id="addOrder" parameterType="Order">
         INSERT INTO `order` (order_name,fk_cus_type_id,fk_cus_name,fk_object_type_id,fk_object_name,order_type,
         fk_contacts_id,order_payment,order_start_time,order_end_time,order_consignee_name,order_consignee_phone,

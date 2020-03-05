@@ -1,4 +1,6 @@
 package com.csdj.crmproject.crmproject.dao.Sales.Indent;
+import com.csdj.crmproject.crmproject.entity.FaultWar;
+import com.csdj.crmproject.crmproject.entity.Salesopp;
 import com.csdj.crmproject.crmproject.entity.customermanagement.ClientTable;
 import com.csdj.crmproject.crmproject.entity.salesmanagement.Order;
 import org.apache.ibatis.annotations.Mapper;
@@ -29,6 +31,13 @@ public interface IndentDao {
      * @return Order
      */
     public Order findGetOrderId(@Param(value = "orderId") long orderId);
+
+    /**
+     * 根据审批状态查询订单信息
+     * @param orderApprovalStatus
+     * @return
+     */
+    public List<Order> findGetOrderApprovalStatus(@Param(value = "orderApprovalStatus") String orderApprovalStatus);
 
     /**
      * 添加订单
@@ -63,4 +72,15 @@ public interface IndentDao {
      * @return
      */
     public List<ClientTable> findClientTableById(@Param(value = "fkTypeNumberId") String fkTypeNumberId);
+
+    /**
+     * 查询销售机会信息
+     * @return
+     */
+    public List<Salesopp> findSalesopp();
+    /**
+     * 查询故障报修信息
+     * @return
+     */
+    public List<FaultWar> findFaultWar();
 }

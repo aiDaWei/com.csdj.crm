@@ -233,7 +233,7 @@
         var a=$('[name=fkObjectTypeId]').val();
         var index=$('#fkObjectTypeId1');
         if(a==1){
-            index=$('#khType2')
+            index=$('#fkObjectTypeId2')
         }
         layer.open({
             type: 1,
@@ -350,65 +350,49 @@
 </table>
 
 <!--对象类型(销售机会)-->
-<table class="layui-table" id="fkObjectTypeId1" style="overflow-x: auto; width: 1500px" hidden>
-    <colgroup>
-        <col width="50">
-        <col width="200">
-        <col width="200">
-        <col width="100">
-        <col width="150">
-        <col width="150">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-    </colgroup>
+<table class="layui-table" id="fkObjectTypeId1" hidden>
     <thead>
     <tr>
         <th></th>
         <th>销售机会名称</th>
         <th>所属客户</th>
-        <th>负责人</th>
         <th>预期签单时间</th>
         <th>预期签单金额</th>
         <th>预期利润</th>
-        <th>成功率(%)</th>
-        <th>当前阶段</th>
-        <th>销售模式</th>
-        <th>是否关闭</th>
-        <th>是否成功</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td><input type="checkbox" value="免费服务" style="zoom:150%;"></td>
-        <td>免费服务</td>
-        <td>深圳ddd的大大</td>
-        <td>普通</td>
-        <td>无</td>
-        <td>李销售</td>
-        <td>服务业</td>
-        <td>20</td>
-        <td>20</td>
-        <td></td>
-        <td></td>
-        <td></td>
+    <tr th:each="salesoppList:${salesoppList}">
+        <td><input type="checkbox" th:value="${salesoppList.salesoppName}" style="zoom:150%;"></td>
+        <td th:text="${salesoppList.salesoppName}"></td>
+        <td th:text="${salesoppList.salesoppCusName}"></td>
+        <td th:text="${salesoppList.salesoppExpectedSigningTime}"></td>
+        <td th:text="${salesoppList.salesoppExpectedSigningMoney}"></td>
+        <td th:text="${salesoppList.salesoppAnticipatedProfit}"></td>
     </tr>
+    </tbody>
+</table>
+
+<!--对象类型(故障报修)-->
+<table class="layui-table" id="fkObjectTypeId2" hidden>
+    <thead>
     <tr>
-        <td><input type="checkbox" value="李四" style="zoom:150%;"></td>
-        <td>李四</td>
-        <td>深圳ddd的大大</td>
-        <td>普通</td>
-        <td>无</td>
-        <td>李销售</td>
-        <td>服务业</td>
-        <td>20</td>
-        <td>20</td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <th></th>
+        <th>报修编号</th>
+        <th>名称</th>
+        <th>紧急程度</th>
+        <th>故障发生时间</th>
+        <th>处理方式</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="faultWarList:${faultWarList}">
+        <td><input type="checkbox" th:value="${faultWarList.faultWarName}" style="zoom:150%;"></td>
+        <td th:text="${faultWarList.fkWarId}"></td>
+        <td th:text="${faultWarList.faultWarName}"></td>
+        <td th:text="${faultWarList.faultWarTensionLevel}"></td>
+        <td th:text="${faultWarList.faultWarFaultHappenTime}"></td>
+        <td th:text="${faultWarList.faultWarDisposeWay}"></td>
     </tr>
     </tbody>
 </table>

@@ -18,10 +18,10 @@
         <button class="layui-btn layui-btn-sm" lay-event="deleteOrder">删除</button>
         <button class="layui-btn layui-btn-sm" lay-event="lookOrder">查看</button>
         <button class="layui-btn layui-btn-sm" lay-event="startFlow">发起流程</button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">流程审批</button>
+        <button class="layui-btn layui-btn-sm" lay-event="flowApprove">流程审批</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">流程痕迹</button>
         <button class="layui-btn layui-btn-sm" lay-event="flowImg">流程图</button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">反审批</button>
+        <button class="layui-btn layui-btn-sm" lay-event="againstApprove">反审批</button>
     </div>
 
     <div class="layui-input-inline">
@@ -55,14 +55,22 @@
                 ,{field: 'orderName', title: '名称',width:120}
                 ,{field: 'fkCusName', title: '所属客户',width:190,templet:function(data){
                     if(data.fkCusTypeId==0){
-                        return "<a href='#' style='color: #0000FF'>[企业客户]"+data.fkCusName+"</a>"
+                        return "<a href='#'>[企业客户]"+data.fkCusName+"</a>"
                     }
                     if(data.fkCusTypeId==1){
-                        return "<a href='#' style='color: #0000FF'>[个人客户]"+data.fkCusName+"</a>"
+                        return "<a href='#'>[个人客户]"+data.fkCusName+"</a>"
                     }
                     }
                     }
-                ,{field: 'fkObjectName', title: '所属对象',width:120}
+                ,{field: 'fkObjectName', title: '所属对象',width:190,templet:function (data) {
+                        if(data.fkObjectTypeId==0){
+                            return "<a href='#'>[销售机会]"+data.fkObjectName+"</a>"
+                        }
+                        if(data.fkObjectTypeId==1){
+                            return "<a href='#'>[故障报修]"+data.fkObjectName+"</a>"
+                        }
+
+                    }}
                 ,{field: 'orderType', title: '分类',width:120,templet: function (data) {
                         if (data.orderType == 0) {
                             return "产品销售";
@@ -294,21 +302,51 @@
                                 }
                             })
                         }
-
-                        /*layer.open({
-                            title: '查看订单',
-                            type: 2,
-                            area: ['600px', '400px'],
-                            content: 'look_order.html?orderId=' + orderId + ''
-                            , btn: ['确定','取消']
-                            , btnAlign: 'c'
-                            , yes: function (index, layero) {
-                                layer.close(index);
-                            }
-                            ,btn2: function(index, layero){
-                                layer.close(index);
-                            }
-                        });*/
+                    }
+                    break;
+                case 'flowApprove':
+                    layer.open({
+                        type: 2,
+                        title:'流程审批',
+                        area: ['900px', '400px'],
+                        content: 'flow_approve.html',
+                        btn: ['确定','取消'],
+                        btnAlign: 'c',
+                        yes: function (index, layero) {
+                            layer.close(index);
+                            window.location.reload();
+                        },
+                        btn2: function(index, layero){
+                            layer.close(index);
+                            window.location.reload();
+                        }
+                    });
+                    break;
+                case 'againstApprove':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else if (data.length > 1) {
+                        layer.msg('只能选择一行');
+                    }else {
+                        var orderId=data[0].orderId;
+                        layer.confirm('你确定要反审批该条记录吗?', {icon: 3, title: '提示'}, function (index) {
+                            $.ajax({
+                                url: "update_against_approve_htmls",
+                                type: "get",
+                                data: {"orderId": orderId},
+                                traditional: true,
+                                success: function (data) {
+                                    if (data > 0) {
+                                        layer.msg('反审核成功', {icon: 1, time: 2000}, function () {
+                                            window.location.reload();
+                                        });
+                                    }
+                                },
+                                error: function () {
+                                    layer.msg('ajax执行错误', {icon: 2, time: 2000});
+                                }
+                            })
+                        });
                     }
                     break;
 

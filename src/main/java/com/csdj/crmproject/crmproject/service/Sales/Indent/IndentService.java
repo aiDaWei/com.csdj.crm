@@ -1,5 +1,7 @@
 package com.csdj.crmproject.crmproject.service.Sales.Indent;
 
+import com.csdj.crmproject.crmproject.entity.FaultWar;
+import com.csdj.crmproject.crmproject.entity.Salesopp;
 import com.csdj.crmproject.crmproject.entity.customermanagement.ClientTable;
 import com.csdj.crmproject.crmproject.entity.salesmanagement.Order;
 import com.github.pagehelper.PageInfo;
@@ -30,6 +32,12 @@ public interface IndentService {
      */
     public Order findGetOrderId(@Param(value = "orderId") long orderId);
     /**
+     * 根据审批状态查询订单信息
+     * @param orderApprovalStatus
+     * @return
+     */
+    public PageInfo<Order> findGetOrderApprovalStatus(String orderApprovalStatus,int pageNo);
+    /**
      * 添加订单
      * @return
      */
@@ -59,4 +67,14 @@ public interface IndentService {
      * @return
      */
     public List<ClientTable> findClientTableById(String fkTypeNumberId);
+    /**
+     * 查询销售机会信息
+     * @return
+     */
+    public List<Salesopp> findSalesopp();
+    /**
+     * 查询故障报修信息
+     * @return
+     */
+    public List<FaultWar> findFaultWar();
 }
