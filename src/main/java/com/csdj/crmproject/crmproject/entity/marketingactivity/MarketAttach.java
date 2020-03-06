@@ -5,11 +5,14 @@
  */
 package com.csdj.crmproject.crmproject.entity.marketingactivity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * @author lxj
  * @version 1.0.0
  * @date 2019/11/27
  */
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class MarketAttach {
     /**
      * 主键

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.csdj.crmproject.crmproject.dao.Marketing.ActivityMarketing.ActivityAttachMapper">
+    <resultMap type="MarketAttach" id="findMarketAttach">
+        <id property="fkMarketActivityId" column="fk_market_activity_id"/>
+        <result property="attachName" column="attach_name"/>
+        <result property="attachUrl" column="attach_url"/>
+        <result property="attachFounder" column="fk_user_id "/>
+        <result property="attachGmtCreate" column="attach_gmt_create"/>
+    </resultMap>
+    <select id="Smarketattach" resultType="MarketAttach" resultMap="findMarketAttach">
+        SELECT fk_market_activity_id,attach_name,attach_url,fk_user_id,attach_gmt_create
+         FROM `market_attach`
+         <where>
+        <if test="fkMarketActivityId!=null">
+            fkMarketActivityId = #{fkMarketActivityId}
+        </if>
+    </where>
+    </select>
+    <select id="AttCount" resultType="int">
+        SELECT COUNT(1) AS AttCount FROM `market_attach`
+    </select>
+
+    <insert id="InAtt" >
+        INSERT INTO `market_attach`(`fk_market_activity_id`,`attach_name`,`attach_url`,`fk_user_id`,`attach_gmt_create`,`isdel`)
+VALUES(#{fkMarketActivityId},#{attachName},#{attachUrl},#{attachFounder},#{attachGmtCreate},0)
+    </insert>
+
+    <update id="delAtt" parameterType="int">
+        UPDATE market_attach SET isdel=1 WHERE `pk_mark_attach_id`=#{pkMarkAttachId}
+    </update>
+</mapper>

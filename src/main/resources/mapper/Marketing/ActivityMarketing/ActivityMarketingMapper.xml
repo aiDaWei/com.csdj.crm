@@ -97,4 +97,5 @@ UPDATE market_activity SET
  WHERE pk_mark_activity_id =#{pkMarkActivityId}
     </update>
 
+
 </mapper>

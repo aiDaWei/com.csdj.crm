@@ -39,7 +39,6 @@ public class ActivityMarketingController {
        int page =Integer.parseInt(request.getParameter("page"));
        int limit =Integer.parseInt(request.getParameter("limit"));
        List<MarketActivity> list = service.activi(page,limit,activityApprovalProcess);
-       System.out.println("进入是》》》"+list.size());
        int sum =service.marketCount(activityApprovalProcess);
 
 
@@ -48,6 +47,7 @@ public class ActivityMarketingController {
         map.put("data",service.activi(page,limit,activityApprovalProcess));
         map.put("count",service.marketCount(activityApprovalProcess));
         //System.out.println("JSON："+json);
+       System.out.println("AAAAA》》》"+list);
         return map;
     }
 

@@ -24,10 +24,10 @@ public class ActivityMarketingServiceImpl implements ActivityMarketingService {
         PageHelper.startPage(page, limit);
         //查询的数据
         List<MarketActivity> list =ActivityMarketingMapper.activi(activityApprovalProcess);
-        System.out.println(list.size()+"--"+ JSON.toJSON(list));
+        System.out.println(list.size()+"--"+ list);
         //数据传入pagehelper中
         PageInfo<MarketActivity> pInfo =new PageInfo<MarketActivity>(list);
-        System.out.println("1234567"+ activityApprovalProcess);
+        System.out.println("****"+ pInfo.getList());
         return pInfo.getList();
     }
 

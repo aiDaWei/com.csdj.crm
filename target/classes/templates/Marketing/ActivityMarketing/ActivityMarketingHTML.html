@@ -398,11 +398,11 @@
             $(".layui-table-view:not(':first')").show()
 
 
-            var cid = obj.data.pkContractId;
+            var pkMarkActivityId = obj.data.pkMarkActivityId;
             table.reload('detailTable', {
                 where: {
                     key: {
-                        cid: cid
+                        pkMarkActivityId: pkMarkActivityId
                     }
                 }
             }, 'data');
@@ -458,7 +458,7 @@
 
 <div class="layui-tab layui-tab-card">
     <ul class="layui-tab-title">
-        <li class="layui-this">发货单明细</li>
+        <li class="layui-this">附件</li>
     </ul>
     <div class="layui-tab-content" >
         <div class="layui-tab-item layui-show">
@@ -467,8 +467,10 @@
 
             <script type="text/html" id="detail-Demo">
                 <div class="layui-btn-container">
-                    <button class="layui-btn layui-btn-sm" lay-event="add">增加产品明细</button>
-                    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">增加附件明细</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="add">增加</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">编辑</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">删除</button>
+                    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">查看</button>
                 </div>
             </script>
             <script type="text/html" id="detail-barDemo">
@@ -484,27 +486,17 @@
                     table.render({
                         elem: '#contract-detail'
                         ,height: 250 //容器高度
-                        ,url:'ContractDetail.list'
+                        ,url:'/crmproject/ActivityAttach/skipPage'
                         ,toolbar: '#detail-Demo' //开启头部工具栏，并为其绑定左侧模板
-                        ,title: '合同明细表'
+                        ,title: '附件'
                         ,cols: [
                             [
                                 {type: 'checkbox', fixed: 'left'}
-                                ,{field:'contractDetailName', title:'产品名称', width:200, unresize: true}
-                                ,{field:'contractDetailModelType', title:'型号规格', width:120}
-                                ,{field:'contractDetailMeasurement', title:'计量单位', width:150}
-                                ,{field:'contractDetailNumber', title:'数量', width:120}
-                                ,{field:'contractDetailUnivalence', title:'基本单价', width:120}
-                                ,{field:'contractDetailPrice', title:'销售价格',width:120}
-                                ,{field:'contractDetailTotalSum', title:'折前总额', width:120}
-                                ,{field:'contractDetailDiscount', title:'实际折扣（%）', width:120}
-                                ,{field:'contractDetailGrossProfit', title:'毛利润', width:120}
-                                ,{field:'contractDetailRate', title:'税率', width:120}
-                                ,{field:'contractDetailRevenue', title:'税额', width:120}
-                                ,{field:'contractDetailSaleroom', title:'销售额', width:120}
-                                ,{field:'joinTime', title:'明细附件', width:120}
-
-                                ,{fixed: 'right', title:'操作', toolbar: '#detail-barDemo', width:250}
+                                ,{field:'fkMarketActivityId', title:'活动id', width:200, unresize: true}
+                                ,{field:'attachName', title:'名称', width:120}
+                                ,{field:'attachUrl', title:'文件URL', width:150}
+                                ,{field:'attachFounder', title:'创建人', width:120}
+                                ,{field:'attachGmtCreate', title:'创建时间', width:120}
                             ]
                         ]
                         ,page: true
