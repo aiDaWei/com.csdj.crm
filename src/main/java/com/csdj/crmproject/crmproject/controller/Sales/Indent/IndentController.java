@@ -1,6 +1,8 @@
 package com.csdj.crmproject.crmproject.controller.Sales.Indent;
 
 import com.alibaba.fastjson.JSON;
+import com.csdj.crmproject.crmproject.entity.FaultWar;
+import com.csdj.crmproject.crmproject.entity.Salesopp;
 import com.csdj.crmproject.crmproject.entity.User;
 import com.csdj.crmproject.crmproject.entity.customermanagement.ClientTable;
 import com.csdj.crmproject.crmproject.entity.salesmanagement.Order;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,12 +35,15 @@ public class IndentController {
         return "sales/Indent/order_manage";
     }
     @RequestMapping("add_order.html")
-    public String addOrderHtml(Model model,
-                               @RequestParam(value = "pageNo",required = false,defaultValue = "1")int pageNo,
-                               @RequestParam(value = "fkTypeNumberId",required = false)String fkTypeNumberId){
-        PageInfo<ClientTable> pageInfo=indentService.findClientTableById(fkTypeNumberId,pageNo);
-        System.out.println(pageInfo);
-        model.addAttribute("pageInfo",pageInfo);
+    public String addOrderHtml(Model model){
+        List<ClientTable> qyClient=indentService.findClientTableById("2");
+        List<ClientTable> grClient=indentService.findClientTableById("1");
+        List<Salesopp> salesoppList=indentService.findSalesopp();
+        List<FaultWar> faultWarList=indentService.findFaultWar();
+        model.addAttribute("qyClient",qyClient);
+        model.addAttribute("grClient",grClient);
+        model.addAttribute("salesoppList",salesoppList);
+        model.addAttribute("faultWarList",faultWarList);
         return "sales/Indent/add_order";
     }
     @RequestMapping("look_order.html")
@@ -48,8 +55,24 @@ public class IndentController {
     @RequestMapping("update_order.html")
     public String updateOrderHtml(long orderId, Model model){
         Order order=indentService.findGetOrderId(orderId);
+        List<ClientTable> qyClient=indentService.findClientTableById("2");
+        List<ClientTable> grClient=indentService.findClientTableById("1");
+        List<Salesopp> salesoppList=indentService.findSalesopp();
+        List<FaultWar> faultWarList=indentService.findFaultWar();
+        model.addAttribute("qyClient",qyClient);
+        model.addAttribute("grClient",grClient);
         model.addAttribute("order",order);
+        model.addAttribute("salesoppList",salesoppList);
+        model.addAttribute("faultWarList",faultWarList);
         return "sales/Indent/update_order";
+    }
+    @RequestMapping("flow_approve.html")
+    public String flowApprove(Model model,
+                              @RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo){
+        PageInfo<Order> pageInfo=indentService.findGetOrderApprovalStatus("0",pageNo);
+        model.addAttribute("order",pageInfo);
+        System.out.println(pageInfo);
+        return "sales/Indent/flow_approve";
     }
 
     /**
@@ -98,6 +121,40 @@ public class IndentController {
         int i=indentService.updateOrder(order);
         return i;
     }
+    @RequestMapping("update_order_approval_status_htmls")
+    @ResponseBody
+    public int updateOrderByOrderId(long orderId){
+        int i=indentService.updateOrderByOrderId(orderId);
+        return i;
+    }
+    @RequestMapping("update_flow_approve_htmls")
+    @ResponseBody
+    public int updateFlowApprove(Order order,long orderId,HttpSession session){
+        User user=(User)session.getAttribute("user");
+        order.setModifier(user.getUserName());
+        order.setOrderId(orderId);
+        order.setOrderApprovalStatus("2");
+        order.setOrderApprovalResult("0");
+        int i=indentService.updateOrder(order);
+        return i;
+    }
+    @RequestMapping("update_against_approve_htmls")
+    @ResponseBody
+    public int updateAgainstApprove(Order order,long orderId,HttpSession session){
+        User user=(User)session.getAttribute("user");
+        order.setModifier(user.getUserName());
+        order.setOrderId(orderId);
+        order.setOrderApprovalStatus("1");
+        order.setOrderApprovalResult("2");
+        int i=indentService.updateOrder(order);
+        return i;
+    }
+
+    /**
+     * 删除订单信息
+     * @param array
+     * @return
+     */
     @RequestMapping("delete_order.htmls")
     @ResponseBody
     public Object deleteOrder(int[] array){
@@ -110,4 +167,5 @@ public class IndentController {
         }
         return map;
     }
+
 }

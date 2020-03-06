@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.csdj.crmproject.crmproject.dao.Sales.SalesmanSalesTarget.SalesmanSalesTargetMapper">
+
+    <select id="findPages" parameterType="int" resultType="CusSalesTarget">
+
+        SELECT pk_cus_sales_target_id pkCusSalesTargetId,fk_user_business_id fkUserBusinessId,
+        cus_sales_target_year cusSalesTargetYear,
+        sales_target_type salesTargetType,cus_sales_tar_january cusSalesTarJanuary,
+        cus_sales_tar_february cusSalesTarFebruary,cus_sales_tar_march cusSalesTarMarch,
+        cus_sales_tar_april cusSalesTarApril,cus_sales_tar_may cusSalesTarMay,
+        cus_sales_tar_jun cusSalesTarJun,cus_sales_tar_july cusSalesTarJuly,
+        cus_sales_tar_august cusSalesTarAugust,cus_sales_tar_september cusSalesTarSeptember,
+        cus_sales_tar_october cusSalesTarOctober,cus_sales_tar_november cusSalesTarNovember,
+        cus_sales_tar_december cusSalesTarDecember,
+        fk_user_res_id fkUserId,
+        u.user_name userBusiness,u.user_name pkCusSalesTargetName,
+        cus_sales_tar_gmt_create cusSalesTarGmtCreate , c.cus_sales_tar_gmt_modified cusSalesTarGmtModified,
+        (select user_name where fk_user_res_id =c.fk_user_Cre_id)  cusSalesTarCreator,
+        (select user_name where fk_user_res_id =c.fk_user_Upd_id) cusSalesTarLastModifier
+        FROM  cus_sales_target c,`user` u
+        where c.fk_user_business_id = u.pk_user_id and isdel != 0
+        <if test="selType!=0 and selType ==1">
+            and fk_user_business_id = #{id}
+        </if>
+        <if test="selType!=0 and selType== 2">
+            and fk_user_res_id =#{id}
+        </if>
+
+    </select>
+
+    <select id="getCount" parameterType="int" resultType="int">
+        select count(1) from cus_sales_target where isdel != 0
+        <if test="selType!=0 and selType ==1 ">
+            and fk_user_business_id = #{id}
+        </if>
+        <if test="selType!=0 and selType == 2 ">
+            and fk_user_res_id =#{id}
+        </if>
+    </select>
+
+    <update id="isDelStatus" parameterType="int">
+        update cus_sales_target set isdel = 0 where pk_cus_sales_target_id =#{salesId}
+    </update>
+
+    <insert id="addSales" parameterType="CusSalesTarget">
+        INSERT INTO cus_sales_target
+         (pk_cus_sales_target_id,fk_user_business_id,cus_sales_target_year,sales_target_type,
+        cus_sales_tar_january,cus_sales_tar_february,cus_sales_tar_march,cus_sales_tar_april,cus_sales_tar_may,cus_sales_tar_jun,
+        cus_sales_tar_july,cus_sales_tar_august,cus_sales_tar_september,cus_sales_tar_october,cus_sales_tar_november,cus_sales_tar_december,
+        fk_user_Cre_id,cus_sales_tar_gmt_create,fk_user_res_id)
+        VALUE
+        (0,#{sales.fkUserBusinessId},#{sales.cusSalesTargetYear},#{sales.salesTargetType},
+        #{sales.cusSalesTarJanuary},#{sales.cusSalesTarFebruary},#{sales.cusSalesTarMarch},#{sales.cusSalesTarApril},#{sales.cusSalesTarMay},#{sales.cusSalesTarJun},
+        #{sales.cusSalesTarJuly},#{sales.cusSalesTarAugust},#{sales.cusSalesTarSeptember},#{sales.cusSalesTarOctober},#{sales.cusSalesTarNovember},#{sales.cusSalesTarDecember},
+        4,sysdate(),4)
+    </insert>
+    <update id="updSales" parameterType="CusSalesTarget">
+        UPDATE cus_sales_target
+        SET fk_user_business_id = #{sales.fkUserBusinessId},cus_sales_target_year =#{sales.cusSalesTargetYear},sales_target_type =#{sales.salesTargetType},
+        cus_sales_tar_january =#{sales.cusSalesTarJanuary},cus_sales_tar_february =#{sales.cusSalesTarFebruary},cus_sales_tar_march =#{sales.cusSalesTarMarch},
+        cus_sales_tar_april =#{sales.cusSalesTarApril},cus_sales_tar_may =#{sales.cusSalesTarMay},cus_sales_tar_jun =#{sales.cusSalesTarJun},
+        cus_sales_tar_july =#{sales.cusSalesTarJuly},cus_sales_tar_august =#{sales.cusSalesTarAugust},cus_sales_tar_september =#{sales.cusSalesTarSeptember},
+        cus_sales_tar_october =#{sales.cusSalesTarOctober},cus_sales_tar_november =#{sales.cusSalesTarNovember},cus_sales_tar_december =#{sales.cusSalesTarDecember},
+        fk_user_Upd_id =4,cus_sales_tar_gmt_modified =sysdate()
+        WHERE pk_cus_sales_target_id = #{sales.pkCusSalesTargetId}
+
+    </update>
+</mapper>

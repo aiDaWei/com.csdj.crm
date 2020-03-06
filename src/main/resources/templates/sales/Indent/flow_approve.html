@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="static/lib/layui/css/layui.css">
+    <script src="static/js/jquery-2.1.1.js"></script>
+    <script src="static/lib/layui/layui.js"></script>
+</head>
+<body>
+<table class="layui-table">
+    <thead>
+    <tr>
+        <th>名称</th>
+        <th>类型</th>
+        <th>审批状态</th>
+        <th>开始时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order:${order.list}">
+        <td th:text="${order.orderName}"></td>
+        <td th:if="${order.orderType}==0">产品销售</td>
+        <td th:if="${order.orderType}==1">服务</td>
+        <td th:if="${order.orderType}==2">代销</td>
+        <td th:if="${order.orderType}==3">分销</td>
+        <td th:if="${order.orderType}==4">业务合作</td>
+        <td th:if="${order.orderType}==5">其它</td>
+        <td>审核中</td>
+        <td th:text="${order.orderApprovalTime}"></td>
+        <td><button type="button" class="layui-btn layui-btn-sm" th:attr="orderId=${order.orderId}">审核</button></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr style="text-align: right">
+        <td colspan="5">
+            <a th:href="@{/flow_approve.html(pageNo=1)}">首页</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a th:href="@{/flow_approve.html(pageNo=${order.pageNum - 1})}">上一页</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a th:href="@{/flow_approve.html(pageNo=${order.pageNum + 1})}">下一页</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a th:href="@{/flow_approve.html(pageNo=${order.pages})}">末页</a>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+<script>
+    layui.use('layer', function(){
+        var layer = layui.layer;
+    });
+    $(".layui-btn").click(function () {
+        var orderId=$(this).attr("orderId");
+        layer.confirm('是否通过审核?', {icon: 3, title:'提示'}, function(index){
+            $.ajax({
+                url: "update_flow_approve_htmls",
+                type: "get",
+                data: {"orderId":orderId},
+                traditional: true,
+                success: function (data) {
+                    if (data>0) {
+                        layer.msg('审核成功', {icon: 1, time: 2000}, function () {
+                            window.location.reload();
+                        });
+                    }
+                },
+                error:function () {
+                    layer.msg('ajax执行错误',{icon:2,time:2000});
+                }
+            })
+        });
+    })
+</script>
+</body>
+</html>

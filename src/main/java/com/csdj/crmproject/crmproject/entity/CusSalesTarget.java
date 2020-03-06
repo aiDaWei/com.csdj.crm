@@ -42,8 +42,10 @@ public class CusSalesTarget {
    * @param cusSalesTarGmtModified
    * @param cusSalesTarLastModifier
    * @param fkUserId
+   * @param userBusiness
+   *@param isDel
    */
-  public CusSalesTarget(long pkCusSalesTargetId, long fkUserBusinessId, long cusSalesTargetYear, String salesTargetType, double cusSalesTarJanuary, double cusSalesTarFebruary, double cusSalesTarMarch, double cusSalesTarApril, double cusSalesTarMay, double cusSalesTarJun, double cusSalesTarJuly, double cusSalesTarAugust, double cusSalesTarSeptember, double cusSalesTarOctober, double cusSalesTarNovember, double cusSalesTarDecember, String cusSalesTarCreator, String cusSalesTarGmtCreate, String cusSalesTarGmtModified, String cusSalesTarLastModifier, long fkUserId) {
+  public CusSalesTarget(long pkCusSalesTargetId, long fkUserBusinessId, long cusSalesTargetYear, String salesTargetType, double cusSalesTarJanuary, double cusSalesTarFebruary, double cusSalesTarMarch, double cusSalesTarApril, double cusSalesTarMay, double cusSalesTarJun, double cusSalesTarJuly, double cusSalesTarAugust, double cusSalesTarSeptember, double cusSalesTarOctober, double cusSalesTarNovember, double cusSalesTarDecember, String cusSalesTarCreator, String cusSalesTarGmtCreate, String cusSalesTarGmtModified, String cusSalesTarLastModifier, long fkUserId,String userBusiness,int isDel) {
     this.pkCusSalesTargetId = pkCusSalesTargetId;
     this.fkUserBusinessId = fkUserBusinessId;
     this.cusSalesTargetYear = cusSalesTargetYear;
@@ -65,8 +67,29 @@ public class CusSalesTarget {
     this.cusSalesTarGmtModified = cusSalesTarGmtModified;
     this.cusSalesTarLastModifier = cusSalesTarLastModifier;
     this.fkUserId = fkUserId;
+    this.userBusiness =userBusiness;
+    this.isDel =isDel;
   }
 
+  public String getUserBusiness() {
+    return userBusiness;
+  }
+
+  public void setUserBusiness(String userBusiness) {
+    this.userBusiness = userBusiness;
+  }
+  public int getIsDel() {
+    return isDel;
+  }
+
+  public void setIsDel(int isDel) {
+    this.isDel = isDel;
+  }
+  /**
+   * 销售员名称
+   */
+  private String userBusiness;
+  private int isDel;
   /**
    * 业务员销售目标id
    */
@@ -366,6 +389,8 @@ public class CusSalesTarget {
             ", cusSalesTarGmtModified=" + cusSalesTarGmtModified +
             ", cusSalesTarLastModifier='" + cusSalesTarLastModifier + '\'' +
             ", fkUserId=" + fkUserId +
+            ", userBusiness=" + userBusiness +
+            ", isDel=" + isDel +
             '}';
   }
 }

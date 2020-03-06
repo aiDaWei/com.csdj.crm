@@ -1,6 +1,8 @@
 package com.csdj.crmproject.crmproject.service.impl.Sales.Indent;
 
 import com.csdj.crmproject.crmproject.dao.Sales.Indent.IndentDao;
+import com.csdj.crmproject.crmproject.entity.FaultWar;
+import com.csdj.crmproject.crmproject.entity.Salesopp;
 import com.csdj.crmproject.crmproject.entity.customermanagement.ClientTable;
 import com.csdj.crmproject.crmproject.entity.salesmanagement.Order;
 import com.csdj.crmproject.crmproject.service.Sales.Indent.IndentService;
@@ -64,6 +66,14 @@ public class IndentServiceImpl implements IndentService {
     }
 
     @Override
+    public PageInfo<Order> findGetOrderApprovalStatus(String orderApprovalStatus,int pageNo) {
+        PageHelper.startPage(pageNo,4);
+        List<Order> list=indentDao.findGetOrderApprovalStatus(orderApprovalStatus);
+        PageInfo<Order> pageInfo=new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
     public int addOrder(Order order) {
         return indentDao.addOrder(order);
     }
@@ -78,6 +88,24 @@ public class IndentServiceImpl implements IndentService {
             if (keyHas){
                 redisTemplate.delete(key);
                 Order newOrder=indentDao.findGetOrderId(order.getOrderId());
+                if (newOrder!=null){
+                    valueOperations.set(key,newOrder,5, TimeUnit.MINUTES);
+                }
+            }
+        }
+        return i;
+    }
+
+    @Override
+    public int updateOrderByOrderId(long orderId) {
+        ValueOperations valueOperations=redisTemplate.opsForValue();
+        int i=indentDao.updateOrderByOrderId(orderId);
+        if(i!=0){
+            String key="order_"+orderId;
+            boolean keyHas=redisTemplate.hasKey(key);
+            if (keyHas){
+                redisTemplate.delete(key);
+                Order newOrder=indentDao.findGetOrderId(orderId);
                 if (newOrder!=null){
                     valueOperations.set(key,newOrder,5, TimeUnit.MINUTES);
                 }
@@ -102,10 +130,46 @@ public class IndentServiceImpl implements IndentService {
     }
 
     @Override
-    public PageInfo<ClientTable> findClientTableById(String fkTypeNumberId,int pageNo) {
-        PageHelper.startPage(pageNo,3);
+    public List<ClientTable> findClientTableById(String fkTypeNumberId) {
         List<ClientTable> list=indentDao.findClientTableById(fkTypeNumberId);
-        PageInfo<ClientTable> pageInfo=new PageInfo<>(list);
-        return pageInfo;
+        return list;
+    }
+
+    @Override
+    public List<Salesopp> findSalesopp() {
+        List<Salesopp> salesoppList=null;
+        try {
+            ValueOperations valueOperations=redisTemplate.opsForValue();
+            boolean hasKey=redisTemplate.hasKey("find_salesopp");
+            if (hasKey){
+                salesoppList=(List<Salesopp>) valueOperations.get("find_salesopp");
+            }else{
+                salesoppList=indentDao.findSalesopp();
+                valueOperations.set("find_salesopp",salesoppList,5,TimeUnit.MINUTES);
+            }
+        } catch (Exception e) {
+            System.out.println("redis异常salesoppList");
+            salesoppList=indentDao.findSalesopp();
+        }
+        return salesoppList;
+    }
+
+    @Override
+    public List<FaultWar> findFaultWar() {
+        List<FaultWar> faultWarList=null;
+        try {
+            ValueOperations valueOperations=redisTemplate.opsForValue();
+            boolean hasKey=redisTemplate.hasKey("find_faultWar");
+            if (hasKey){
+                faultWarList=(List<FaultWar>) valueOperations.get("find_faultWar");
+            }else{
+                faultWarList=indentDao.findFaultWar();
+                valueOperations.set("find_faultWar",faultWarList,5,TimeUnit.MINUTES);
+            }
+        } catch (Exception e) {
+            System.out.println("redis异常faultWarList");
+            faultWarList=indentDao.findFaultWar();
+        }
+        return faultWarList;
     }
 }

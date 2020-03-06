@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="static/lib/layui/css/layui.css">
+    <script src="static/js/jquery-2.1.1.js"></script>
+    <script src="static/lib/layui/layui.js"></script>
+</head>
+<body>
+<form class="layui-form" action="javascript:;" id="updateOrderForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label">简称</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" th:value="${order.abbreviation}" name="abbreviation" autocomplete="off" class="layui-input" readonly>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">客户全称</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="cusCustomername" th:value="${order.cusCustomername}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">分类</label>
+        <div class="layui-input-inline">
+            <select name="fkClassifId" lay-filter="fkClassifId" id="fkClassifId" lay-verify="required">
+                <option value="0" th:selected="${order.fkClassifId}==0">潜在</option>
+                <option value="1" th:selected="${order.fkClassifId}==1">普通</option>
+                <option value="2" th:selected="${order.fkClassifId}==2">vip</option>
+                <option value="3" th:selected="${order.fkClassifId}==3">大客户</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系电话</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="cusFinancialTelephone" th:value="${order.cusFinancialTelephone}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">负责人</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="fkUserId" th:value="${order.fkUserId}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">客户类型</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <select name="fkTypeNumber" lay-filter="aihao" disabled>
+                <option value="0" th:selected="${order.fkTypeNumber}==1">个人客户</option>
+                <option value="1" th:selected="${order.fkTypeNumber}==2">企业客户</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">传真</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="cusFax" th:value="${order.cusFax}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱编码</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="cusMailboxCode" th:value="${order.cusMailboxCode}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">网站地址</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="cusWebsiteAddress" th:value="${order.cusWebsiteAddress}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">开始时间</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" th:value="${order.orderStartTime}" name="orderStartTime"  class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">结束时间</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="orderEndTime" th:value="${order.orderEndTime}" class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货人姓名</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="orderConsigneeName" th:value="${order.orderConsigneeName}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货人电话</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="orderConsigneePhone" th:value="${order.orderConsigneePhone}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货人邮箱</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="orderConsigneeEmail" th:value="${order.orderConsigneeEmail}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">收货人地址</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <textarea name="orderConsigneeAddress" placeholder="请输入内容" class="layui-textarea" th:text="${order.orderConsigneeAddress}"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">以收款金额</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="orderAmountRemitted" th:value="${order.orderAmountRemitted}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">以开票金额</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="orderInvoiceAmount" th:value="${order.orderInvoiceAmount}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">审批状态</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <select name="orderApprovalStatus" lay-filter="aihao">
+                <option value="0" th:selected="${order.orderApprovalStatus}==0">审批中</option>
+                <option value="1" th:selected="${order.orderApprovalStatus}==1">未启动</option>
+                <option value="2" th:selected="${order.orderApprovalStatus}==2">已完成</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">审批时间</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="orderApprovalTime" th:value="${order.orderApprovalTime}" class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">审批结果</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <select name="orderApprovalResult" lay-filter="aihao">
+                <option value="0" th:selected="${order.orderApprovalResult}==0">成功结束</option>
+                <option value="1" th:selected="${order.orderApprovalResult}==1">失败结束</option>
+                <option value="2" th:selected="${order.orderApprovalResult}==2">无</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">运输方式</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <select name="orderTransportation" lay-filter="aihao">
+                <option value="0" th:selected="${order.orderTransportation}==0">顺丰快递</option>
+                <option value="1" th:selected="${order.orderTransportation}==1">中国邮政</option>
+                <option value="2" th:selected="${order.orderTransportation}==2">圆通快递</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">结算方式</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <select name="orderSettlement" lay-filter="aihao">
+                <option value="0" th:selected="${order.orderSettlement}==0">支票</option>
+                <option value="1" th:selected="${order.orderSettlement}==1">现金</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <textarea name="orderContext" th:text="${order.orderContext}" placeholder="请输入内容" class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item" hidden>
+        <div class="layui-input-block">
+            <button class="layui-btn" id="btnUpdateOrdre" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

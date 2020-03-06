@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>新增提醒</title>
+    <link rel="stylesheet" href="static/lib/layui/css/layui.css">
+    <script src="static/js/jquery-2.1.1.js"></script>
+    <script src="static/lib/layui/layui.js"></script>
+    <script>
+        layui.use([ 'form', 'layer', 'laydate' ], function() {
+            var form = layui.form;
+            layer = layui.layer;
+            laydate = layui.laydate;
+            //日期
+            laydate.render({
+                elem : '#date',
+                type : 'datetime',//datetime
+                //value : new Date()
+            });
+            laydate.render({
+                elem : '#date2',
+                type : 'datetime',//datetime
+                //value : new Date()
+            });
+        });
+    </script>
+    <style>
+        li{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="code" style="font-size:12px;background-color:#006699;color:white;">
+        <span>增加</span>
+    </div>
+    <div style="width:100%;">
+        <div class="layui-form-item layui-btn-group">
+            <button type="button" class="layui-btn layui-btn-normal layui-btn-sm">
+                <i class="layui-icon">&#xe654;</i>保存
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
+                <i class="layui-icon">&#xe640;</i>取消
+            </button>
+        </div>
+    </div>
+    <div style="margin: auto;text-align: center;">
+        <span>新增[提醒]</span>
+    </div>
+    <div class="layui-container layui-form">
+        <div class="layui-row">
+            <div class="layui-col-sm12" >
+                <div class="layui-form-item">
+                    <label class="layui-form-label">提醒ID</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="id" lay-verify="id" class="layui-input" readonly="readonly"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div style="float: left;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">提前</label>
+                    <div class="layui-input-block" style="width:130px;height:40px">
+                        <ul>
+                            <li style="width:100px">
+                                <select name="interest" style="width:20px">
+                                    <option value="0" selected="">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2" >2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </li>
+                            <li style="margin-top: -30px;">
+                                <span style="margin-left: 110px;font-size:16px;">天</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div style="float: left;">
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="width:130px;height:40px">
+                        <ul>
+                            <li style="width:100px;margin-left: -100px;">
+                                <select name="interest" style="width:20px">
+                                    <option value="0" selected="">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2" >2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </li>
+                            <li style="margin-top:-30px;">
+                                <span style="margin-left:10px;font-size:16px;">每小时</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div style="float: left;">
+                <div class="layui-form-item" style="margin-left: -70px;">
+                    <div class="layui-input-block" style="width:130px;height:40px">
+                        <ul>
+                            <li style="width:100px;margin-left: -100px;">
+                                <select name="interest" style="width:20px">
+                                    <option value="0" selected="">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2" >2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </li>
+                            <li style="margin-top:-30px;">
+                                <span style="margin-left:10px;font-size:16px;">分钟</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-sm12" >
+                <div class="layui-form-item">
+                    <label class="layui-form-label">提醒周期</label>
+                    <div class="layui-input-block">
+                        <select name="interest" lay-filter="aihao" style="height:30px;">
+                            <option value="0" selected="">仅此一次</option>
+                            <option value="1">每日</option>
+                            <option value="2" >每周</option>
+                            <option value="3">每月</option>
+                            <option value="4">每年</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-sm12" >
+                <div class="layui-form-item">
+                    <label class="layui-form-label">今天不再提醒</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="sex" value="是" title="是" readonly="readonly"lay-skin="primary"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-sm12" >
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否启用</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="sex" value="是" title="是" checked="checked" lay-skin="primary"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-sm12" >
+                <div class="layui-form-item">
+                    <label class="layui-form-label">弹窗提醒</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="sex" value="是" title="是" checked="checked" lay-skin="primary"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-sm12" >
+                <div class="layui-form-item">
+                    <label class="layui-form-label">提醒基准时间时间</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="date" name="date"  class="layui-input" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-row">
+            <div style="float: left;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">提醒业务对象</label>
+                    <div class="layui-input-block" id="leixing">
+                        <label class="layui-form-label"style="margin-left: -60px;">类型</label>
+                        <div class="layui-input-block" style="width:200px;margin-left: 50px;">
+                            <select name="interest" lay-filter="aihao" style="width:200px;">
+                                <option value="0" selected="">日程</option>
+                                <option value="1">代办事项</option>
+                                <option value="2">任务</option>
+                                <option value="3">活动</option>
+                                <option value="4">工作计划</option>
+                                <option value="5">联系人</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="float: left;">
+                <div class="layui-form-item"style="margin-left: -105px;">
+                    <div class="layui-input-block">
+                        <input type="text" name="id" lay-verify="id" class="layui-input"/>
+                    </div>
+                </div>
+            </div>
+            <div style="float: left;">
+                <button class="layui-btn layui-btn-primary layui-btn-md " id="btnCancel3">
+                    <i class="layui-icon layui-icon-search " ></i>选择
+                </button>
+                <button class="layui-btn layui-btn-primary layui-btn-md " id="btnCancels2">
+                    <i class="layui-icon layui-icon-delete " ></i>清空
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //点击添加弹出添加页面
+    $("document").ready(function(){
+        $("#btnCancel3").click(function(){
+            layer.open({
+                type: 2,
+                title: '选择',
+                maxmin: true, //最大最小窗口
+                offset: 'auto',//位置居中
+                shadeClose: true, //点击遮罩关闭层
+                shade: 0.5,  //不显示遮罩
+                area:['700px','500px'],    //宽   高
+                content:'' //弹框显示的url,对应的页面
+            });
+        });
+    });
+</script>
+</body>
+</html>
