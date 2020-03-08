@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{../static/lib/layui/css/layui.css}">
+    <script th:src="@{../static/lib/layui/layui.js}"></script>
+    <script th:src="@{../static/js/jquery-2.1.1.js}"></script>
+    <style>
+        .layui-form-label{
+            width: 85px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" action="javascript:;" id="updateOrderForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label">活动编号</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" th:value="${order.pkMarkActivityId}" name="pkMarkActivityId" autocomplete="off" class="layui-input" readonly>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">活动名称</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="activityName" th:value="${order.activityName}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">负责人</label>
+        <div class="layui-input-inline">
+            <select name="activityHead" lay-filter="fkCusTypeId" id="activityHead" lay-verify="required">
+                <option value="1" th:selected="${order.activityHead}=='小红'">小红</option>
+                <option value="2" th:selected="${order.activityHead}=='小黄'">小黄</option>
+                <option value="3" th:selected="${order.activityHead}=='小绿'">小绿</option>
+                <option value="4" th:selected="${order.activityHead}=='admin'">admin</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型</label>
+        <div class="layui-input-inline">
+            <input type="text" name="activityType" th:value="${order.activityType}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">预算</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="activityBudget" th:value="${order.activityBudget}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">实际参加人数</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="activityActualNumber" th:value="${order.activityActualNumber}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">计划开始时间</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" th:value="${order.activityPlannedStartdate}" name="activityPlannedStartdate"  class="layui-input" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">计划结束时间</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" th:value="${order.activityPlannedEnddate}" name="activityPlannedEnddate"  class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">审批状态</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="activityApprovalProcess" th:value="${order.activityApprovalProcess}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">流转时间</label>
+        <div class="layui-input-inline" style="width: 390px">
+            <input type="text" th:value="${order.activityCirculationdate}" name="activityCirculationdate"  class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">审批结果</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="activityApprovalResult" th:value="${order.activityApprovalResult}"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">创建人</label>
+        <div class="layui-input-inline">
+            <select name="activityFounder" lay-filter="fkCusTypeId" id="fkCusTypeId" lay-verify="required">
+                <option value="1" th:selected="${order.activityFounder}=='小红'">小红</option>
+                <option value="2" th:selected="${order.activityFounder}=='小黄'">小黄</option>
+                <option value="3" th:selected="${order.activityFounder}=='小绿'">小绿</option>
+                <option value="4" th:selected="${order.activityFounder}=='admin'">admin</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">创建时间</label>
+        <div class="layui-input-inline" style="width: 540px">
+            <input type="text" name="activityGmtCreate" th:value="${order.activityGmtCreate}" class="layui-input test-item" placeholder="yyyy-MM-dd HH:mm:ss">
+        </div>
+    </div>
+    <div class="layui-form-item" hidden>
+        <div class="layui-input-block">
+            <button class="layui-btn" id="btnUpdateOrdre" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use(['form','table','layer','laydate'], function(){
+        var form = layui.form
+            ,table = layui.table
+            ,layer = layui.layer
+            ,laydate=layui.laydate;
+
+        lay('.test-item').each(function(){
+            laydate.render({
+                elem: this
+                ,trigger: 'click'
+                ,type: 'datetime'
+            });
+        });
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            $.ajax({
+                url:"/crmproject/ActivityMarketing/updateKet",
+                type:"post",
+                data:$("#updateOrderForm").serialize(),
+                dataType:"json",
+                success:function (data) {
+                    if (data>0){
+                        layer.msg('修改成功', {icon: 1, time: 2000}, function () {
+                            parent.location.reload();
+                        });
+
+                    }else{
+                        layer.msg('修改失败',{icon:2})
+                    }
+                },
+                error:function () {
+                    layer.msg('ajax执行失败',{icon:2})
+                }
+            })
+            return false;
+        });
+        //监听客户类型
+        form.on('select(activityHead)', function(data){
+            $("#fkCusName").val("");
+        });
+        //监听对象类型
+        form.on('select(fkObjectTypeId)', function(data){
+            $("#fkObjectName").val("");
+        });
+    });
+</script>
+<script>
+    //打开客户类型页面
+    function xzkhType(){
+        var activityHead=$("#activityHead").val();
+        var index=$('#khType');
+        if(activityHead==1){
+            index=$('#khType2')
+        }
+        layer.open({
+            type: 1,
+            area: ['900px', '300px'],
+            content: index //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            ,btn: ['确定', '取消']
+            ,btnAlign: 'c'
+            ,title:'所属客户类型'
+            ,yes: function(index, layero){
+                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                $("#fkCusName").val(xzval.val());
+                xzval.attr("checked",false);
+                xzval.parent("td").parent("tr").css("background-color", "transparent")
+                layer.close(index);
+            }
+            ,btn2: function(index, layero){
+                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                xzval.attr("checked",false);
+                xzval.parent("td").parent("tr").css("background-color", "transparent")
+                layer.close(index);
+            },
+            zIndex: layer.zIndex, //重点1
+            success: function(layero){
+                layer.setTop(layero); //重点2
+            }
+        });
+    }
+
+    //打开对象类型页面
+    function dxType(){
+        var a=$('[name=activityHead]').val();
+        var index=$('#fkObjectTypeId1');
+        if(a==1){
+            index=$('#khType2')
+        }
+        layer.open({
+            type: 1,
+            area: ['900px', '300px'],
+            content: index //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            ,btn: ['确定', '取消']
+            ,btnAlign: 'c'
+            ,title:'所属对象类型'
+            ,yes: function(index, layero){
+                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                $('[name=fkObjectName]').val(xzval.val());
+                xzval.attr("checked",false);
+                xzval.parent("td").parent("tr").css("background-color", "transparent")
+                layer.close(index);
+            }
+            ,btn2: function(index, layero){
+                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                xzval.attr("checked",false);
+                xzval.parent("td").parent("tr").css("background-color", "transparent")
+                layer.close(index);
+            }
+        });
+    }
+
+    //打开客户签约人页面
+    function khqyrWindow(){
+        layer.open({
+            type: 1,
+            area: ['900px', '300px'],
+            content: $('#khqyrWindow') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            ,btn: ['确定', '取消']
+            ,btnAlign: 'c'
+            ,title:'客户签约人'
+            ,yes: function(index, layero){
+                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                $('[name=fkContactsId]').val(xzval.val());
+                xzval.attr("checked",false);
+                xzval.parent("td").parent("tr").css("background-color", "transparent")
+                layer.close(index);
+            }
+            ,btn2: function(index, layero){
+                var xzval=$("input[type='checkbox']:checked")//获取选中的值;
+                xzval.attr("checked",false);
+                xzval.parent("td").parent("tr").css("background-color", "transparent")
+                layer.close(index);
+            }
+        });
+    }
+
+    //清空数据方法
+    function clears(i) {
+        if(i==1){
+            $("#fkCusName").val("");
+        }
+        if (i==2){
+            $("#fkObjectName").val("");
+        }
+        if(i==3){
+            $("#fkContactsId").val("");
+        }
+    }
+
+</script>
+
+<script>
+    //点击选中
+    $("table tr").slice(1).click(function () {
+        var chks = $("input[type='checkbox']",this);
+        if(!chks[0].checked){
+            chks.prop("checked",true);
+            $(this).css("background-color", "#93FF93");
+        }else{
+            chks.prop("checked",false);
+            $(this).css("background-color", "transparent");
+        }
+        var length=$("input[type='checkbox']:checked").length;//获取选中的个数
+        if (length>1){
+            layer.msg('只能选中一个');
+            chks.prop("checked",false);
+            $(this).css("background-color", "transparent");
+        }
+    });
+</script>
+</body>
+</html>

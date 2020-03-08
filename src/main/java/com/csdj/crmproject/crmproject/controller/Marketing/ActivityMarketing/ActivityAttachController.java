@@ -30,11 +30,11 @@ public class ActivityAttachController {
         int limit =Integer.parseInt(request.getParameter("limit"));
         List<MarketAttach> list = service.Smarketattach(page,limit,pkMarkActivityId);
         int sum =service.AttCount();
+        System.out.println("******11**********"+JSON.toJSONString(list));
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("code",0);
         map.put("data",list);
         map.put("count",service.AttCount());
-        System.out.println("^^^^^^^666》》》"+list);
         //System.out.println("JSON："+json);
         return map;
     }
@@ -48,8 +48,8 @@ public class ActivityAttachController {
     }
     @RequestMapping("/delAtt")
     @ResponseBody
-    public int delshow(int pkMarkActivityId){
-        int num=service.delAtt(pkMarkActivityId);
+    public int delshow(int pkMarkAttachId){
+        int num=service.delAtt(pkMarkAttachId);
         return num;
     }
 

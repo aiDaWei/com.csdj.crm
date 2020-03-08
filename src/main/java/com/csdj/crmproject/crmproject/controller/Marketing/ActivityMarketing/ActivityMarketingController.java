@@ -1,5 +1,6 @@
 package com.csdj.crmproject.crmproject.controller.Marketing.ActivityMarketing;
 
+import com.alibaba.fastjson.JSON;
 import com.csdj.crmproject.crmproject.entity.CusSalesTarget;
 import com.csdj.crmproject.crmproject.entity.marketingactivity.MarketActivity;
 
@@ -40,7 +41,7 @@ public class ActivityMarketingController {
        int limit =Integer.parseInt(request.getParameter("limit"));
        List<MarketActivity> list = service.activi(page,limit,activityApprovalProcess);
        int sum =service.marketCount(activityApprovalProcess);
-
+       System.out.println("******22**********"+JSON.toJSONString(list));
 
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("code",0);

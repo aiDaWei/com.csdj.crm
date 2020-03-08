@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * @version 1.0.0
  * @date 2019/11/27
  */
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class MarketAttach {
     /**
      * 主键
@@ -39,7 +38,53 @@ public class MarketAttach {
      */
     private String attachGmtCreate;
 
+    public int getPkMarkAttachId() {
+        return pkMarkAttachId;
+    }
 
+    public void setPkMarkAttachId(int pkMarkAttachId) {
+        this.pkMarkAttachId = pkMarkAttachId;
+    }
+
+    public int getFkMarketActivityId() {
+        return fkMarketActivityId;
+    }
+
+    public void setFkMarketActivityId(int fkMarketActivityId) {
+        this.fkMarketActivityId = fkMarketActivityId;
+    }
+
+    public String getAttachName() {
+        return attachName;
+    }
+
+    public void setAttachName(String attachName) {
+        this.attachName = attachName;
+    }
+
+    public String getAttachUrl() {
+        return attachUrl;
+    }
+
+    public void setAttachUrl(String attachUrl) {
+        this.attachUrl = attachUrl;
+    }
+
+    public String getAttachFounder() {
+        return attachFounder;
+    }
+
+    public void setAttachFounder(String attachFounder) {
+        this.attachFounder = attachFounder;
+    }
+
+    public String getAttachGmtCreate() {
+        return attachGmtCreate;
+    }
+
+    public void setAttachGmtCreate(String attachGmtCreate) {
+        this.attachGmtCreate = attachGmtCreate;
+    }
 
     /**
      * 无参构造

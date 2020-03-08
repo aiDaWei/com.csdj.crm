@@ -23,7 +23,6 @@ public class ActivityAttachServiceImpl implements ActivityAttachService {
         //查询的数据
         List<MarketAttach> list =ActivityAttachMapper.Smarketattach(pkMarkActivityId);
         System.out.println(list.size()+"-????-"+ list);
-        System.out.println(list.size()+"-!!!!-"+ActivityAttachMapper.Smarketattach(pkMarkActivityId));
         //数据传入pagehelper中
         PageInfo<MarketAttach> pInfo =new PageInfo<MarketAttach>(list);
         System.out.println(list.size()+"-(((((()))-"+pInfo.getList());

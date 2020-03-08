@@ -5,23 +5,32 @@
 
 <mapper namespace="com.csdj.crmproject.crmproject.dao.Marketing.ActivityMarketing.ActivityAttachMapper">
     <resultMap type="MarketAttach" id="findMarketAttach">
-        <id property="fkMarketActivityId" column="fk_market_activity_id"/>
+        <id property="pkMarkAttachId" column="pk_mark_attach_id"/>
+        <result property="fkMarketActivityId" column="fk_market_activity_id"/>
         <result property="attachName" column="attach_name"/>
         <result property="attachUrl" column="attach_url"/>
-        <result property="attachFounder" column="fk_user_id "/>
+        <result property="attachFounder" column="cname "/>
         <result property="attachGmtCreate" column="attach_gmt_create"/>
     </resultMap>
     <select id="Smarketattach" resultType="MarketAttach" resultMap="findMarketAttach">
-        SELECT fk_market_activity_id,attach_name,attach_url,fk_user_id,attach_gmt_create
-         FROM `market_attach`
+        SELECT `pk_mark_attach_id`,fk_market_activity_id,attach_name,attach_url,
+        (SELECT `user_name` FROM `user` WHERE `pk_user_id`=`fk_user_id`) AS cname,attach_gmt_create
+        FROM `market_attach`
          <where>
         <if test="fkMarketActivityId!=null">
             fkMarketActivityId = #{fkMarketActivityId}
         </if>
+        and  isdel=0
     </where>
     </select>
     <select id="AttCount" resultType="int">
         SELECT COUNT(1) AS AttCount FROM `market_attach`
+        <where>
+            <if test="fkMarketActivityId!=null">
+                fkMarketActivityId = #{fkMarketActivityId}
+            </if>
+            and  isdel=0
+        </where>
     </select>
 
     <insert id="InAtt" >
