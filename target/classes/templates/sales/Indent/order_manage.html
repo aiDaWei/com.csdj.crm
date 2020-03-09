@@ -34,6 +34,257 @@
     </div>
 </script>
 
+<form class="layui-form" action="">
+    <div class="layui-fluid">
+        <div id="two">
+            <div class="layui-tab">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">订单明细</li>
+                    <li>收款计划</li>
+                    <li>回款记录</li>
+                    <li>发货单</li>
+                    <li>费用报销单</li>
+                    <li>退货单</li>
+                    <li>附件</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <button  type="button" class="layui-btn  layui-btn-sm">曾加产品明细</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">增加附件明细</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">编辑</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">删除</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">查看</button>
+
+                        <table class="layui-hide" id="test2" lay-filter="test"></table>
+                    </div>
+                    <div class="layui-tab-item">
+                        <button  type="button" class="layui-btn  layui-btn-sm">添加</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">编辑</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">删除</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">查看</button>
+                        <div class="layui-inline" style="margin-left:10px;">
+                        </div>
+                        <table class="layui-hide" id="test3" lay-filter="test"></table>
+                    </div>
+                    <div class="layui-tab-item">
+                        <button  type="button" class="layui-btn  layui-btn-sm">添加</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">编辑</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">删除</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">查看</button>
+                        <div class="layui-inline" style="margin-left:10px;">
+                        </div>
+                        <table class="layui-hide" id="test4" lay-filter="test"></table>
+                    </div>
+                    <div class="layui-tab-item">
+                        <button  type="button" class="layui-btn  layui-btn-sm">添加</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">编辑</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">删除</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">查看</button>
+                        <table class="layui-hide" id="test5" lay-filter="test"></table>
+                    </div>
+                    <div class="layui-tab-item">
+                        <button type="button" class="layui-btn  layui-btn-sm">查看</button>
+                        <table class="layui-hide" id="test6" lay-filter="test"></table>
+                    </div>
+                    <div class="layui-tab-item">
+                        <button  type="button" class="layui-btn  layui-btn-sm">添加</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">编辑</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">删除</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">查看</button>
+                        <div class="layui-inline" style="margin-left:10px;">
+                        </div>
+                        <table class="layui-hide" id="test7" lay-filter="test"></table>
+                    </div>
+                    <div class="layui-tab-item">
+                        <button  type="button" class="layui-btn  layui-btn-sm">添加</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">编辑</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">删除</button>
+                        <button type="button" class="layui-btn  layui-btn-sm">查看</button>
+                        <table class="layui-hide" id="test8" lay-filter="test"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use(['form', 'layedit', 'laydate','table','element'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,table = layui.table
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate
+            ,element = layui.element;
+
+        table.render({
+            elem: '#test'
+            ,height:300
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [
+                [
+                {type:'checkbox'}
+                ,{field:'id', title: '合同编号'}
+                ,{field:'username', title: '合同名称'}
+                ,{field:'sex', title:'不含税总额'}
+                ,{field:'city', title: '毛利润'}
+                ,{field:'sign', title: '税额'}
+                ,{field:'experience', title: '销售额'}
+                ,{field:'score', title: '已回款金额'}
+                ,{field:'classify', title: '已开票金额'}
+                ,{field:'wealth', title: '审批状态'}
+                ,{field:'city', title: '审批结果'}
+                ,{field:'sign', title: '审批时间'}
+                ,{field:'experience', title: '合同类型'}
+                ,{field:'score', title: '关联客户'}
+                ,{field:'classify', title: '关联对象'}
+                ,{field:'wealth', title: '开始时间'}
+                ,{field:'wealth', title: '结束时间'}
+            ]
+            ]
+            ,page: true
+        });
+        table.render({
+            elem: '#test2'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [
+                [
+                {type:'checkbox'}
+                ,{field:'id', title: '产品名称'}
+                ,{field:'username', title: '型号规格'}
+                ,{field:'sex', title:'计量单位'}
+                ,{field:'city', title: '数量'}
+                ,{field:'sign', title: '基本单价'}
+                ,{field:'experience', title: '销售价格'}
+                ,{field:'score', title: '拆前总额'}
+                ,{field:'classify', title: '拆后总额'}
+                ,{field:'wealth', title: '实际折扣'}
+                ,{field:'city', title: '毛利润'}
+                ,{field:'sign', title: '税率'}
+                ,{field:'experience', title: '税额'}
+                ,{field:'score', title: '销售额'}
+                ,{field:'classify', title: '明细附件'}
+            ]
+             ]
+            ,page: true
+        });
+        table.render({
+            elem: '#test3'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [
+                [
+                {type:'checkbox'}
+                ,{field:'id', title: '标题'}
+                ,{field:'username', title: '预计收款金额'}
+                ,{field:'sex', title:'当前状态'}
+                ,{field:'city', title: '合同/订单'}
+                ,{field:'sign', title: '客户'}
+                ,{field:'experience', title: '计划收款日期'}
+                ,{field:'score', title: '实际收款日期'}
+                ,{field:'classify', title: '负责人'}
+                ,{field:'wealth', title: '创建时间'}
+
+            ]
+             ]
+            ,page: true
+        });
+        table.render({
+            elem: '#test4'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [
+                [
+                {type:'checkbox'}
+                ,{field:'id', title: '收款金额'}
+                ,{field:'username', title: '客户'}
+                ,{field:'sex', title:'合同/订单'}
+                ,{field:'city', title: '收款日期'}
+                ,{field:'sign', title: '是否需要发票'}
+                ,{field:'experience', title: '是否已开发票'}
+                ,{field:'score', title: '经手人'}
+                ,{field:'classify', title: '负责人'}
+
+            ]
+             ]
+            ,page: true
+        });
+        table.render({
+            elem: '#test5'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [
+                [
+                {type:'checkbox'}
+                ,{field:'id', title: '发货单编号'}
+                ,{field:'username', title: '主题'}
+                ,{field:'sex', title:'发货人'}
+                ,{field:'city', title: '发货时间'}
+                ,{field:'sign', title: '收货客户'}
+                ,{field:'experience', title: '合同/订单'}
+                ,{field:'score', title: '发货方式'}
+                ,{field:'classify', title: '发货状态'}
+                ,{field:'score', title: '快递单编号'}
+                ,{field:'classify', title: '收货联系人'}
+            ]
+             ]
+            ,page: true
+        });
+        table.render({
+            elem: '#test6'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [
+                [
+                {type:'checkbox'}
+                ,{field:'id', title: '用途'}
+                ,{field:'username', title: '分类'}
+                ,{field:'sex', title:'费用归集'}
+                ,{field:'city', title: '金额'}
+                ,{field:'sign', title: '发生时间'}
+                ,{field:'experience', title: '状态'}
+                ,{field:'score', title: '关联客户'}
+                ,{field:'classify', title: '关联业务对象'}
+                ,{field:'score', title: '票据张数'}
+                ,{field:'classify', title: '创建人'}
+            ]
+            ]
+            ,page: true
+        });
+        table.render({
+            elem: '#test7'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [
+                [
+                {type:'checkbox'}
+                ,{field:'id', title: '退货名称'}
+                ,{field:'username', title: '编号'}
+                ,{field:'sex', title:'退货客户'}
+                ,{field:'city', title: '退货订单或合同'}
+                ,{field:'sign', title: '销售员'}
+                ,{field:'experience', title: '分类'}
+                ,{field:'score', title: '退款额'}
+                ,{field:'classify', title: '收款人'}
+                ,{field:'score', title: '当前状态'}
+                ,{field:'classify', title: '审批时间'}
+                ,{field:'classify', title: '审批结果'}
+            ]
+            ]
+            ,page: true
+        });
+        table.render({
+            elem: '#test8'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [
+                [
+                {type:'checkbox'}
+                ,{field:'id', title: '名称'}
+                ,{field:'username', title: '文件'}
+                ,{field:'sex', title:'所属对象'}
+                ,{field:'city', title: '创建人'}
+                ,{field:'sign', title: '创建时间'}
+
+            ]
+            ]
+            ,page: true
+        });
+    });
+</script>
 <script>
     layui.use(['table','form'], function(){
         var table = layui.table,
