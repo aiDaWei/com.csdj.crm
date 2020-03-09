@@ -38,6 +38,14 @@
     </resultMap>
 
 
+    <resultMap id="salesoppMap" type="Salesopp">
+        <id column="pk_salesopp_id" property="pkSalesoppId"></id>
+        <result column="salesopp_name" property="salesoppName"></result>
+        <result column="salesopp_cus_name" property="salesoppCusName"></result>
+        <result column="salesopp_expected_signing_times" property="salesoppExpectedSigningTime"></result>
+        <result column="salesopp_expected_signing_money" property="salesoppExpectedSigningMoney"></result>
+        <result column="salesopp_anticipated_profit" property="salesoppAnticipatedProfit"></result>
+    </resultMap>
     <!--查询收款计划总数-->
     <select id="planCount" resultType="int">
         SELECT COUNT(1) AS planCount FROM `recei_plan`
@@ -137,5 +145,11 @@
                 and fk_type_number_id=#{fkTypeNumberId}
             </if>
         </where>
+    </select>
+
+    <!--查看销售机会-->
+    <select id="findSalesopp" resultMap="salesoppMap">
+       select salesopp_name,salesopp_cus_name,DATE_FORMAT(salesopp_expected_signing_time, '%Y-%m-%d %H:%i:%s') salesopp_expected_signing_times,
+       salesopp_expected_signing_money,salesopp_anticipated_profit from salesopp
     </select>
 </mapper>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>新增收款计划</title>
@@ -175,13 +176,11 @@
     function htType(){
         let a=$('[name=fkOrDerConTypeId]').val();
         let index=$('#fkOrDerConTypeId1');
-        let b=$('[name=fkOrDerConTypeId]').val();
-        let index1=$('#fkOrDerConTypeId2');
         if(a==1){
             index=$('#fkOrDerConTypeId1')
         }
-        if(b==2){
-            index1=$('#fkOrDerConTypeId2')
+        if(a==2){
+            index=$('#fkOrDerConTypeId2')
         }
         layer.open({
             type: 1,
@@ -209,12 +208,8 @@
     //打开客户类型页面
     function khType(){
         let reUserTypeId=$("#reUserTypeId").val();
-        let reUserTypeId1=$("#reUserTypeId").val();
         let index=$('#khType');
-        if(reUserTypeId=1){
-            index=$('#khType')
-        }
-        if(reUserTypeId1=2){
+        if(reUserTypeId==1){
             index=$('#khType2')
         }
         layer.open({
@@ -255,64 +250,23 @@
 </script>
 <!--合同/订单(业务机会)-->
 <table class="layui-table" id="fkOrDerConTypeId1" style="overflow-x: auto; width: 1500px" hidden>
-    <colgroup>
-        <col width="50">
-        <col width="200">
-        <col width="200">
-        <col width="100">
-        <col width="150">
-        <col width="150">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-    </colgroup>
-    <thead>
     <tr>
         <th></th>
         <th>销售机会名称</th>
         <th>所属客户</th>
-        <th>负责人</th>
         <th>预期签单时间</th>
         <th>预期签单金额</th>
         <th>预期利润</th>
-        <th>成功率(%)</th>
-        <th>当前阶段</th>
-        <th>销售模式</th>
-        <th>是否关闭</th>
-        <th>是否成功</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td><input type="checkbox" value="免费服务" style="zoom:150%;"></td>
-        <td>免费服务</td>
-        <td>深圳ddd的大大</td>
-        <td>普通</td>
-        <td>无</td>
-        <td>李销售</td>
-        <td>服务业</td>
-        <td>20</td>
-        <td>20</td>
-        <td>无</td>
-        <td>是</td>
-        <td>否</td>
-    </tr>
-    <tr>
-        <td><input type="checkbox" value="李四" style="zoom:150%;"></td>
-        <td>测试</td>
-        <td>广州ddd的大大</td>
-        <td>普通</td>
-        <td>无</td>
-        <td>李销售</td>
-        <td>服务业</td>
-        <td>20</td>
-        <td>20</td>
-        <td></td>
-        <td></td>
-        <td></td>
+    <tr th:each="salesoppList:${salesoppList}">
+        <td><input type="checkbox" th:value="${salesoppList.salesoppName}" style="zoom:150%;"></td>
+        <td th:text="${salesoppList.salesoppName}"></td>
+        <td th:text="${salesoppList.salesoppCusName}"></td>
+        <td th:text="${salesoppList.salesoppExpectedSigningTime}"></td>
+        <td th:text="${salesoppList.salesoppExpectedSigningMoney}"></td>
+        <td th:text="${salesoppList.salesoppAnticipatedProfit}"></td>
     </tr>
     </tbody>
 </table>
@@ -320,20 +274,6 @@
 
 <!--合同/订单(报价单)-->
 <table class="layui-table" id="fkOrDerConTypeId2" style="overflow-x: auto; width: 1500px" hidden>
-    <colgroup>
-        <col width="50">
-        <col width="200">
-        <col width="200">
-        <col width="100">
-        <col width="150">
-        <col width="150">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-    </colgroup>
     <thead>
     <tr>
         <th></th>
@@ -396,32 +336,17 @@
         <th>联系电话</th>
         <th>负责人</th>
         <th>所属行业</th>
-        <th>创建时间</th>
-        <th>最后修改时间</th>
     </tr>
     </thead>
     <tbody>
-<!--    <tr th:each="client:${pageInfo.list}">-->
-<!--        <td><input type="checkbox" th:value="${client.abbreviation}" style="zoom:150%;"></td>-->
-<!--        <td th:text="${client.abbreviation}"></td>-->
-<!--        <td th:text="${client.cusCustomername}"></td>-->
-<!--        <td th:text="${client.fkClassifId}"></td>-->
-<!--        <td th:text="${client.cusFinancialTelephone}"></td>-->
-<!--        <td th:text="${client.fkUserId}"></td>-->
-<!--        <td th:text="${client.fkIndustryId}"></td>-->
-<!--        <td th:text="${client.cusGmtCreate}"></td>-->
-<!--        <td th:text="${client.cusGmtModified}"></td>-->
-<!--    </tr>-->
-    <tr>
-        <td><input type="checkbox" value="小芳" style="zoom:150%;"></td>
-        <td>小芳</td>
-        <td>fang</td>
-        <td>vip</td>
-        <td>13678923451</td>
-        <td>哈哈</td>
-        <td>服务业</td>
-        <td>2020-02-01</td>
-        <td>2020-02-02</td>
+    <tr th:each="client:${qyClient}">
+        <td><input type="checkbox" th:value="${client.abbreviation}" style="zoom:150%;"></td>
+        <td th:text="${client.abbreviation}"></td>
+        <td th:text="${client.cusCustomername}"></td>
+        <td th:text="${client.fkClassifId}"></td>
+        <td th:text="${client.cusFinancialTelephone}"></td>
+        <td th:text="${client.fkUserId}"></td>
+        <td th:text="${client.fkIndustryId}"></td>
     </tr>
     </tbody>
 </table>
@@ -437,32 +362,17 @@
         <th>电子邮箱</th>
         <th>移动电话</th>
         <th>单位名称</th>
-        <th>负责人</th>
-        <th>创建时间</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td><input type="checkbox" value="张三" style="zoom:150%;"></td>
-        <td>张三</td>
-        <td>深圳ddd的大大</td>
-        <td>普通</td>
-        <td>无</td>
-        <td>李销售</td>
-        <td>服务业</td>
-        <td>2020-02-01</td>
-        <td>2020-02-01</td>
-    </tr>
-    <tr>
-        <td><input type="checkbox" value="李四" style="zoom:150%;"></td>
-        <td>李四</td>
-        <td>深圳ddd的大大</td>
-        <td>普通</td>
-        <td>无</td>
-        <td>李销售</td>
-        <td>服务业</td>
-        <td>2020-02-01</td>
-        <td>2020-02-01</td>
+    <tr th:each="client:${grClient}">
+        <td><input type="checkbox" th:value="${client.cusCustomername}" style="zoom:150%;"></td>
+        <td th:text="${client.cusCustomername}"></td>
+        <td th:text="${client.fkClassifId}"></td>
+        <td th:text="${client.fkIndustryId}"></td>
+        <td th:text="${client.cusMailboxCode}"></td>
+        <td th:text="${client.cusFinancialTelephone}"></td>
+        <td th:text="${client.cusSynopsis}"></td>
     </tr>
     </tbody>
 </table>
