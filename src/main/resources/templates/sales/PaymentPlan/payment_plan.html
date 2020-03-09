@@ -70,6 +70,9 @@
                         if(data.fkOrDerConTypeId==0){
                             return "<a href='#'>[销售机会]"+data.rePlanOrderContractName+"</a>"
                         }
+                        if(data.fkOrDerConTypeId==1){
+                            return "<a href='#'>[报价单]"+data.rePlanOrderContractName+"</a>"
+                        }
                     }}
 
                     ,{field:'fkCustomerId',title: '客户', width:120, templet:function (data){

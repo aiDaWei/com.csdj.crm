@@ -46,6 +46,18 @@
         <result column="salesopp_expected_signing_money" property="salesoppExpectedSigningMoney"></result>
         <result column="salesopp_anticipated_profit" property="salesoppAnticipatedProfit"></result>
     </resultMap>
+
+
+    <!--报价单-->
+    <resultMap id="quotationMap" type="Quotation">
+        <id column="pk_quo_id" property="pkQuoId"></id>
+        <result column="quo_name" property="quoName"></result>
+        <result column="quo_time" property="quoTime"></result>
+        <result column="quo_user" property="quoUser"></result>
+        <result column="quo_approval_status" property="quoApprovalStatus"></result>
+        <result column="quo_approval_time" property="quoApprovalTime"></result>
+        <result column="quo_approver_results" property="quoApproverResults"></result>
+    </resultMap>
     <!--查询收款计划总数-->
     <select id="planCount" resultType="int">
         SELECT COUNT(1) AS planCount FROM `recei_plan`
@@ -151,5 +163,12 @@
     <select id="findSalesopp" resultMap="salesoppMap">
        select salesopp_name,salesopp_cus_name,DATE_FORMAT(salesopp_expected_signing_time, '%Y-%m-%d %H:%i:%s') salesopp_expected_signing_times,
        salesopp_expected_signing_money,salesopp_anticipated_profit from salesopp
+    </select>
+
+
+
+    <select id="findQuotation" resultMap="quotationMap">
+        select quo_name,quo_time,quo_user,quo_approval_status,quo_approval_time,quo_approver_results
+        from  quotation
     </select>
 </mapper>

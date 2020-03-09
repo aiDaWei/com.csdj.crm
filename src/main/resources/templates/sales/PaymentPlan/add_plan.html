@@ -278,46 +278,22 @@
     <tr>
         <th></th>
         <th>名称</th>
-        <th>不含税总额</th>
-        <th>毛利润</th>
-        <th>税额</th>
-        <th>销售额</th>
         <th>报价日期</th>
-        <th>报废人</th>
+        <th>报价人</th>
         <th>审批状态</th>
         <th>审批时间</th>
         <th>审批结果</th>
-        <th>所属业务机会</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td><input type="checkbox" value="报价" style="zoom:150%;"></td>
-        <td>报价</td>
-        <td>无</td>
-        <td>无</td>
-        <td>无</td>
-        <td>无</td>
-        <td>2020-01-19</td>
-        <td>admin</td>
-        <td>审批中</td>
-        <td>2020-01-22</td>
-        <td>无</td>
-        <td>无</td>
-    </tr>
-    <tr>
-        <td><input type="checkbox" value="设备采购" style="zoom:150%;"></td>
-        <td>设备采购</td>
-        <td>10000.0</td>
-        <td>10000.0</td>
-        <td>10000.0</td>
-        <td>10000.0</td>
-        <td>2020-02-11</td>
-        <td>admin</td>
-        <td>审批中</td>
-        <td>2020-01-25/td>
-        <td>无</td>
-        <td>无</td>
+    <tr th:each="quotationList:${quotationList}">
+        <td><input type="checkbox" th:value="${quotationList.quoName}" style="zoom:150%;"></td>
+        <td th:text="${quotationList.quoName}"></td>
+        <td th:text="${quotationList.quoTime}"></td>
+        <td th:text="${quotationList.quoUser}"></td>
+        <td th:text="${quotationList.quoApprovalStatus}"></td>
+        <td th:text="${quotationList.quoApprovalTime}"></td>
+        <td th:text="${quotationList.quoApproverResults}"></td>
     </tr>
     </tbody>
 </table>
