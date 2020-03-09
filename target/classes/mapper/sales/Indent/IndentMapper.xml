@@ -114,6 +114,7 @@
        select salesopp_name,salesopp_cus_name,DATE_FORMAT(salesopp_expected_signing_time, '%Y-%m-%d %H:%i:%s') salesopp_expected_signing_times,
        salesopp_expected_signing_money,salesopp_anticipated_profit from salesopp
     </select>
+
     <select id="findFaultWar" resultMap="faultWarMap">
          select fk_war_id,fault_war_name,fault_war_tension_level,DATE_FORMAT(fault_war_fault_happen_time, '%Y-%m-%d %H:%i:%s') fault_war_fault_happen_times,
        fault_war_dispose_way from fault_war
